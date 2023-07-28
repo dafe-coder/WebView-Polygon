@@ -1,0 +1,23 @@
+.btn {
+	padding: 11px 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #FFFFFF;
+	border: 1px solid var(--primary);
+	border-radius: 4px;
+	width: 31.5%;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.btn:hover {
+	color: var(--white);
+	background: var(--primary);
+}
+.btn:hover svg {
+	fill: var(--white);
+}
+.btn svg {
+	margin-right: 10px;
+	transition: all ease .2s;
+}

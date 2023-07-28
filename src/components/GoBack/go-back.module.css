@@ -1,0 +1,13 @@
+.back {
+	background: transparent;
+    color: var(--primary);
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    font-family: 'FontAwesome Bolder';
+    border: none;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0;
+    cursor: pointer;
+}

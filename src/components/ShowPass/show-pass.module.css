@@ -1,0 +1,9 @@
+.show_pass {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    background: transparent;
+    border: none;
+    color: var(--disabled);
+    cursor: pointer;
+}

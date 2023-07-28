@@ -1,0 +1,92 @@
+{
+  "name": "sparrow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sparrow is a wallet for those who value financial self sovereignty.",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "apexcharts": "^3.35.3",
+    "arc4": "^3.4.0",
+    "assert": "^2.0.0",
+    "axios": "^1.3.4",
+    "bip39": "^3.0.4",
+    "bitcore-lib": "^8.25.30",
+    "bitcore-mnemonic": "^8.25.30",
+    "buffer": "^6.0.3",
+    "coingecko-api": "^1.0.10",
+    "coinkey": "^3.0.0",
+    "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
+    "crypto-rc4": "^1.0.0",
+    "ethereum-private-key-to-address": "^0.0.7",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-wallet": "^1.0.2",
+    "ethers": "^6.6.5",
+    "fs": "^0.0.1-security",
+    "hdkey": "^2.1.0",
+    "process": "^0.11.10",
+    "rc-slider": "^10.1.1",
+    "react-apexcharts": "^1.4.0",
+    "react-app-rewired": "^2.2.1",
+    "react-content-loader": "^6.2.0",
+    "react-modal": "^3.16.1",
+    "react-qr-code": "^2.0.7",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.10.0",
+    "react-scripts": "^5.0.1",
+    "react-select": "^5.7.2",
+    "react-tooltip": "^5.11.1",
+    "recharts": "^2.5.0",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
+    "save": "^2.5.0",
+    "simple-rc4": "^0.0.1-b",
+    "stream-browserify": "^3.0.0",
+    "web3": "^1.7.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "GENERATE_SOURCEMAP=false react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "classnames": "^2.3.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "node-polyfill-webpack-plugin": "^2.0.0",
+    "path-browserify": "^1.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.60.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.77.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "browser": {
+    "crypto": "crypto-browserify",
+    "stream": "stream-browserify"
+  }
+}

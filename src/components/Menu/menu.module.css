@@ -1,0 +1,37 @@
+.menu {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 25px;
+
+	width: 229.2px;
+	height: 54px;
+	background: #4F33A3;
+	box-shadow: 0px 3px 10px rgba(79, 51, 163, 0.25);
+	backdrop-filter: blur(4px);
+	border-radius: 12px;
+	display: flex;
+	padding: 25px;
+	margin: 0;
+	align-items: center;
+	justify-content: space-between;
+	list-style: none;
+	z-index: 100;
+}
+
+.menu li {
+	cursor: pointer;
+	transition: all ease .3s;
+	transform: scale(0.9);
+}
+
+.menu li:hover {
+	transform: scale(1.01);
+}
+
+.disabled {
+	opacity: .5;
+}
+.menu li.active {
+	transform: scale(1.01);
+}

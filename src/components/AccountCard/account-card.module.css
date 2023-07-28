@@ -1,0 +1,57 @@
+.card {
+	width: 100%;
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	padding: 15px;
+	position: relative;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.card:hover {
+	transform: scale(1.02);
+}
+.copy_card {
+	cursor: default;
+}
+.copy_card:hover {
+	transform: scale(1);
+}
+.card::marker {
+	display: none;
+}
+.title {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 12px;
+	color: var(--primary);
+	margin-bottom: 10px;
+	margin-top: 0;
+}
+
+.address {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 12px;
+	width: 100%;
+	overflow:hidden; 
+	white-space:nowrap; 
+	text-overflow: ellipsis;
+	margin: 0;
+}
+.address_copy {
+	padding-right: 25px;
+}
+
+.btn_copy {
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.btn_copy:hover {
+	transform: scale(1.1);
+}

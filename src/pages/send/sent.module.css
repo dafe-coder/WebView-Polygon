@@ -1,0 +1,33 @@
+.sent_btn {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 10px;
+}
+.btn {
+	width: 135px;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 16px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.transparent {
+	border: 1px solid var(--primary);
+	color: var(--primary);
+	background: transparent;
+}
+.primary {
+	border: 1px solid var(--primary);
+	background: var(--primary);
+	color: var(--white)
+}
+
+.btn_error {
+	border: 1px solid var(--error);
+	border-radius: 8px;
+	color: var(--error);
+	background: transparent;
+	margin: 0 auto;
+}

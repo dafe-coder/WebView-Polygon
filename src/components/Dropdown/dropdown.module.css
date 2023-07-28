@@ -1,0 +1,47 @@
+.dropdown {
+	position: relative;
+}
+.btn {
+	padding: 16px 20px;
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	width: 100%;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--dark);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+.list {
+	position: absolute;
+	top: 93%;
+	width: 100%;
+	padding: 0 20px;
+	margin: 0;
+	list-style: none;
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-top: 0;
+	border-radius: 0 0 8px 8px;
+	z-index: 2;
+	display: none;
+}
+
+.list li {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 10px 0; 
+	cursor: pointer;
+	border-top: 1px solid var(--gray);
+}
+.list li:hover {
+	color: var(--primary)
+}
+.open {
+	display: block;
+}

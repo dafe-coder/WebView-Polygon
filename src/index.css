@@ -1,0 +1,367 @@
+@font-face {
+  font-family: 'MyFont2';
+ 	src: url('./static/FontAwesome6ProSolid900.woff2') format('woff2'),
+		url('./static/FontAwesome6ProSolid900.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MyFont';
+ 	src: url('./static/FontAwesome6ProThin100.woff2') format('woff2'),
+		url('./static/FontAwesome6ProThin100.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+* {
+	box-sizing: border-box;
+}
+::-webkit-scrollbar { width: 3px; height: 1px;}
+::-webkit-scrollbar-button { background-color: var(--primary); height: 0; }
+::-webkit-scrollbar-track { background-color: #6347b97c;}
+::-webkit-scrollbar-track-piece { background-color: var(--white);}
+::-webkit-scrollbar-thumb { height: 50px; background-color: var(--primary); border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #999;}
+::-webkit-resizer { background-color: var(--primary);}
+
+i {
+	font-family: 'MyFont2' !important;
+}
+html,
+body {
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	margin: 0;
+	min-height: 180px;
+	width: 400px;
+	padding: 0;
+}
+body {
+	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	color: var(--dark);
+	overflow-y: auto;
+	position: relative;
+}
+html {
+	width: 375px;
+	height: 600px;
+	background: var(--primary);
+}
+
+:root {
+	--white: #fff;
+	--primary: #4F33A3;
+	--primary-dark: #442c8b;
+	--disabled: #bbbbbb;
+	--gray: #ebebeb;
+	--dark: #06040D;
+	--dark-gray: #737373;
+	--error: #F04848;
+	--error-light: #d64444c7;
+	--success: #23AC00;
+	--warning: #FAD200;
+	--blue: #4D69FF;
+}
+
+.btn {
+	border-radius: 8px;
+	border: 2px solid var(--white);
+	padding: 16px 20px;
+	cursor: pointer;
+	transition: all ease 0.2s;
+}
+.btn-svg {
+	margin-right: 10px;
+}
+button.disabled {
+    color: var(--disabled);
+    background: var(--gray);
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: not-allowed;
+}
+button.disabled svg {
+	fill: var(--disabled)
+}
+
+button.disabled:hover {
+	color: var(--disabled);
+    background: var(--gray);
+}
+button.disabled:hover  svg{
+ 	fill: var(--disabled)
+}
+
+.btn-list-row {
+	display: flex;
+	flex-direction: column;
+}
+.btn-list-row > *:not(:last-child) {
+	margin-bottom: 16px;
+}
+
+section {
+	padding: 25px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.bg-white {
+	background: var(--white);
+}
+
+#app {
+	height: 100%;
+	width: 100%;
+}
+
+.d-none {
+	display: none;
+}
+
+.success-validate {
+    color: var(--success);
+}
+
+.wallet_body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wallet_form {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.copyhelper {
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+}
+
+#qrcode svg{
+	margin-bottom: 0;
+}
+
+.choose-word .active {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+#chart {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}
+#chart svg {
+	overflow: visible !important;
+}
+.apexcharts-pie {
+	cursor: pointer;
+}
+
+#chart .apexcharts-legend {
+	width: 150px;
+}
+.apexcharts-legend-series {
+	display: flex;
+	align-items: center
+}
+.apexcharts-legend-series > span {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+.apexcharts-legend-text {
+	flex-grow: 1;
+	color: #BBBBBB !important;
+	font-weight: 400;
+	cursor: pointer;
+	transition: all ease .3s;
+}
+
+.apexcharts-legend-text:hover {
+	color: var(--primary) !important;
+	font-weight: 600 !important;
+}
+.wallet-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.wallet-header h2 {
+	margin: 0;
+}
+.wallet-center {
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+.wallet-center-df {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.nothing {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.link {
+	margin: 16px auto;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration: none;
+	width: max-content;
+	display: block;
+	transition: all ease .2s;
+}
+.link:hover {
+	transform: scale(1.02);
+}
+.transparent-link {
+	color: var(--disabled);
+}
+.transparent-link:hover {
+	cursor: default;
+	transform: scale(1);
+}
+.transparent-link svg {
+	fill: var(--disabled);
+}
+.link svg {
+	margin-left: 10px;
+}
+
+.primary-link {
+	color: var(--primary);
+}
+.primary-link svg {
+	fill: var(--primary);
+}
+.wallet-input {
+	position: relative;
+	margin-top: 15px;
+}
+.input {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    color: var(--dark-gray);
+    border-radius: 8px;
+    width: 100%;
+    padding: 16px 20px;
+    font-weight: 400;
+    font-size: 14px;
+	transition: all ease .3s;
+}
+.input:focus {
+    outline: none;
+}
+
+.input:valid + .label {
+	top: 0;
+	left: 0;
+}
+.input:focus + .label {
+    top: 0;
+    left: 0;
+}
+.input:focus {
+    margin-top: 28px;
+}
+.input:valid {
+    margin-top: 28px;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--dark-gray);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    transition: all ease .4s;
+    cursor: auto;
+	display: flex;
+	align-items: center
+}
+.label svg {
+	margin-right: 15px;
+}
+.pos-r {
+	position: relative;
+}
+
+ul li.active-time {
+	color: var(--primary);
+	font-weight: 600;
+}
+
+
+ul li.active-wallet {
+	border-color: var(--primary)
+}
+
+.copy {
+	fill: #737373;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.swap-btn {
+	margin: 10px auto;
+	width: 30px;
+	height: 30px;
+	background: var(--primary);
+	border-radius: 40px;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: all ease .5s;
+}
+.swap-btn:hover {
+	transform: rotate(180deg);
+}
+.swap-prices {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 16px;
+	color: var(--dark-gray);
+}
+.swap-prices p:first-child {
+	margin-right: 15px;
+}
+
+.gas_error {
+	background: var(--error-light) !important;
+}

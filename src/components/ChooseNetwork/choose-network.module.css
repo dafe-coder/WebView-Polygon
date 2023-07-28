@@ -1,0 +1,55 @@
+.btn {
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	padding: 16px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.choose {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--primary)
+}
+
+.choose svg {
+	margin-left: 15px;
+}
+.paste_input {
+	position: relative;
+	margin-top: 10px;
+}
+.input {
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	width: 100%;
+	padding: 16px 20px;
+}
+.paste {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--primary);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+}
+.paste svg {
+	margin-left: 10px;
+}

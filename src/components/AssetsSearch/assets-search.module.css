@@ -1,0 +1,47 @@
+.search {
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	padding: 15px 20px;
+
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--dark-gray);
+	width: 100%;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.wallet_input {
+    margin-bottom: 15px;
+    position: relative;
+    transition: all ease .4s;
+}
+.search:valid + .label {
+	top: -28px;
+	left: 0;
+}
+.search:focus + .label {
+    top: -28px;
+    left: 0;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--dark-gray);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    transition: all ease .4s;
+    cursor: auto;
+	display: flex;
+	align-items: center;
+}
+.label svg {
+	margin-right: 15px;
+}

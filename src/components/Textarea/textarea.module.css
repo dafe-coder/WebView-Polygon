@@ -1,0 +1,57 @@
+.textarea {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    color: var(--dark-gray);
+    border-radius: 8px;
+    width: 100%;
+    padding: 16px 20px;
+    font-weight: 400;
+    font-size: 14px;
+    height: 112px;
+    resize: none;
+}
+.textarea:focus {
+    outline: none;
+}
+
+.wallet_input {
+    margin-bottom: 15px;
+    position: relative;
+    transition: all ease .4s;
+}
+.textarea:valid + .label {
+	top: -28px;
+	left: 0;
+}
+.textarea:focus + .label {
+    top: -28px;
+    left: 0;
+}
+
+.label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--dark-gray);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    transition: all ease .4s;
+    cursor: auto;
+}
+
+.success {
+    border-color: var(--success);
+}
+
+.error {
+    border-color: var(--error);
+}
+
+.warning {
+    border: 1px solid var(--warning);
+}
+
+.active_show i {
+    color: var(--primary)
+}

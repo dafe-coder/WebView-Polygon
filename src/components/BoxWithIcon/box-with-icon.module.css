@@ -1,0 +1,16 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+	margin-bottom: 50px;
+    width: 100%;
+}
+
+.box svg {
+	margin-bottom: 30px;
+}
+.box h2 {
+	margin-bottom: 0;
+}

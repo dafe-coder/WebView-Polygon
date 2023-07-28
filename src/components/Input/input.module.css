@@ -1,0 +1,29 @@
+.wallet_input {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.success {
+    border-color: var(--success);
+}
+
+.error {
+    border-color: var(--error);
+}
+
+.warning {
+    border: 1px solid var(--warning);
+}
+
+.active_show i {
+    color: var(--primary)
+}
+input.no_label:focus, input.no_label:valid {
+    margin-top: 0;
+}
+
+input.no_label:focus + label.no_label, input.no_label:valid + label.no_label {
+    left: 20px;
+    top: 16px;
+    opacity: 0;
+}

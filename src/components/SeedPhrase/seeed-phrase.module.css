@@ -1,0 +1,51 @@
+.body {
+	display: none;
+	position: relative;
+}
+.phrase {
+	background: var(--white);
+	border: 1px solid var(--success);
+	border-radius: 8px;
+	padding: 16px 20px;
+}
+.label {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	text-transform: capitalize;
+	color: var(--dark-gray);
+	margin-bottom: 5px;
+	display: flex;
+}
+
+.btn svg {
+	fill: var(--dark-gray);
+}
+
+.btn {
+	margin-top: 10px;
+	margin-left: auto;
+}
+.show {
+	display: block;
+}
+
+.copy_btn {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 18px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	position: absolute;
+	bottom: -32px;
+	right: 0;
+}
+
+
+.cut_text {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

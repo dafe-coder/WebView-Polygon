@@ -1,0 +1,10 @@
+.section {
+    position: relative;
+    background: url('../../static/assets/images/wallet-main.png') center top 0px no-repeat;
+    background-size: 400px;
+    height: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

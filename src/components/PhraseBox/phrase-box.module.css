@@ -1,0 +1,88 @@
+.phrase {
+    filter: drop-shadow(0px 0px 15px rgba(79, 51, 163, 0.05));
+    margin-bottom: 25px;
+    margin-top: 0;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 8px 8px 0px 0px;
+    margin: 0;
+    border-bottom: none;
+}
+
+.list li {
+    padding: 5px;
+    flex-basis: 23.5%;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+	font-weight: 400;
+    font-size: 10px;
+    line-height: 16px;
+    transition: all ease .2s;
+}
+
+.list li:nth-child(4n) {
+    margin-right: 0;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons button:first-child {
+    border-radius: 0px 0px 0px 8px;
+    border-right: 0;
+}
+.buttons button:last-child {
+    border-radius: 0px 0px 8px 0px;
+}
+.buttons button svg {
+    margin-right: 5px;
+}
+.buttons button {
+    border: 1px solid var(--gray);
+    background: var(--white);
+    flex-basis: 50%;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+	font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list li:nth-last-child(1), .list li:nth-last-child(2), .list li:nth-last-child(3), .list li:nth-last-child(4) {
+    margin-bottom: 0;
+}
+
+.list_ver {
+    border-bottom: 1px solid var(--gray);
+    border-radius: 8px;
+}
+
+.active {
+    color: var(--primary);
+    border-color: var(--primary) !important;
+}
+.choose_list li {
+    cursor: pointer;
+}
+.choose_list li:hover {
+    border-color: var(--primary);
+    color: var(--primary)
+}
+.success {
+    color: var(--success)
+}
