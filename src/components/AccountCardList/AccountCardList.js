@@ -3,27 +3,26 @@ import styles from './account-card-list.module.css'
 import AccountCard from '../AccountCard/AccountCard'
 import Lang from '../Lang/Lang'
 import CryptoJS from 'crypto-js'
+import { useSelector } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
 
 const AccountCardList = () => {
-	const [data, setData] = useState(null)
-	const kitkat = 'Qsx@ah&OR82WX9T6gCt'
-	useEffect(() => {
-		chrome.storage.local.get(['userData'], function (result) {
-			setData(result.userData)
-		})
-	}, [])
+	const {dataUser} = useSelector(state => state.storage)
+	const kitkat = process.env.REACT_APP_KEY
+
 	return (
 		<ul className={styles.list}>
-			{data != null ? (
-				data.map((item) => (
+			{dataUser !== null && dataUser.length ? (
+				dataUser.map((item) => (
 					<AccountCard
-						key={CryptoJS.AES.decrypt(item.address, kitkat).toString(
-							CryptoJS.enc.Utf8
-						)}
+						key={nanoid(2)}
+						// key={CryptoJS.AES.decrypt(item.address, kitkat).toString(
+						// 	CryptoJS.enc.Utf8
+						// )}
 						title={item.name}>
-						{CryptoJS.AES.decrypt(item.address, kitkat).toString(
+						{/* {CryptoJS.AES.decrypt(item.address, kitkat).toString(
 							CryptoJS.enc.Utf8
-						)}
+						)} */}
 					</AccountCard>
 				))
 			) : (

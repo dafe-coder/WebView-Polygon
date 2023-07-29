@@ -1,0 +1,38 @@
+.list {
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	padding: 0 20px;
+	margin: 0;
+	list-style: none;
+	margin-top: 10px;
+}
+.list > *:not(:last-child) {
+	border-bottom: 1px solid var(--gray);
+}
+.list li {
+	padding: 15px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	transition: all ease .2s;
+}
+.list li:not(:first-child):hover {
+	transform: scale(1.02);
+}
+.list li:first-child {
+	cursor: default;
+}
+.list li span {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: center
+}
+
+.active {
+	color: var(--primary);
+	font-weight: 600;
+}

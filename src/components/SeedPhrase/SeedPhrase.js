@@ -1,14 +1,29 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
 import styles from './seeed-phrase.module.css'
-import copyText from '../../pages/Func.wallet/copy'
+import copyText from '../../Func.wallet/copy'
 import SvgPhrase from '../PhraseBox/SvgPhrase'
 import { useSelector } from 'react-redux/es/exports'
 import Lang from './../Lang/Lang'
+import CryptoJS from 'crypto-js'
+
 
 const SeedPhraseBox = ({ show, prKey = false }) => {
+	const kitkat = process.env.REACT_APP_KEY
 	const [copied, setCopied] = useState(false)
-	const { privateKey, restorePhrase } = useSelector((state) => state.restore)
+	const { dataUser, currentAccount } = useSelector((state) => state.storage)
+	const [currentAccountData, setCurrentAccountData] = React.useState(null)
+
+	React.useEffect(() => {
+		if(dataUser !== null) {
+			setCurrentAccountData(dataUser.find(item => item.name === currentAccount))
+		}
+	}, [dataUser])
+
+	React.useEffect(() => {
+	console.log(currentAccountData)
+	}, [currentAccountData])
+
 	return (
 		<div
 			className={cn(styles.body, {
@@ -21,15 +36,15 @@ const SeedPhraseBox = ({ show, prKey = false }) => {
 					<Lang eng='Your seed phrase' cny='你的助记词' />
 				)}
 			</label>
-			<div
+			{currentAccountData !== null && <div
 				className={cn(styles.phrase, {
 					[styles.cut_text]: prKey == true,
 				})}>
-				{prKey ? privateKey : restorePhrase}
-			</div>
-			<button
+				{prKey ? CryptoJS.AES.decrypt(currentAccountData.privateKey, kitkat).toString(CryptoJS.enc.Utf8) : CryptoJS.AES.decrypt(currentAccountData.phrase, kitkat).toString(CryptoJS.enc.Utf8)}
+			</div>} 
+			{currentAccountData !== null && <button
 				type='copy'
-				onClick={() => copyText(prKey ? privateKey : restorePhrase, setCopied)}
+				onClick={() => copyText(prKey ? CryptoJS.AES.decrypt(currentAccountData.privateKey, kitkat).toString(CryptoJS.enc.Utf8) : CryptoJS.AES.decrypt(currentAccountData.phrase, kitkat).toString(CryptoJS.enc.Utf8), setCopied)}
 				className={cn(styles.copy_btn, {
 					[styles.success]: copied == true,
 				})}>
@@ -42,7 +57,7 @@ const SeedPhraseBox = ({ show, prKey = false }) => {
 						<SvgPhrase type='copy' />
 					</>
 				)}
-			</button>
+			</button>}
 		</div>
 	)
 }

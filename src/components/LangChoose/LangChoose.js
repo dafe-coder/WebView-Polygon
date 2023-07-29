@@ -3,12 +3,14 @@ import cn from 'classnames'
 
 import styles from './lang.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLang, setPortfolioSort } from '../../store/slices/walletSlice'
+import { setPortfolioSort } from '../../store/slices/walletSlice'
+import { setLang } from '../../store/slices/storageSlice'
 import Lang from '../Lang/Lang'
 
 const LangChoose = () => {
 	const dispatch = useDispatch()
-	const { lang, langList } = useSelector((state) => state.wallet)
+	const { langList } = useSelector((state) => state.wallet)
+	const { lang } = useSelector((state) => state.storage)
 
 	const [isOpen, setIsOpen] = useState(false)
 	const onChooseLang = (langItem) => {

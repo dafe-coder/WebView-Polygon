@@ -4,11 +4,12 @@ import styles from './my-account.module.css'
 import Svg from './../../svgs/Svg'
 import Buttons from '../Buttons/Buttons'
 import AccountCardList from '../AccountCardList/AccountCardList'
-import { setCurrentPage } from '../../actions/createActions'
-import { useDispatch } from 'react-redux'
 import Lang from '../Lang/Lang'
+import { useNavigate } from 'react-router-dom'
+
 const MyAccount = () => {
-	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
 	return (
 		<div className={styles.account_card}>
 			<div className={styles.top}>
@@ -18,7 +19,7 @@ const MyAccount = () => {
 				</Title>
 				<Buttons
 					type='sm-primary'
-					onClick={() => dispatch(setCurrentPage('ManageAccounts'))}>
+					onClick={() => navigate('/manage-account')}>
 					<Lang eng='Manage' cny='管理' />
 				</Buttons>
 			</div>

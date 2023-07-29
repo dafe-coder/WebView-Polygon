@@ -1,0 +1,9 @@
+.close_link {
+	text-align: center;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 15px;	
+	text-decoration: none;
+	color: var(--dark)
+}

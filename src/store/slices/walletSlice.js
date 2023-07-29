@@ -9,8 +9,6 @@ import queryString from 'query-string'
 
 const initialState = {
 	validWords: ['', '', ''],
-	passwordInit: '',
-	passwordConfirm: '',
 	dataWallet: null,
 	allCoins: null,
 	coins: null,
@@ -27,8 +25,6 @@ const initialState = {
 	walletName: '',
 	phrase: '',
 	login: true,
-	lang: 'eng',
-	currencyWallet: 'usd',
 	langList: [
 		{ lang: 'English', short: 'eng' },
 		{ lang: '中文', short: 'cny' },
@@ -159,17 +155,11 @@ const walletSlice = createSlice({
 					? [...state.chartArr, action.payload]
 					: [action.payload]
 		},
-		setPasswordInit(state, action) {
-			state.passwordInit = action.payload
-		},
 		setAllCoins(state, action) {
 			state.allCoins = action.payload
 		},
 		setLogin(state, action) {
 			state.login = action.payload
-		},
-		setPasswordConfirm(state, action) {
-			state.passwordConfirm = action.payload
 		},
 		setWalletNew(state, action) {
 			state.walletNew = action.payload
@@ -188,9 +178,6 @@ const walletSlice = createSlice({
 		},
 		setDataWallet(state, action) {
 			state.dataWallet = action.payload
-		},
-		setLang(state, action) {
-			state.lang = action.payload
 		},
 		setPortfolioSort(state, action) {
 			state.portfolioSort = action.payload
@@ -270,8 +257,6 @@ export const {
 	setValidWords,setChooseTimeOut,
 	setLogin,
 	resetValidWords,
-	setPasswordInit,
-	setPasswordConfirm,
 	setWalletNew,
 	setChartArr,
 	setPrivateKey,
@@ -279,7 +264,8 @@ export const {
 	setPhrase,
 	setWalletName,
 	setWalletAddress,
-	setDataWallet,setLang,setPortfolioSort
+	setDataWallet,
+	setPortfolioSort
 } = walletSlice.actions
 
 export default walletSlice.reducer

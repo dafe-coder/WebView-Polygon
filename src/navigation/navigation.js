@@ -1,10 +1,11 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { Start, ImportRestore, ImportData, ImportEnd, Wallet, CreateData, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy } from '../pages/'
+import { Start, ImportRestore, ImportData, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase } from '../pages/'
 
 import { RouterProvider } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLockWallet } from '../store/slices/storageSlice'
+import Accounts from '../pages/accounts/Accounts'
 
 export default function () {
 	const dispatch = useDispatch()
@@ -81,7 +82,23 @@ export default function () {
 			},
 			{
 				path: '/private-key',
-				element: <SecurityPrivacy />,
+				element: <PrivateKey />,
+			},
+			{
+				path: '/seed-phrase',
+				element: <SeedPhrase />,
+			},
+			{
+				path: '/select-language',
+				element: <SelectLanguage />,
+			},
+			{
+				path: '/select-currency',
+				element: <SelectCurrency />,
+			},
+			{
+				path: '/accounts',
+				element: <Accounts />,
 			},
 		])
 	}, [isLogin])

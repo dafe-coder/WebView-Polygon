@@ -14,9 +14,8 @@ import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
 import { fetchDataWallet, fetchAllCoins, setAllCoins } from '../../store/slices/walletSlice'
 import { rebuildObjPortfolioDefaultCoins } from '../../Func.wallet/rebObj'
-import { setInitChooseAssets } from '../../store/slices/storageSlice'
+import { setInitChooseAssets} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
-
 let idTimeout
 
 export const Wallet = ({
@@ -196,7 +195,7 @@ export const Wallet = ({
 						<Lang eng='Your Account' cny='您的帐户' />
 					</Title>
 					<Buttons
-						// onClick={() => dispatch(setCurrentPage('Accounts'))}
+						onClick={() => navigate('/accounts')}
 						type='account'></Buttons>
 				</div>
 				<div className='wallet-top' style={{ position: 'relative' }}>

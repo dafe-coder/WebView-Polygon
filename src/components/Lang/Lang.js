@@ -3,7 +3,7 @@ import checkLang from '../../Func.wallet/lang'
 import { useSelector } from 'react-redux'
 
 const Lang = ({ eng, cny }) => {
-	const { lang } = useSelector((state) => state.wallet)
+	const { lang } = useSelector((state) => state.storage)
 	return <>{checkLang(eng, cny, lang)}</>
 }
 export default Lang

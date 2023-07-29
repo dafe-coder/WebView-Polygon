@@ -9,6 +9,8 @@ const initialState = {
 	currentAccount: '',
 	currentNetwork: 'Ethereum',
 	chooseAssets: ['pepe', 'bnb', 'eth', 'matic'],
+	currencyWallet: 'usd',
+	lang: 'eng',
 }
 
 const storageSlice = createSlice({
@@ -26,6 +28,9 @@ const storageSlice = createSlice({
 		setInitChooseAssets(state) {
 			state.chooseAssets = ['pepe', 'bnb', 'eth', 'matic']
 		},
+		setCurrencyWallet(state, action) {
+			state.currencyWallet = action.payload
+		},
 		setAddressCurrentAccount(state, action) {
 			state.dataUser = state.dataUser.map((item) => {
 				if (item.name === action.payload.name) {
@@ -37,6 +42,9 @@ const storageSlice = createSlice({
 					return item
 				}
 			})
+		},
+		setLang(state, action) {
+			state.lang = action.payload
 		},
 		setChooseAssets(state, action) {
 			const newArr = state.chooseAssets.find(
@@ -95,6 +103,8 @@ export const {
 	setChooseAssets,
 	setInitChooseAssets,
 	setAddressCurrentAccount,
+	setLang,
+	setCurrencyWallet
 } = storageSlice.actions
 
 export default storageSlice.reducer

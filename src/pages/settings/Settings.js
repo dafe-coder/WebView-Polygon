@@ -8,14 +8,14 @@ import { useSelector } from 'react-redux/es/exports'
 import Lang from '../../components/Lang/Lang'
 import Menu from '../../components/Menu/Menu'
 import { useNavigate } from 'react-router-dom'
-
+import { setCurrencyWallet } from '../../store/slices/storageSlice'
 export const Settings = () => {
 	const navigate = useNavigate()
 	
-	const { currencyWallet, lang, langList } = useSelector(
+	const { langList } = useSelector(
 		(state) => state.wallet
 	)
-    const {dataUser, currentAccount} = useSelector(state => state.storage)
+    const {dataUser, currentAccount, lang, currencyWallet} = useSelector(state => state.storage)
 	const [data, setData] = useState({})
 
 	useEffect(() => {
@@ -45,7 +45,7 @@ export const Settings = () => {
 				</div>
 				<div className='wallet-bottom'>
 					<ul className={styles.settings_list}>
-						<li onClick={() => navigate('/selectCurrency')}>
+						<li onClick={() => navigate('/select-currency')}>
 							<span>
 								<Lang eng='Currency' cny='货币' />
 							</span>
