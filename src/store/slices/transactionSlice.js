@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	slippage: 2,
+	slippage: {value: 2, type: '2%'},
 	slippageCustom: '',
 	deadline: 30,
 	chooseCoinOne: null,

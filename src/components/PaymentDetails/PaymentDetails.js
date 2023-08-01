@@ -16,7 +16,7 @@ const PaymentDetails = ({ receiver, data }) => {
 	)
 
 	const {slippage, deadline} = useSelector(state => state.transaction)
-
+	
 	useEffect(() => {
 		let eth = allCoins.filter((item) => item.symbol.toUpperCase() == 'ETH')
 		setEth(eth[0])

@@ -6,34 +6,52 @@ import { RouterProvider } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLockWallet } from '../store/slices/storageSlice'
 import VerificatePhrase1 from '../pages/createVerification/VerificatePhrase1'
+import WelcomeBack from '../pages/welcomeBack/WelcomeBack'
 
 export default function () {
 	const dispatch = useDispatch()
-	const { isLogin, lockWallet, password, autoLock } = useSelector(
+	const { isLogin, password, autoLock, timer } = useSelector(
 		(state) => state.storage
 	)
+	const [timerCheck, setTimerCheck] = React.useState(false)
+	const [routes, setRoutes] = React.useState(null)
+
 	React.useEffect(() => {
 		if (password !== '' && autoLock) {
 			dispatch(setLockWallet(true))
 		}
 	}, [password, autoLock])
-	const [routes, setRoutes] = React.useState(null)
+
+	React.useEffect(() => {
+		console.log(timer >= Date.parse(new Date()));
+		if (
+			timer <= Date.parse(new Date()) ||
+			timer == undefined ||
+			timer == null
+		) {
+			setTimerCheck(true)
+		} else if (timer == 'never') {
+			setTimerCheck(false)
+		} else {
+			setTimerCheck(false)
+		}
+	}, [timer])
 
 	React.useEffect(() => {
 		setRoutes([
-			// {
-			// 	path: '/',
-			// 	element:
-			// 		password !== '' && lockWallet && isLogin ? (
-			// 			<Lock />
-			// 		) : isLogin ? (
-			// 			<Main />
-			// 		) : (
-			// 			<Start />
-			// 		),
-			// },
 			{
 				path: '/',
+				element:
+					password !== '' && timerCheck && isLogin ? (
+						<WelcomeBack />
+					) : isLogin && !timerCheck ? (
+						<Wallet />
+					) : (
+						<Start />
+					),
+			},
+			{
+				path: '/start',
 				element: <Start />,
 			},
 			{
@@ -148,8 +166,12 @@ export default function () {
 				path: '/verificate-phrase-3',
 				element: <VerificatePhrase3 />,
 			},
+			{
+				path: '/welcome-back',
+				element: <WelcomeBack />,
+			},
 		])
-	}, [isLogin])
+	}, [isLogin, timerCheck])
 
 	if (routes == null) {
 		return

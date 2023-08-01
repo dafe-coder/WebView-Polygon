@@ -3,23 +3,22 @@ import styles from './amount.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Lang from '../Lang/Lang'
 
-const Amount = ({ validToken, setAmount }) => {
+const Amount = ({ validToken, setAmount, amount }) => {
 	const dispatch = useDispatch()
-	const { tokenTransaction, tokenTransactionAmount } = useSelector(
-		(state) => state.wallet
+	const { chooseCoinOne } = useSelector(
+		(state) => state.transaction
 	)
 	const [value, setValue] = useState('')
 
 	const onChoosePersent = (value) => {
-		if (tokenTransaction != null) {
+		if (chooseCoinOne != null) {
 			setValue(
-				(tokenTransaction.market_data.balance / 100) *
+				(chooseCoinOne.market_data.balance / 100) *
 					Number(value.replace(/[^0-9]/g, ''))
 			)
-
 			setAmount(
 					String(
-						(tokenTransaction.market_data.balance / 100) *
+						(chooseCoinOne.market_data.balance / 100) *
 							Number(value.replace(/[^0-9]/g, ''))
 					)
 				)
@@ -32,10 +31,10 @@ const Amount = ({ validToken, setAmount }) => {
 		}
 	}
 	useEffect(() => {
-		if (tokenTransactionAmount != '') {
-			setValue(tokenTransactionAmount)
+		if (amount != '') {
+			setValue(amount)
 		}
-	}, [tokenTransactionAmount])
+	}, [amount])
 	return (
 		<div className='wallet-input'>
 			<input

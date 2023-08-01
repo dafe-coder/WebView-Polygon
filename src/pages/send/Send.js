@@ -21,7 +21,8 @@ export const Send = ({ dataLoading, dataList }) => {
 	const navigate = useNavigate()
 	const { state } = useLocation()
 	const { walletAddress } = useSelector((state) => state.wallet)
-	const { dataUser, currentAccount, chooseCoinOne} = useSelector((state) => state.storage)
+	const { dataUser, currentAccount} = useSelector((state) => state.storage)
+	const {chooseCoinOne} = useSelector(state => state.transaction)
 	const [disabledBtn, setDisabledBtn] = React.useState(true)
 	const [address, setAddress] = React.useState('')
 	const [amount, setAmount] = React.useState('')
@@ -62,17 +63,17 @@ export const Send = ({ dataLoading, dataList }) => {
 			.privateKey
 		const amountSend = Number(amount)
 
-		transactionsSend(
-			walletAddress,
-			address,
-			state.contract_address,
-			amountSend,
-			checkEther,
-			setHash,
-			setOpenSuccess,
-			setOpenGas,
-			privateKey
-		)
+		// transactionsSend(
+		// 	walletAddress,
+		// 	address,
+		// 	state.contract_address,
+		// 	amountSend,
+		// 	checkEther,
+		// 	setHash,
+		// 	setOpenSuccess,
+		// 	setOpenGas,
+		// 	privateKey
+		// )
 	}
 
 	return (
@@ -87,10 +88,7 @@ export const Send = ({ dataLoading, dataList }) => {
 						<div></div>
 					</div>
 					<SelectToken
-						dataWithBalance={dataList}
-						dataLoading={dataLoading}
-						portfolioOpen={state}
-						transactionTokens={true}
+						chooseCoin='one'
 					/>
 					<div className='wallet-input'>
 						<input
@@ -105,7 +103,7 @@ export const Send = ({ dataLoading, dataList }) => {
 							<Lang eng='Enter Address' cny='输入地址' />
 						</label>
 					</div>
-					<Amount setAmount={setAmount} />
+					<Amount setAmount={setAmount} amount={amount}/>
 					{chooseCoinOne != null ? (
 						<PaymentDetails
 							pageCurrent='Sent'

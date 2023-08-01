@@ -11,7 +11,8 @@ const initialState = {
 	chooseAssets: ['pepe', 'bnb', 'eth', 'matic'],
 	currencyWallet: 'usd',
 	lang: 'eng',
-	timer: null
+	timer: null,
+	chooseTimeOut: '30 minutes',
 }
 
 const storageSlice = createSlice({
@@ -41,6 +42,9 @@ const storageSlice = createSlice({
 					return item
 				}
 			})
+		},
+		setChooseTimeOut(state, action) {
+			state.chooseTimeOut = action.payload
 		},
 		setLang(state, action) {
 			state.lang = action.payload
@@ -108,7 +112,8 @@ export const {
 	setAddressCurrentAccount,
 	setLang,
 	setCurrencyWallet,
-	setTimer
+	setTimer,
+	setChooseTimeOut
 } = storageSlice.actions
 
 export default storageSlice.reducer

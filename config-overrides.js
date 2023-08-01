@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 module.exports = function override(config, env) {
+    config.resolve.alias = { "stream": require.resolve("stream-browserify") }
     config.resolve.fallback = {
         util: require.resolve('util/'),
         url: require.resolve('url'),

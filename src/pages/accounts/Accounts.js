@@ -10,12 +10,15 @@ import Input from './../../components/Input/Input'
 import styles from './accounts.module.css'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setTimer } from '../../store/slices/storageSlice'
 
 export const Accounts = () => {
     const navigate = useNavigate()
+	const dispatch = useDispatch()
 
 	const onLock = () => {
-		chrome.storage.local.set({ timer: null })
+		dispatch(setTimer(null))	
 		navigate('/welcome-back')
 	}
 

@@ -10,7 +10,8 @@ import { useNavigate } from 'react-router-dom'
 
 export const SecurityPrivacy = () => {
     const navigate = useNavigate()
-	const { chooseTimeOut } = useSelector((state) => state.wallet)
+	const { chooseTimeOut } = useSelector((state) => state.storage)
+	
 	const dataDropdown = [
 		{ value: '5 minutes', langWords: <Lang eng='5 minutes' cny='5 分钟' /> },
 		{ value: '15 minutes', langWords: <Lang eng='15 minutes' cny='15 分钟' /> },

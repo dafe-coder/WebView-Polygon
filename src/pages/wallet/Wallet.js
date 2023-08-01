@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React from 'react'
 import styles from './wallet.module.css'
 import { useDispatch } from 'react-redux'
 import ApexChart from '../../components/PieChar/PieChar'
@@ -7,29 +7,36 @@ import TransferBtn from '../../components/TransferBtn/TransferBtn'
 import Title from '../../components/Title/Title'
 import Buttons from './../../components/Buttons/Buttons'
 import { useSelector } from 'react-redux'
-// import { setCurrentPage } from '../../actions/createActions'
 import Sort from '../../components/Sort/Sort'
 import Svg from './../../svgs/Svg'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
-import { fetchDataWallet, fetchAllCoins, setAllCoins } from '../../store/slices/walletSlice'
+import { fetchDataWallet, fetchAllCoins, setAllCoins, fetchCurrencyPrice, setCurrencyPrice } from '../../store/slices/walletSlice'
 import { rebuildObjPortfolioDefaultCoins, rebuildObjPortfolio} from '../../Func.wallet/rebObj'
-import { setAddressCurrentAccount, setInitChooseAssets} from '../../store/slices/storageSlice'
+import { setAddressCurrentAccount} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
 let idTimeout
 
 export const Wallet = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { dataWallet, coins, walletNew, portfolioSort } = useSelector(
+	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice } = useSelector(
 		(state) => state.wallet
 	)
-	const { currentNetwork, currentAccount, dataUser, chooseAssets } =
+	const { currentNetwork, currentAccount, dataUser, chooseAssets, currencyWallet } =
 		useSelector((state) => state.storage)
 	const [balanceCoins, setBalanceCoins] = React.useState([])
 	const [portfolioListSorted, setPortfolioListSorted] = React.useState([])
 	const [btnsOut, setBtnsOut] = React.useState(false)
 	const [sortOpen, setSortOpen] = React.useState(false)
+
+	React.useEffect(() => {
+		if(currencyPrice === null && currencyWallet.toLowerCase() !== 'usd') {
+			dispatch(fetchCurrencyPrice(currencyWallet))
+		} else if (currencyWallet.toLowerCase() === 'usd') {
+			dispatch(setCurrencyPrice(1))
+		}
+	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
 		console.log(dataUser);

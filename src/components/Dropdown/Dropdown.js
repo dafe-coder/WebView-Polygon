@@ -3,19 +3,23 @@ import cn from 'classnames'
 import styles from './dropdown.module.css'
 import Svg from '../../svgs/Svg'
 import { logTimer } from './../../Func.wallet/logTimer'
-import { setChooseTimeOut } from '../../store/slices/walletSlice'
+import { setChooseTimeOut } from '../../store/slices/storageSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 
 const Dropdown = ({ dataDropdown, active, type }) => {
-	let dispatch = useDispatch()
-	const { lang } = useSelector((state) => state.wallet)
+	const dispatch = useDispatch()
+	const { lang } = useSelector((state) => state.storage)
 	const [open, setOpen] = useState(false)
 	const [current, setCurrent] = useState(null)
+
 	const setLoginTimeOut = (value) => {
-		chrome.storage.local.remove(['logTimeOut'])
-		chrome.storage.local.set({ logTimeOut: value })
+		dispatch(setChooseTimeOut(value))
 	}
+
+	React.useEffect(() => {
+	console.log(current)
+	}, [current])
 	const onChoose = (e) => {
 		const target = e.target
 		target
@@ -37,7 +41,7 @@ const Dropdown = ({ dataDropdown, active, type }) => {
 				}
 			})
 			setLoginTimeOut(dataDropdown[index].value)
-			logTimer(dataDropdown[index].value)
+			logTimer(dataDropdown[index].value, dispatch)
 			dispatch(setChooseTimeOut(dataDropdown[index].value))
 		}
 	}
@@ -53,7 +57,7 @@ const Dropdown = ({ dataDropdown, active, type }) => {
 	return (
 		<div className={styles.dropdown}>
 			<button className={styles.btn} onClick={() => setOpen(!open)}>
-				<span>{current != null ? current.langWords.props[lang] : ''}</span>
+				<span>{current !== null ? current.langWords.props[lang] : ''}</span>
 				<Svg type='arr-sm-right' />
 			</button>
 			<ul

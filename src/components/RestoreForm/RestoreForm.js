@@ -13,6 +13,7 @@ import {
 	setPasswordValid,
 	setName,
 	setNameValid,
+	resetCreate
 } from '../../store/slices/createSlice'
 import { setData, setPassword, setCurrentAccount, setIsLogin } from '../../store/slices/storageSlice'
 import { useNavigate } from 'react-router-dom'
@@ -72,13 +73,9 @@ const Form = ({countWords}) => {
 				}
 				dispatch(setData(newDataUser))
 				dispatch(setPassword(passwordInit))
-				dispatch(setName(''))
-				dispatch(setPasswordCheck(''))
-				dispatch(setPasswordValid(null))
-				dispatch(setPasswordMatch(null))
-				dispatch(setNameValid(null))
 				dispatch(setCurrentAccount(name))
 				dispatch(setIsLogin(true))
+				dispatch(resetCreate())
 				navigate('/import-end')
 		} else {
 		}

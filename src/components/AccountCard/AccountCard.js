@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import copyText from './../../Func.wallet/copy'
 import SvgPhrase from '../PhraseBox/SvgPhrase'
 import { setCurrentAccount } from '../../store/slices/storageSlice'
+import { setDataWallet } from '../../store/slices/walletSlice'
+import { useNavigate } from 'react-router-dom'
 
 const AccountCard = ({ title, children, copy = true, one = false }) => {
 	const dispatch = useDispatch()
@@ -12,7 +14,8 @@ const AccountCard = ({ title, children, copy = true, one = false }) => {
 	const [active, setActive] = useState(false)
 	const [copied, setCopied] = useState(false)
 	const [currentAccountData, setCurrencyAccountData] = useState(null)
-
+	const navigate = useNavigate()
+	
 	React.useEffect(() => {
 		if(dataUser !== null && dataUser.length) {
 			setCurrencyAccountData(dataUser.find(item => item.name === currentAccount))
@@ -21,6 +24,8 @@ const AccountCard = ({ title, children, copy = true, one = false }) => {
 
 	const onChooseWallet = (e) => {
 		dispatch(setCurrentAccount(title))
+		dispatch(setDataWallet(null))
+		navigate('/wallet')
 		e.target
 			.closest('ul')
 			.querySelectorAll('li')

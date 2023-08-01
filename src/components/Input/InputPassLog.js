@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import Par from '../Par/Par'
 import cn from 'classnames'
 import ShowPass from '../ShowPass/ShowPass'
@@ -10,7 +9,7 @@ import {setPasswordInit} from '../../store/slices/createSlice'
 const InputPassLog = ({ id, label, errorPar, noAnim }) => {
 	const dispatch = useDispatch()
 	const { passwordInit } = useSelector((state) => state.create)
-
+	
 	return (
 		<div className={styles.wallet_input}>
 			<ShowPass walletInput={styles.wallet_input} />

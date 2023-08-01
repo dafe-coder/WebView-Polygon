@@ -4,9 +4,15 @@ import Title from '../../components/Title/Title'
 import GoBack from '../../components/GoBack/GoBack'
 import AccountCardReg from './../../components/AccountCardReg/AccountCardReg'
 import Lang from '../../components/Lang/Lang'
+import { useDispatch } from 'react-redux'
+import { setDataWallet } from '../../store/slices/walletSlice'
 
 export const ImportEnd = ({ setUpdateWallet, dataCoins }) => {
-	
+	const dispatch = useDispatch()
+	React.useEffect(() => {
+		dispatch(setDataWallet(null))
+	}, [])
+
 	return (
 		<section className='bg-white'>
 			<GoBack goTo='RestoreWalletReg' />

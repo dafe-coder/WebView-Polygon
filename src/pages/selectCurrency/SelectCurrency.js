@@ -8,6 +8,7 @@ import { setCurrencyWallet } from '../../store/slices/storageSlice'
 import Lang from '../../components/Lang/Lang'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom'
+import { setCurrencyPrice } from '../../store/slices/walletSlice'
 
 export const SelectCurrency = () => {
     const navigate = useNavigate()
@@ -29,6 +30,7 @@ export const SelectCurrency = () => {
 			{ symbol: 'PLN' },
 		])
 	}, [])
+
 	useEffect(() => {
 		setDataAllFiltered(currencyArr)
 	}, [currencyArr])
@@ -47,6 +49,8 @@ export const SelectCurrency = () => {
 
 	const onChooseToken = (item) => {
 		dispatch(setCurrencyWallet(item.symbol))
+		dispatch(setCurrencyPrice(null))
+		navigate('/wallet')
 	}
 
 	return (

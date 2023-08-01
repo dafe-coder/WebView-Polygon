@@ -11,24 +11,14 @@ import { resetWallet, setCurrentAccount, setData, setIsLogin } from '../../store
 import CryptoJS from 'crypto-js'
 import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress'
 import {
-	setPhrase,
-	setPhraseArr,
-	setPhraseArrScattered,
-	setPasswordInit,
-	setPasswordCheck,
-	setPasswordMatch,
-	setPasswordValid,
-	setNameValid,
-	setName,
-	setWord1, 
-	setWord2, 
 	setWord3,
-	setCountVerification
+	resetCreate
 } from '../../store/slices/createSlice'
 import { logTimer } from '../../Func.wallet/logTimer'
 import Modal from '../../components/modal/Modal'
 import { setPassword } from '../../store/slices/storageSlice'
 import { useNavigate } from 'react-router-dom'
+import { setDataWallet } from '../../store/slices/walletSlice'
 
 
 const kitkat = process.env.REACT_APP_KEY
@@ -55,6 +45,7 @@ export const VerificatePhrase3 = () => {
 				phraseArr[countVerification[1] - 1] === word2 &&
 				phraseArr[countVerification[2] - 1] === word3
 			) {
+				dispatch(setDataWallet(null))
 				setLoadingFinished(false)
 				setShowSuccessVerification(true)
 				dispatch(resetWallet())
@@ -77,26 +68,17 @@ export const VerificatePhrase3 = () => {
 				dispatch(setData(newDataUser))
 				dispatch(setPassword(passwordInit))
 				dispatch(setCurrentAccount(name))
-				dispatch(setName(''))
-				dispatch(setPasswordInit(''))
-				dispatch(setPasswordCheck(''))
-				dispatch(setPasswordValid(null))
-				dispatch(setPasswordMatch(null))
-				dispatch(setNameValid(null))
+				dispatch(resetCreate())
 				dispatch(setIsLogin(true))
 				setTimeout(() => {
 					setShowSuccessVerification(false)
 					setLoadingFinished(true)
 				}, 3000)
 			} else {
-				dispatch(setCountVerification([]))
 				setShowErrorVerification(true)
 				setTimeout(() => {
 					setShowErrorVerification(false)
 					navigate('/create-phrase')
-					dispatch(setWord1(''))
-					dispatch(setWord2(''))
-					dispatch(setWord3(''))
 				}, 3000)
 			}
 		}

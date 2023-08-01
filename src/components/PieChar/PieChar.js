@@ -7,11 +7,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLabelCurrency } from '../../Func.wallet/labelCurrency';
 
 const ApexChart = ({setBtnsOut, data}) => {
-	const {dataPrices, dataLabels} = useSelector(state => state.wallet)
+	const {dataPrices, dataLabels, currencyPrice, dataWallet} = useSelector(state => state.wallet)
 	const {currencyWallet} = useSelector(state => state.storage)
 	const dispatch = useDispatch()
 	const [state, setState] = React.useState(null)
-	const [priceConvert, setPriceConvert] = React.useState(1)
 	const [width, setWidth] = React.useState(false)
 
 	const onCharClick = () => {
@@ -53,8 +52,6 @@ const ApexChart = ({setBtnsOut, data}) => {
 		}
 		dispatch(setDataLabels(arr))
 		dispatch(setDataPrices(arrPrice))
-		console.log(arr, arrPrice);
-		// setLoadingChar(false)
 	}
 
 	React.useEffect(() => {
@@ -64,7 +61,7 @@ const ApexChart = ({setBtnsOut, data}) => {
 	}, [data])
 
 	React.useEffect(() => {
-		if(dataLabels.length && dataPrices.length) {
+		if(dataLabels.length && dataPrices.length && currencyPrice !== null) {
 			setState({
 				series: dataPrices,
 				options: {
@@ -115,10 +112,10 @@ const ApexChart = ({setBtnsOut, data}) => {
 										fontWeight: 600,
 										color: '#06040D',
 										formatter:
-											priceConvert != null
+											currencyPrice != null
 												? function (val) {
-														return `${setLabelCurrency(priceConvert, currencyWallet)}${(
-															val * priceConvert
+														return `${setLabelCurrency(currencyPrice, currencyWallet)}${(
+															val * currencyPrice
 														).toFixed(2)}`
 												  }
 												: () => console.log('err'),
@@ -126,14 +123,14 @@ const ApexChart = ({setBtnsOut, data}) => {
 									total: {
 										show: true,
 										formatter:
-											priceConvert != null
+											currencyPrice != null
 												? function (w) {
 														let price = w.globals.seriesTotals.reduce((a, b) => {
 															return +Number(a + b).toFixed(2)
 														}, 0)
 														return (
-															setLabelCurrency(priceConvert, currencyWallet) +
-															(price * priceConvert).toFixed(2)
+															setLabelCurrency(currencyPrice, currencyWallet) +
+															(price * currencyPrice).toFixed(2)
 														)
 												  }
 												: () => console.log('err'),
@@ -179,8 +176,10 @@ const ApexChart = ({setBtnsOut, data}) => {
 					},
 				},
 			})
+		} else {
+			setState(null)
 		}
-	}, [dataLabels, dataPrices, width])
+	}, [dataLabels, dataPrices, width, currencyWallet, currencyPrice])
 
 	return (
 		<div
@@ -189,9 +188,7 @@ const ApexChart = ({setBtnsOut, data}) => {
 			className={cn({
 				['active-char']: width,
 			})}>
-			{state === null ? (
-				<MyLoader />
-			) : (
+			{state !== null && dataWallet !== null ? (
 				<ReactApexChart
 					style={
 						width
@@ -211,6 +208,8 @@ const ApexChart = ({setBtnsOut, data}) => {
 					series={state.series}
 					type='donut'
 				/>
+			) : (
+				<MyLoader />
 			)}
 		</div>
 	)

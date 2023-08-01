@@ -1,0 +1,40 @@
+.reg {
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 25px;
+	color: var(--white)
+}
+.reg p {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--white);
+	width: 100%;
+}
+
+.reg a {
+	text-decoration-line: underline;
+	color: var(--white)
+}
+.reg a:first-of-type {
+	margin-right: 5px;
+} 
+.reg a:last-of-type {
+	margin-left: 5px;
+} 
+
+.top img {
+	height: 360px;
+	mix-blend-mode: luminosity;
+}
+
+.top {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+.bottom {
+	margin-top: -65px;
+}

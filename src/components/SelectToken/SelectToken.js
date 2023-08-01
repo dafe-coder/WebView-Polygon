@@ -11,7 +11,7 @@ import fixNum from '../../Func.wallet/fixNum'
 const SelectToken = ({
 	noSubtitle,
 	chooseCoin = 'one',
-	init = false
+	init = true
 }) => {
 	const { allCoins } = useSelector(
 		(state) => state.wallet

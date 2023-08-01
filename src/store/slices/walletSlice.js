@@ -29,10 +29,10 @@ const initialState = {
 		{ lang: '中文', short: 'cny' },
 	],
 	portfolioSort: 'value',
-	chooseTimeOut: '30 minutes',
 	transactionsHistoryClear: [],
 	dataLabels: [],
 	dataPrices: [],
+	currencyPrice: null,
 }
 
 let url = 'https://localnetwork.cc/custom/activity/root'
@@ -87,6 +87,15 @@ export const fetchIdCoin = createAsyncThunk(
 		const { data } = await axios.get(
 			`https://api.coingecko.com/api/v3/coins/${coinId}`
 		)
+		return data
+	}
+)
+
+export const fetchCurrencyPrice = createAsyncThunk(
+	'wallet/fetchIdCurrencyPriceStatus',
+	async (currency) => {
+		const { data } = await axios.get(
+			`https://api.currencyapi.com/v3/latest?apikey=cur_live_DGP56W0joKf7vw2mvtfKOyiFr62wmxEMap9asdAf&currencies=${currency}`)
 		return data
 	}
 )
@@ -184,9 +193,6 @@ const walletSlice = createSlice({
 		setPortfolioSort(state, action) {
 			state.portfolioSort = action.payload
 		},
-		setChooseTimeOut(state, action) {
-			state.chooseTimeOut = action.payload
-		},
 		setTransactionsHistoryClear(state, action) {
 			state.transactionsHistoryClear = action.payload
 		},
@@ -195,6 +201,9 @@ const walletSlice = createSlice({
 		},
 		setDataPrices(state, action) {
 			state.dataPrices = action.payload
+		},
+		setCurrencyPrice(state, action) {
+			state.currencyPrice = action.payload
 		}
 	},
 	extraReducers: (builder) => {
@@ -261,12 +270,21 @@ const walletSlice = createSlice({
 			.addCase(fetchAllCoins.rejected, (state) => {
 				state.coins = null
 			})
+			.addCase(fetchCurrencyPrice.pending, (state) => {
+				state.currencyPrice = null
+			})
+			.addCase(fetchCurrencyPrice.fulfilled, (state, action) => {
+				const currency = Object.keys(action.payload.data)
+				state.currencyPrice = action.payload.data[currency].value
+			})
+			.addCase(fetchCurrencyPrice.rejected, (state) => {
+				state.currencyPrice = null
+			})
 	},
 })
 
 export const {
 	setValidWords,
-	setChooseTimeOut,
 	setLogin,
 	resetValidWords,
 	setWalletNew,
@@ -280,7 +298,8 @@ export const {
 	setPortfolioSort,
 	setTransactionsHistoryClear,
 	setDataLabels,
-	setDataPrices
+	setDataPrices,
+	setCurrencyPrice
 } = walletSlice.actions
 
 export default walletSlice.reducer
