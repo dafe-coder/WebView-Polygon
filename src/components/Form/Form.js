@@ -3,29 +3,32 @@ import Par from './../../components/Par/Par'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
 // import { setCurrentPage } from '../../actions/createActions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import cn from 'classnames'
 import Lang from '../Lang/Lang'
+import { useNavigate } from 'react-router-dom'
+
 const Form = () => {
-	const dispatch = useDispatch()
-	// const { name, password, passwordValid, passwordMatch, nameValid } =
-	// 	useSelector((state) => state.create)
+	const navigate = useNavigate()
+	const { passwordValid, passwordMatch, nameValid } =
+		useSelector((state) => state.create)
 
 	const [activeButton, setActiveButton] = useState(false)
-	// useEffect(() => {
-	// 	if (passwordValid && passwordMatch && nameValid) {
-	// 		setActiveButton(true)
-	// 	} else {
-	// 		setActiveButton(false)
-	// 	}
-	// }, [passwordValid, passwordMatch, nameValid])
+
+	useEffect(() => {
+		if (passwordValid && passwordMatch && nameValid) {
+			setActiveButton(true)
+		} else {
+			setActiveButton(false)
+		}
+	}, [passwordValid, passwordMatch, nameValid])
 
 	const submitForm = () => {
-		// if (passwordValid && passwordMatch && nameValid) {
-		// 	chrome.storage.session.set({ passName: [name, password] })
-		// 	dispatch(setCurrentPage('CreateWalletSuccess'))
-		// }
+		if (activeButton) {
+			navigate('/create-submit')
+		}
 	}
+
 	return (
 		<form action='#' className='wallet_form'>
 			<div className='create-wallet_info'>
@@ -60,9 +63,8 @@ const Form = () => {
 			</div>
 			<Button
 				type='primary'
-				// className={cn({ ['disabled']: activeButton == false })}
-				// onClick={submitForm}
-				to='/create-submit'
+				className={cn({ ['disabled']: activeButton == false })}
+				onClick={submitForm}
 				>
 				<i className='fa-solid fa-wallet'></i>
 				{<Lang eng='Create Personal wallet' cny='创建个人钱包' />}

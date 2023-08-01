@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
 const rootPersistConfig = {
 	key: 'root',
 	storage: storage,
-	blacklist: ['wallet', 'transaction', 'create'],
+	blacklist: ['wallet', 'transaction'],
 	timeout: null,
 }
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer)

@@ -2,95 +2,49 @@ import React, { useState, useEffect } from 'react'
 import cn from 'classnames'
 import styles from './swap-input.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	setAssetSwapPrice1,
-	setAssetSwapPrice2,
-	setAssetSwapValue,
-} from '../../actions/wallet'
+// import {
+// 	setAssetSwapPrice1,
+// 	setAssetSwapPrice2,
+// 	setAssetSwapValue,
+// } from '../../actions/wallet'
 import Lang from '../Lang/Lang'
 import fixNum from './../../Func.wallet/fixNum'
 
-const SwapInput = ({ type, dataItem1, dataItem2 }) => {
-	const dispatch = useDispatch()
-	const { assetSwapPrice1, assetSwapPrice2, swap, assetSwapValue } =
-		useSelector((state) => state.wallet)
-	const [value, setValue] = useState('')
-	const [valueWord, setValueWord] = useState('')
-	const [valueWord2, setValueWord2] = useState('')
-	const [value2, setValue2] = useState('')
+const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
+	const { chooseCoinOne, chooseCoinTwo} =
+		useSelector((state) => state.transaction)
+	
 
-	useEffect(() => {
-		if (dataItem1 != null && dataItem2 != null && value != '' && value >= 0) {
-			dispatch(
-				setAssetSwapPrice1(
-					(+Number(value) * dataItem1.market_data.current_price.usd) /
-						dataItem2.market_data.current_price.usd
-				)
-			)
-		}
-	}, [valueWord])
-	useEffect(() => {
-		if (dataItem1 != null && dataItem2 != null && value2 != '' && value2 >= 0) {
-			dispatch(
-				setAssetSwapPrice2(
-					(+Number(value2) * dataItem2.market_data.current_price.usd) /
-						dataItem1.market_data.current_price.usd
-				)
-			)
-		}
-	}, [valueWord2])
-	useEffect(() => {
-		if (dataItem1 && dataItem1 != null) {
-			setValue2('')
-			setValue('')
-		}
-	}, [swap])
-
-	useEffect(() => {
-		if (assetSwapPrice1 && assetSwapPrice1 != '') {
-			setValue2(fixNum(assetSwapPrice1))
-		}
-	}, [assetSwapPrice1])
-	useEffect(() => {
-		if (assetSwapPrice2 && assetSwapPrice2 != '') {
-			setValue(fixNum(assetSwapPrice2))
-		}
-	}, [assetSwapPrice2])
-	useEffect(() => {
-		setValue(assetSwapValue)
-	}, [assetSwapValue])
+	React.useEffect(() => {
+	console.log(chooseCoinTwo)
+	}, [chooseCoinTwo])
+	
 	const onChoosePersent = (value) => {
-		if (dataItem1 != null) {
+		if (chooseCoinOne !== null) {
 			setValue(
-				(dataItem1.market_data.balance / 100) *
+				(chooseCoinOne.market_data.balance / 100) *
 					Number(value.replace(/[^0-9]/g, ''))
-			)
-			setValueWord(
-				(dataItem1.market_data.balance / 100) *
-					Number(value.replace(/[^0-9]/g, ''))
-			)
-			dispatch(
-				setAssetSwapValue(
-					(dataItem1.market_data.balance / 100) *
-						Number(value.replace(/[^0-9]/g, ''))
-				)
 			)
 		}
 	}
 	const onMax = () => {
-		dispatch(setAssetSwapValue(dataItem1.market_data.balance))
-		setValue(dataItem1.market_data.balance)
-		setValueWord(dataItem1.market_data.balance)
+		if (chooseCoinOne !== null) {
+			setValue(chooseCoinOne.market_data.balance)
+		}
 	}
 	const onTypeInput1 = (e) => {
-		dispatch(setAssetSwapValue(e.target.value))
-		setValueWord(e.target.value)
 		setValue(e.target.value)
 	}
 	const onTypeInput2 = (e) => {
-		setValueWord2(e.target.value)
 		setValue2(e.target.value)
 	}
+
+	React.useEffect(() => {
+		if(chooseCoinOne !== null && chooseCoinTwo !== null && value !== '') {
+			setValue2(value * chooseCoinOne.market_data.current_price / chooseCoinTwo.market_data.current_price)
+		}
+	}, [chooseCoinOne, chooseCoinTwo, value])
+
 	switch (type) {
 		case 'sell':
 			return (
@@ -103,10 +57,10 @@ const SwapInput = ({ type, dataItem1, dataItem2 }) => {
 							<p className={styles.balance}>
 								<Lang eng='Balance' cny='平衡' />:{' '}
 								<span>
-									{dataItem1 != null
-										? fixNum(dataItem1.market_data.balance)
+									{chooseCoinOne != null
+										? fixNum(chooseCoinOne.market_data.balance)
 										: 0}{' '}
-									{dataItem1 != null ? dataItem1.symbol : 'ETH'}
+									{chooseCoinOne != null ? chooseCoinOne.symbol.toUpperCase() : 'ETH'}
 								</span>
 							</p>
 						</div>
@@ -142,14 +96,14 @@ const SwapInput = ({ type, dataItem1, dataItem2 }) => {
 							<p className={styles.balance}>
 								<Lang eng='Balance' cny='平衡' />:{' '}
 								<span>
-									{dataItem2 != null
-										? fixNum(dataItem2.market_data.balance)
+									{chooseCoinTwo != null
+										? fixNum(chooseCoinTwo.market_data.balance)
 										: 0}{' '}
-									{dataItem2 != null ? dataItem2.symbol : 'USDT'}
+									{chooseCoinTwo != null ? chooseCoinTwo.symbol.toUpperCase() : 'USDT'}
 								</span>
 							</p>
 						</div>
-						<div className={styles.bottom}>
+						<div className={styles.bottom} style={{pointerEvents: 'none'}}>
 							<input
 								onChange={(e) => onTypeInput2(e)}
 								className={styles.input}

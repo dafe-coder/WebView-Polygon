@@ -1,0 +1,30 @@
+.label {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	color: var(--dark-gray);
+	margin-bottom: 5px;
+	display: block;
+}
+.btn {
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 20px;
+	color: var(--dark-gray);
+	width: 100%;
+	padding: 16px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+.qr_code {
+	width: 80%;
+	margin: 50px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

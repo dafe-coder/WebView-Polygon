@@ -3,121 +3,66 @@ import cn from 'classnames'
 import styles from './select-token.module.css'
 import Svg from '../../svgs/Svg'
 import { useDispatch } from 'react-redux'
-import { setChooseCoinOne } from '../../store/slices/transactionSlice'
+import { setChooseCoinOne, setChooseCoinTwo } from '../../store/slices/transactionSlice'
 import Lang from '../Lang/Lang'
 import { useSelector } from 'react-redux'
 import fixNum from '../../Func.wallet/fixNum'
 
 const SelectToken = ({
-	dataWithBalance,
-	dataLoading,
 	noSubtitle,
-	portfolioOpen,
-	setValidToken,
-	swapSelect,
-	swapSelectActive,
-	transactionTokens = false,
+	chooseCoin = 'one',
+	init = false
 }) => {
-	const { lang, tokenTransaction, allCoins } = useSelector(
+	const { allCoins } = useSelector(
 		(state) => state.wallet
+	)
+	const { lang } = useSelector(
+		(state) => state.storage
+	)
+	const { chooseCoinOne } = useSelector(
+		(state) => state.transaction
 	)
 	const dispatch = useDispatch()
 	const [value, setValue] = useState('')
-	const [active, setActive] = useState(
-		(<Lang eng='Select a token' cny='选择一个令牌' />).props[lang]
+	const [active, setActive] = useState(chooseCoinOne !== null && init ? chooseCoinOne.symbol : 
+		(<Lang eng='Select a token' cny='选择一个令牌' />).props[lang] 
 	)
-	const [activeElem, setActiveElem] = useState({})
+	const [activeElem, setActiveElem] = useState(chooseCoinOne !== null && init ? chooseCoinOne : {})
 	const [openDropdown, setOpenDropdown] = useState(false)
-	const [dataAll, setDataAll] = useState([])
 	const [dataAllFiltered, setDataAllFiltered] = useState([])
 
-	function onTokenRender(item) {
-		if (item != null && dataAll.length >= 1 && dataLoading) {
-			let elemChoose = dataAll.filter(
-				(token) => token.symbol.toLowerCase() == item.symbol.toLowerCase()
-			)
-			setActiveElem(elemChoose[0])
-			setActive(item.symbol)
-			setOpenDropdown(false)
-			if (transactionTokens == true) {
-				dispatch(setChooseCoinOne(elemChoose[0]))
-			}
-			setValidToken(true)
+	React.useEffect(() => {
+		if(chooseCoinOne !== null && init) {
+			setActive(chooseCoinOne.symbol)
+			setActiveElem(chooseCoinOne)
 		}
-	}
-	useEffect(() => {
-		onTokenRender(swapSelectActive)
-	}, [dataAll, dataLoading, swapSelectActive])
-	useEffect(() => {
-		onTokenRender(tokenTransaction)
-	}, [dataAll, dataLoading, tokenTransaction])
-	useEffect(() => {
-		if (
-			portfolioOpen != '' &&
-			portfolioOpen != undefined &&
-			dataAll.length >= 1 &&
-			dataLoading
-		) {
-			let elemChoose = dataAll.filter(
-				(token) => token.symbol.toLowerCase() == portfolioOpen.toLowerCase()
-			)
-			setActiveElem(elemChoose[0])
+	}, [chooseCoinOne])
 
-			setActive(portfolioOpen)
-			setOpenDropdown(false)
-			if (transactionTokens == true) {
-				dispatch(setChooseCoinOne(elemChoose[0]))
-			}
-			setValidToken(true)
-			if (swapSelect) {
-				dispatch(setChooseCoinOne(elemChoose[0]))
-			}
-		}
-	}, [portfolioOpen, dataAll, dataLoading])
-
-	useEffect(() => {
-		let filtered = []
-		if (value != '') {
-			filtered = dataAll.filter(
-				(item) =>
-					item.symbol.toLowerCase().indexOf(value.toLowerCase()) != -1 ||
-					item.name.toLowerCase().indexOf(value.toLowerCase()) != -1
-			)
-		} else {
-			filtered = dataAll
-		}
-		setDataAllFiltered(filtered)
-	}, [value])
-	useEffect(() => {
-		if (dataWithBalance !== 0 && dataLoading) {
-			const balanceArr = dataWithBalance.map((item) =>
-				item.symbol.toLowerCase()
-			)
-			let filtered = allCoins.filter((per) => {
-				if (balanceArr.includes(per.symbol.toLowerCase()) == false) {
-					return per
-				}
-			})
-			setDataAll([...dataWithBalance, ...filtered])
-			setDataAllFiltered([...dataWithBalance, ...filtered])
-		} else if (dataWithBalance === 0 && dataLoading) {
-			setDataAll(allCoins)
+	React.useEffect(() => {
+		if(allCoins !== null) {
 			setDataAllFiltered(allCoins)
 		}
-	}, [allCoins, dataWithBalance, dataLoading])
+	}, [allCoins])
+	
+	useEffect(() => {
+		if(allCoins !== null && value !== '') {
+			setDataAllFiltered(allCoins.filter(
+				(item) =>
+					item.symbol.toLowerCase().includes(value.toLowerCase()) ||
+					item.name.toLowerCase().includes(value.toLowerCase())
+			))
+		}
+	}, [value, allCoins])
 
 	const onChooseToken = (item) => {
-		let elemChoose = dataAll.filter((token) => token.symbol == item.symbol)
-		setActiveElem(elemChoose[0])
+		setActiveElem(item)
 		setActive(item.symbol)
 		setOpenDropdown(false)
-		if (transactionTokens == true) {
-			dispatch(setChooseCoinOne(elemChoose[0]))
+		if(chooseCoin === 'one') {
+			dispatch(setChooseCoinOne(item))
+		} else {
+			dispatch(setChooseCoinTwo(item))
 		}
-		if (swapSelect) {
-			swapSelect(elemChoose[0])
-		}
-		setValidToken(true)
 	}
 
 	return (

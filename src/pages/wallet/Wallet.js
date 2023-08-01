@@ -13,32 +13,26 @@ import Svg from './../../svgs/Svg'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
 import { fetchDataWallet, fetchAllCoins, setAllCoins } from '../../store/slices/walletSlice'
-import { rebuildObjPortfolioDefaultCoins } from '../../Func.wallet/rebObj'
-import { setInitChooseAssets} from '../../store/slices/storageSlice'
+import { rebuildObjPortfolioDefaultCoins, rebuildObjPortfolio} from '../../Func.wallet/rebObj'
+import { setAddressCurrentAccount, setInitChooseAssets} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
 let idTimeout
 
-export const Wallet = ({
-	loadingChar,
-	width,
-}) => {
+export const Wallet = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { dataWallet, coins, walletAddress, walletNew, portfolioSort } = useSelector(
+	const { dataWallet, coins, walletNew, portfolioSort } = useSelector(
 		(state) => state.wallet
 	)
 	const { currentNetwork, currentAccount, dataUser, chooseAssets } =
 		useSelector((state) => state.storage)
-	const [balance, setBalance] = React.useState(null)
-	const [balanceChange, setBalanceChange] = React.useState(null)
 	const [balanceCoins, setBalanceCoins] = React.useState([])
-	const [showFilterBody, setShowFilterBody] = React.useState(false)
 	const [portfolioListSorted, setPortfolioListSorted] = React.useState([])
-	const [filterName, setFilterName] = React.useState('Volume')
 	const [btnsOut, setBtnsOut] = React.useState(false)
 	const [sortOpen, setSortOpen] = React.useState(false)
-
+		
 	React.useEffect(() => {
+		console.log(dataUser);
 		if (dataWallet === null && dataUser !== null) {
 			let account = dataUser.find((item) => item.name === currentAccount)
 			dispatch(
@@ -51,30 +45,40 @@ export const Wallet = ({
 	}, [dataUser, dataWallet])
 
 	React.useEffect(() => {
+		if (dataWallet !== null && dataUser !== null) {
+			console.log(dataWallet);
+			let account = dataUser.find((item) => item.name === currentAccount)
+			if(account.address === '' || account.address === undefined ) {
+				dispatch(setAddressCurrentAccount({address: dataWallet.address, name: currentAccount}))
+			}	
+		}
+	}, [dataUser, currentAccount])
+
+	React.useEffect(() => {
 		if (coins === null) {
 			dispatch(fetchAllCoins())
 		}
 	}, [coins])
 
-	React.useEffect(() => {
-		if (currentAccount !== '' && walletAddress !== '') {
-			let account = dataUser.find((item) => item.name === currentAccount)
-			if (account.address === '') {
-				dispatch(
-					setAddressCurrentAccount({
-						name: currentAccount,
-						address: walletAddress,
-					})
-				)
-			}
-		}
-	}, [currentAccount, walletAddress])
+	// React.useEffect(() => {
+	// 	if (currentAccount !== '' && walletAddress !== '') {
+	// 		let account = dataUser.find((item) => item.name === currentAccount)
+	// 		if (account.address === '') {
+	// 			dispatch(
+	// 				setAddressCurrentAccount({
+	// 					name: currentAccount,
+	// 					address: walletAddress,
+	// 				})
+	// 			)
+	// 		}
+	// 	}
+	// }, [currentAccount, walletAddress])
 
 	React.useEffect(() => {
 		if (balanceCoins.length) {
-			filterData('volume', balanceCoins)
+			filterData(portfolioSort, balanceCoins)
 		}
-	}, [balanceCoins])
+	}, [balanceCoins, portfolioSort])
 
 	const filterData = (type, list = balanceCoins) => {
 		setPortfolioListSorted([])
@@ -139,7 +143,7 @@ export const Wallet = ({
 				(item) => dataWalletSymbols.includes(item.symbol.toLowerCase()) == false
 			)
 
-			dispatch(setAllCoins([...filteredNetworks, ...filteredOther]))
+			dispatch(setAllCoins([...dataWalletCoins, ...filteredOther]))
 
 			const coinsSymbols = filteredNetworks.map((item) =>
 				item.symbol.toLowerCase()
@@ -147,9 +151,9 @@ export const Wallet = ({
 			const chooseCoins = otherCoins.filter(
 				(item) =>
 					chooseAssets.includes(item.symbol.toLowerCase()) &&
-					!coinsSymbols.includes(item.symbol.toLowerCase())
+					!dataWalletSymbols.includes(!item.symbol.toLowerCase())
 			)
-			setBalanceCoins([...filteredNetworks, ...chooseCoins])
+			setBalanceCoins([...dataWalletCoins, ...chooseCoins])
 		} else if (dataWallet !== null && coins !== null) {
 			const otherCoins = rebuildObjPortfolioDefaultCoins(coins)
 			const chooseCoins = otherCoins.filter((item) =>
@@ -160,28 +164,6 @@ export const Wallet = ({
 		}
 	}, [coins, dataWallet, currentNetwork, chooseAssets])
 
-	React.useEffect(() => {
-		if (dataWallet !== null && dataWallet.positions?.length) {
-			setBalance(
-				dataWallet.portfolio.attributes.positions_distribution_by_chain[
-					currentNetwork.toLowerCase()
-				]
-			)
-			setBalanceChange({
-				perc: dataWallet.portfolio.attributes.changes.percent_1d,
-				usd: dataWallet.portfolio.attributes.changes.absolute_1d,
-			})
-		} else {
-			setBalance(0)
-		}
-	}, [dataWallet, currentNetwork])
-
-	const onFilter = (value) => {
-		setFilterName(value)
-		filterData(value, balanceCoins)
-		setShowFilterBody(false)
-	}
-
 	return (
 		<section className={'bg-white'} style={{position: 'relative'}}>
 			<div className='wallet-body'>
@@ -189,7 +171,7 @@ export const Wallet = ({
 					<Buttons
 						type='notification'
 						onClick={() =>
-							console.log(1)
+							navigate('/transaction-history')
 						}></Buttons>
 					<Title>
 						<Lang eng='Your Account' cny='您的帐户' />
@@ -200,36 +182,17 @@ export const Wallet = ({
 				</div>
 				<div className='wallet-top' style={{ position: 'relative' }}>
 					<TransferBtn
-						// onClick={() => dispatch(setCurrentPage('Sent'))}
+						onClick={() => navigate('/send')}
 						type='send'
 						style={btnsOut ? { left: '-120px' } : {}}>
 						<Lang eng='Transfer' cny='转移' />
 					</TransferBtn>
 					<ApexChart
-						state={{
-                            options: {
-                              chart: {
-                                id: "basic-bar"
-                              },
-                              xaxis: {
-                                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-                              }
-                            },
-                            series: [
-                              {
-                                name: "series-1",
-                                data: [30, 40, 45, 50, 49, 60, 70, 91]
-                              }
-                            ]
-                          }
-                        }
-						setWidth={() => console.log(3)}
-						width={width}
-						loadingChar={loadingChar}
+						data={portfolioListSorted}
 						setBtnsOut={setBtnsOut}
 					/>
 					<TransferBtn
-						// onClick={() => dispatch(setCurrentPage('Receive'))}
+						onClick={() => navigate('/receive')}
 						type='receive'
 						style={btnsOut ? { right: '-120px' } : {}}>
 						<Lang eng='Receive' cny='收到' />
@@ -237,7 +200,7 @@ export const Wallet = ({
 				</div>
 				<div className='wallet-bottom'>
 					<ul className={styles.navigation}>
-						<li onClick={() => console.log(1)}>
+						<li onClick={() => navigate('/manage-assets')}>
 							<span>
 								<Svg type='plus-bold' />
 								<Lang eng='Manage assets' cny='管理资产' />

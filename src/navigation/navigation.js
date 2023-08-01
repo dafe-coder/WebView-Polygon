@@ -1,11 +1,11 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { Start, ImportRestore, ImportData, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase } from '../pages/'
+import { Start, ImportRestore, Accounts, ImportData, TransactionsHistory, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase, ManageAccount, Buy, Receive, ManageAssets, Swap, TransactionSettings, CreateNotebook, CreatePhrase, VerificatePhrase2, VerificatePhrase3 } from '../pages/'
 
 import { RouterProvider } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLockWallet } from '../store/slices/storageSlice'
-import Accounts from '../pages/accounts/Accounts'
+import VerificatePhrase1 from '../pages/createVerification/VerificatePhrase1'
 
 export default function () {
 	const dispatch = useDispatch()
@@ -99,6 +99,54 @@ export default function () {
 			{
 				path: '/accounts',
 				element: <Accounts />,
+			},
+			{
+				path: '/manage-account',
+				element: <ManageAccount />,
+			},
+			{
+				path: '/transaction-history',
+				element: <TransactionsHistory />,
+			},
+			{
+				path: '/buy',
+				element: <Buy />,
+			},
+			{
+				path: '/receive',
+				element: <Receive />,
+			},
+			{
+				path: '/manage-assets',
+				element: <ManageAssets />,
+			},
+			{
+				path: '/swap',
+				element: <Swap />,
+			},
+			{
+				path: '/transaction-settings',
+				element: <TransactionSettings />,
+			},
+			{
+				path: '/create-notebook',
+				element: <CreateNotebook />,
+			},
+			{
+				path: '/create-phrase',
+				element: <CreatePhrase />,
+			},
+			{
+				path: '/verificate-phrase-1',
+				element: <VerificatePhrase1 />,
+			},
+			{
+				path: '/verificate-phrase-2',
+				element: <VerificatePhrase2 />,
+			},
+			{
+				path: '/verificate-phrase-3',
+				element: <VerificatePhrase3 />,
 			},
 		])
 	}, [isLogin])

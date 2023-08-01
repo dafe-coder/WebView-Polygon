@@ -5,15 +5,17 @@ import Svg from './../../svgs/Svg'
 import Lang from '../Lang/Lang'
 import { useSelector, useDispatch } from 'react-redux'
 import fixNum from '../../Func.wallet/fixNum'
+import { useNavigate } from 'react-router-dom'
 
-const PaymentDetails = ({ pageCurrent, receiver, data }) => {
-	const dispatch = useDispatch()
+const PaymentDetails = ({ receiver, data }) => {
+	const navigate = useNavigate()
 	const [eth, setEth] = useState(null)
 	const [price, setPrice] = useState(null)
-	const [loaded, setLoaded] = useState([])
-	const { arrivalTime, swapPercent, allCoins } = useSelector(
+	const { allCoins } = useSelector(
 		(state) => state.wallet
 	)
+
+	const {slippage, deadline} = useSelector(state => state.transaction)
 
 	useEffect(() => {
 		let eth = allCoins.filter((item) => item.symbol.toUpperCase() == 'ETH')
@@ -23,13 +25,13 @@ const PaymentDetails = ({ pageCurrent, receiver, data }) => {
 	useEffect(() => {
 		if (data.length) {
 			let num =
-				data[0].market_data.current_price.usd /
-				data[1].market_data.current_price.usd
+				data[0].market_data.current_price /
+				data[1].market_data.current_price
 
 			setPrice(num)
 		} else if (data && eth != null && eth.market_data) {
 			let num =
-				data.market_data.current_price.usd / eth.market_data.current_price.usd
+				data.market_data.current_price / eth.market_data.current_price
 			setPrice(num)
 		}
 	}, [eth, data])
@@ -46,8 +48,8 @@ const PaymentDetails = ({ pageCurrent, receiver, data }) => {
 						<Lang eng='Slippage' cny='滑移' />
 					</span>
 					<span>
-						{swapPercent != null ? swapPercent.value + '%' : '2%'}
-						<button className={styles.button} onClick={() => navigate('/swap-settings')}>
+						{slippage != null ? slippage.value + '%' : '2%'}
+						<button className={styles.button} onClick={() => navigate('/transaction-settings')}>
 							<Svg type='cog' />
 						</button>
 					</span>
@@ -78,7 +80,7 @@ const PaymentDetails = ({ pageCurrent, receiver, data }) => {
 						<Lang eng='Arrival Time' cny='到达时间' />
 					</span>
 					<span>
-						&lt;{arrivalTime} <Lang eng='min' cny='分钟' />
+						&lt;{deadline} <Lang eng='min' cny='分钟' />
 					</span>
 				</li>
 				<li>

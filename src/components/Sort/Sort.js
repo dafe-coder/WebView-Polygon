@@ -1,18 +1,19 @@
 import React from 'react'
 import cn from 'classnames'
 import styles from './sort.module.css'
-import Svg from '../../svgs/Svg'
-// import { setPortfolioSort } from '../../actions/wallet'
+import { setPortfolioSort } from '../../store/slices/walletSlice'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Lang from '../Lang/Lang'
 
 const Sort = ({ filterData, sortOpen }) => {
-	const { portfolioSort, lang } = useSelector((state) => state.wallet)
+	const { portfolioSort } = useSelector((state) => state.wallet)
+	const { lang } = useSelector((state) => state.storage)
+
 	const dispatch = useDispatch()
 	function onFilter(value) {
 		filterData(value)
-		// dispatch(setPortfolioSort(value))
+		dispatch(setPortfolioSort(value))
 	}
 	return (
 		<ul

@@ -7,8 +7,8 @@ const SwitchButton = ({ func, check = false }) => {
 			<input
 				className={styles.input}
 				type='checkbox'
-				checked={check}
-				onChange={() => func(!check)}
+				defaultChecked={check}
+				onChange={func}
 			/>
 			<span className={styles.slider}></span>
 		</label>

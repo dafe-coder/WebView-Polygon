@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './account-card-list.module.css'
 import AccountCard from '../AccountCard/AccountCard'
 import Lang from '../Lang/Lang'
-import CryptoJS from 'crypto-js'
 import { useSelector } from 'react-redux'
 import { nanoid } from '@reduxjs/toolkit'
 
@@ -16,13 +15,8 @@ const AccountCardList = () => {
 				dataUser.map((item) => (
 					<AccountCard
 						key={nanoid(2)}
-						// key={CryptoJS.AES.decrypt(item.address, kitkat).toString(
-						// 	CryptoJS.enc.Utf8
-						// )}
 						title={item.name}>
-						{/* {CryptoJS.AES.decrypt(item.address, kitkat).toString(
-							CryptoJS.enc.Utf8
-						)} */}
+						{item.address !== '' && item.address}
 					</AccountCard>
 				))
 			) : (

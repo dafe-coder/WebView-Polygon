@@ -11,47 +11,28 @@ import Lang from '../../components/Lang/Lang'
 import {
 	setPhrase,
 	setPhraseArr,
-	setCurrentPage,
 	setPhraseArrScattered,
-} from '../../actions/createActions'
+} from '../../store/slices/createSlice'
+import { useNavigate } from 'react-router-dom'
+import { shuffle } from '../../Func.wallet/shuffle';
+import { generateMnemonic } from 'bip39'
 
-export const CreateBackupInfo = () => {
+export const CreateNotebook = () => {
+    const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	const createPhrase = () => {
-		chrome.storage.session.get(['createPhrase'], function (res) {
-			if (res.createPhrase) {
-				dispatch(setPhrase(res.createPhrase))
-				let arr = res.createPhrase.trim().split(' ')
-				dispatch(setPhraseArr(arr))
-				const randomArr = shuffle(arr)
-				dispatch(setCurrentPage('CreatePhrase'))
-				dispatch(setPhraseArrScattered(randomArr))
-			} else {
-				let code = new Mnemonic()
-				code.toString()
-				var xpriv = code.toHDPrivateKey()
+        let code = generateMnemonic()
+        let arr = code.trim().split(' ')
+        const randomArr = shuffle(arr)
 
-				let arr = code.phrase.trim().split(' ')
-				dispatch(setPhrase(code.phrase))
-				dispatch(setPhraseArr(arr))
-				dispatch(setCurrentPage('CreatePhrase'))
-				const randomArr = shuffle(arr)
-				dispatch(setPhraseArrScattered(randomArr))
-				chrome.storage.session.set({ createPhrase: code.phrase })
-			}
-		})
+        dispatch(setPhrase(code))
+        dispatch(setPhraseArr(arr))
+        dispatch(setPhraseArrScattered(randomArr))
+        navigate('/create-phrase')
 	}
 
-	function shuffle(array) {
-		const newArr = array.slice()
-		for (let i = newArr.length - 1; i > 0; i--) {
-			let j = Math.floor(Math.random() * (i + 1)) // случайный индекс от 0 до i
-
-			;[newArr[i], newArr[j]] = [newArr[j], newArr[i]]
-		}
-		return newArr
-	}
+	
 	return (
 		<section className={cn('bg-white')}>
 			<GoBack goTo='CreateWalletSuccess' />

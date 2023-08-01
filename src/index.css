@@ -365,3 +365,12 @@ input::-webkit-inner-spin-button {
 .gas_error {
 	background: var(--error-light) !important;
 }
+#chart .apexcharts-legend {
+	transition: all ease .3s;
+	visibility: hidden;
+	opacity: 0;
+}
+#chart.active-char  .apexcharts-legend {
+	visibility: visible;
+	opacity: 1;
+}

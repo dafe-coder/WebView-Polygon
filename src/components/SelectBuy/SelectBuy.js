@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import cn from 'classnames'
 import styles from './select.module.css'
+import cn from 'classnames'
 import Svg from '../../svgs/Svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { setTokenTransaction } from '../../actions/wallet'
-import { setTokenBuy } from '../../actions/wallet'
 import Lang from '../Lang/Lang'
+import { setChooseCoinOne } from '../../store/slices/transactionSlice'
+
 const SelectBuy = ({ setValidToken }) => {
+	const currencyValue = 1
 	const dispatch = useDispatch()
-	const { currencyValue, currentCurrency, tokenBuy, lang, allCoins } =
+	const { allCoins } =
 		useSelector((state) => state.wallet)
+	const {chooseCoinOne} = useSelector(state => state.transaction)
+	const {lang, currentCurrency} = useSelector(state => state.storage)
 	const [value, setValue] = useState('')
 	const [priceToken, setPriceToken] = useState('')
 	const [active, setActive] = useState(
@@ -18,22 +21,26 @@ const SelectBuy = ({ setValidToken }) => {
 	const [activeElem, setActiveElem] = useState({})
 	const [openDropdown, setOpenDropdown] = useState(false)
 	const [dataAllFiltered, setDataAllFiltered] = useState([])
-
+	
 	useEffect(() => {
-		setDataAllFiltered(allCoins)
+		if(allCoins !== null) {
+			setDataAllFiltered(allCoins)
+		}
 	}, [allCoins])
 
 	useEffect(() => {
-		let filtered = []
-		if (value != '') {
-			filtered = allCoins.filter(
-				(item) => item.name.toLowerCase().indexOf(value.toLowerCase()) != -1
-			)
-		} else {
-			filtered = allCoins
+		if(value.length && allCoins !== null) {
+			let filtered = []
+			if (value != '') {
+				filtered = allCoins.filter(
+					(item) => item.name.toLowerCase().indexOf(value.toLowerCase()) != -1
+				)
+			} else {
+				filtered = allCoins
+			}
+			setDataAllFiltered(filtered)
 		}
-		setDataAllFiltered(filtered)
-	}, [value])
+	}, [value, allCoins])
 
 	const onChooseToken = (item) => {
 		let elemChoose = allCoins.filter((token) => token.name == item.name)
@@ -41,18 +48,18 @@ const SelectBuy = ({ setValidToken }) => {
 		setActive(item.name)
 		setOpenDropdown(false)
 		setValidToken(true)
-		dispatch(setTokenBuy(elemChoose))
+		dispatch(setChooseCoinOne(elemChoose))
 	}
-	useEffect(() => {
-		if (tokenBuy.length) {
-			addValue()
-		}
-	}, [currencyValue, tokenBuy, currentCurrency])
-	const addValue = () => {
-		let price =
-			tokenBuy[0].market_data.current_price[currentCurrency.toLowerCase()]
-		setPriceToken((currencyValue / price).toFixed(6))
-	}
+	// useEffect(() => {
+	// 	if (chooseCoinOne.length) {
+	// 		addValue()
+	// 	}
+	// }, [currencyValue, chooseCoinOne, currentCurrency])
+	// const addValue = () => {
+	// 	let price =
+	// 		chooseCoinOne[0].market_data.current_price[currentCurrency.toLowerCase()]
+	// 	setPriceToken((currencyValue / price).toFixed(6))
+	// }
 
 	return (
 		<div className={styles.body}>

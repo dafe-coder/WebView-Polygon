@@ -13,8 +13,8 @@ const PortfolioList = ({ className, data,  }) => {
 								key={item.id}
 								cryptoName={item.symbol}
 								cryptoCount={
-									item.market_data.balance_crypto > 0
-										? item.market_data.balance_crypto
+									item.market_data.balance > 0
+										? item.market_data.balance
 										: 0
 								}
 								cryptoPrice={item.market_data.current_price}

@@ -1,7 +1,8 @@
-export const logTimer = (value) => {
+import { setTimer } from "../store/slices/storageSlice"
+
+export const logTimer = (value, dispatch) => {
 	function startDeadline(deadline) {
-		chrome.storage.local.remove(['timer'])
-		chrome.storage.local.set({ timer: deadline })
+		dispatch(setTimer(deadline))
 	}
 	let deadline = new Date()
 	switch (value) {

@@ -12,7 +12,7 @@ const TransactionInfo = ({
 		<div className={styles.body}>
 			<img className={styles.logo} src={cryptoImg} alt={cryptoName} />
 			<div className={styles.info}>
-				<h4>{cryptoName}</h4>
+				<h4>{cryptoName.toUpperCase()}</h4>
 				<span>{fixNum(Number(current_price))}</span>
 			</div>
 			<span className={styles.price}>~${fixNum(Number(cryptoPrice))}</span>

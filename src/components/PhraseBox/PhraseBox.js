@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import SvgPhrase from './SvgPhrase'
 import { useDispatch } from 'react-redux'
-import copyText from '../../pages/Func.wallet/copy'
+import copyText from '../../Func.wallet/copy'
 import Lang from '../Lang/Lang'
 
 const PhraseBox = ({

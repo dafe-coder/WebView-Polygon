@@ -2,21 +2,19 @@ import React, { useState, useEffect } from 'react'
 import cn from 'classnames'
 import styles from './select.module.css'
 import Svg from '../../svgs/Svg'
-import useWalletService from '../../services/WalletService'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
-import { setTokenTransaction } from '../../actions/wallet'
 import dollarLogo from './usd.png'
 import cnyLogo from './cny.png'
 import eurLogo from './eur.png'
 import cadLogo from './cad.png'
-import rubLogo from './rub.png'
+import rubLogo from './RUB.png'
 import jpnLogo from './jpy.png'
-import plnLogo from './pln.png'
-import { setCurrencyValue, setCurrentCurrency } from '../../actions/wallet'
+import plnLogo from './PLN.png'
 import Lang from '../Lang/Lang'
+
 const SelectCurrency = ({ setValidCurrency }) => {
 	const dispatch = useDispatch()
-	const { lang } = useSelector((state) => state.wallet)
+	const { lang } = useSelector((state) => state.storage)
 	const [value, setValue] = useState('')
 	const [valueCurrency, setValueCurrency] = useState('')
 	const [active, setActive] = useState(
@@ -40,6 +38,7 @@ const SelectCurrency = ({ setValidCurrency }) => {
 	}, [])
 
 	useEffect(() => {
+		setActiveElem(currencyArr[0])
 		setDataAllFiltered(currencyArr)
 	}, [currencyArr])
 
@@ -63,12 +62,10 @@ const SelectCurrency = ({ setValidCurrency }) => {
 		setActive(item.symbol)
 		setOpenDropdown(false)
 		setValidCurrency(true)
-		dispatch(setCurrentCurrency(item.symbol))
 	}
 
 	const onWriteCurrency = (e) => {
 		setValueCurrency(e.target.value)
-		dispatch(setCurrencyValue(e.target.value))
 	}
 
 	return (

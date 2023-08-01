@@ -48,16 +48,8 @@ const TransactionItem = ({ type, itemData }) => {
 							<Lang eng='Send' cny='发送' />
 						</h4>
 						<span className={styles.value_red}>
-							-
-							{fixNum(
-								Number(
-									Web3.utils.fromWei(
-										itemData.changes[0].value.noExponents(),
-										'ether'
-									)
-								)
-							)}{' '}
-							{itemData.changes[0].asset.symbol}
+						-{fixNum(itemData.attributes.transfers[0].quantity.float) + ' '}
+							{itemData.attributes.transfers[0].fungible_info.symbol}
 						</span>
 					</div>
 					<div className={styles.bottom}>
@@ -65,10 +57,12 @@ const TransactionItem = ({ type, itemData }) => {
 							<strong>
 								<Lang eng='To' cny='至' />:
 							</strong>
-							{itemData.address_to}
+							{itemData.attributes.sent_to.slice(0, 16) +
+								'...' +
+								itemData.attributes.sent_to.slice(-5)}
 						</p>
 						<span className={styles.date}>
-							{getDateTransaction(+itemData.mined_at).map((item) =>
+							{getDateTransaction(+itemData.attributes.mined_at_block).map((item) =>
 								item.length == 2 ? item + '.' : item
 							)}
 						</span>
@@ -86,16 +80,8 @@ const TransactionItem = ({ type, itemData }) => {
 							<Lang eng='Received' cny='已收到' />
 						</h4>
 						<span className={styles.value_green}>
-							+
-							{fixNum(
-								Number(
-									Web3.utils.fromWei(
-										itemData.changes[0].value.noExponents(),
-										'ether'
-									)
-								)
-							)}{' '}
-							{itemData.changes[0].asset.symbol}
+						+ {fixNum(itemData.attributes.transfers[0].quantity.float) + ' '}
+							{itemData.attributes.transfers[0].fungible_info.symbol}
 						</span>
 					</div>
 					<div className={styles.bottom}>
@@ -103,10 +89,13 @@ const TransactionItem = ({ type, itemData }) => {
 							<strong>
 								<Lang eng='From' cny='从' />:
 							</strong>
-							{itemData.address_from}
+							To:{' '}
+							{itemData.attributes.sent_to.slice(0, 16) +
+								'...' +
+								itemData.attributes.sent_to.slice(-5)}
 						</p>
 						<span className={styles.date}>
-							{getDateTransaction(+itemData.mined_at).map((item) =>
+							{getDateTransaction(+itemData.attributes.mined_at_block).map((item) =>
 								item.length == 2 ? item + '.' : item
 							)}
 						</span>
@@ -121,34 +110,19 @@ const TransactionItem = ({ type, itemData }) => {
 							<span className={cn(styles.icon, styles.blue)}>
 								<SvgTransactions type='swap' />
 							</span>
-							<Lang eng='Swap' cny='交换' /> {itemData.changes[0].asset.symbol}/
-							{itemData.changes[1] ? itemData.changes[1].asset.symbol : ''}
+							<Lang eng='Swap' cny='交换' /> + 
+							{fixNum(itemData.attributes.transfers[0].quantity.float) + ' '}
+							{itemData.attributes.transfers[0].fungible_info.symbol}
 						</h4>
 						<span className={styles.value_green}>
-							+
-							{itemData.changes[1]
-								? fixNum(
-										Number(
-											Web3.utils.fromWei(
-												itemData.changes[1].value.noExponents(),
-												'ether'
-											)
-										)
-								  )
-								: fixNum(
-										Number(
-											Web3.utils.fromWei(
-												itemData.changes[0].value.noExponents(),
-												'ether'
-											)
-										)
-								  )}{' '}
-							{itemData.changes[1] ? itemData.changes[1].asset.symbol : ''}
+						{itemData.attributes.transfers[1].fungible_info.symbol +
+								' / ' +
+								itemData.attributes.transfers[0].fungible_info.symbol}
 						</span>
 					</div>
 					<div className={styles.bottom}>
 						<span className={styles.date}>
-							{getDateTransaction(+itemData.mined_at).map((item) =>
+							{getDateTransaction(+itemData.attributes.mined_at_block).map((item) =>
 								item.length == 2 ? item + '.' : item
 							)}
 						</span>

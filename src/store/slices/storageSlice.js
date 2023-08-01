@@ -11,6 +11,7 @@ const initialState = {
 	chooseAssets: ['pepe', 'bnb', 'eth', 'matic'],
 	currencyWallet: 'usd',
 	lang: 'eng',
+	timer: null
 }
 
 const storageSlice = createSlice({
@@ -34,9 +35,7 @@ const storageSlice = createSlice({
 		setAddressCurrentAccount(state, action) {
 			state.dataUser = state.dataUser.map((item) => {
 				if (item.name === action.payload.name) {
-					if (item.address == '') {
-						item.address = action.payload.address
-					}
+					item.address = action.payload.address
 					return item
 				} else {
 					return item
@@ -47,6 +46,7 @@ const storageSlice = createSlice({
 			state.lang = action.payload
 		},
 		setChooseAssets(state, action) {
+			console.log(action.payload);
 			const newArr = state.chooseAssets.find(
 				(item) => item == action.payload.toLowerCase()
 			)
@@ -87,6 +87,9 @@ const storageSlice = createSlice({
 		setCurrentNetwork(state, action) {
 			state.currentNetwork = action.payload
 		},
+		setTimer(state, action) {
+			state.timer = action.payload 
+		}
 	},
 })
 
@@ -104,7 +107,8 @@ export const {
 	setInitChooseAssets,
 	setAddressCurrentAccount,
 	setLang,
-	setCurrencyWallet
+	setCurrencyWallet,
+	setTimer
 } = storageSlice.actions
 
 export default storageSlice.reducer

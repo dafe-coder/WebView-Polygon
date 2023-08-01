@@ -6,14 +6,11 @@ const AssetsItem = ({
 	cryptoImg,
 	cryptoName,
 	onChooseAssets,
-	id,
+	symbol,
 	currentActive,
 }) => {
-	const [chooseAssets, setChooseAssets] = useState(currentActive)
-
 	const onChoose = () => {
-		onChooseAssets(id)
-		setChooseAssets(!chooseAssets)
+		onChooseAssets(symbol)
 	}
 
 	return (
@@ -22,7 +19,7 @@ const AssetsItem = ({
 				<img className={styles.img} src={cryptoImg} alt={cryptoName} />
 				<h5>{cryptoName}</h5>
 			</div>
-			<SwitchButton fucn={onChoose} check={chooseAssets} />
+			<SwitchButton func={onChoose} check={currentActive} />
 		</li>
 	)
 }

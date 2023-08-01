@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setNameValid, setName } from '../../store/slices/createSlice'
 
 const InputName = ({ id, label, errorPar }) => {
-	const {userData} = useSelector(state => state.storage)
+	const {dataUser} = useSelector(state => state.storage)
 	const { nameValid, name } = useSelector((state) => state.create)
 	const [errorName, setErrorName] = useState(false)
 	const dispatch = useDispatch()
@@ -15,10 +15,11 @@ const InputName = ({ id, label, errorPar }) => {
 		let name = e.target.value
 		dispatch(setName(name))
 		if (name.length > 1 && name.length <= 40) {
-			if (userData && userData.length >= 1) {
-				let arrNames = userData.map((item) => {
+			if (dataUser !== null && dataUser.length >= 1) {
+				let arrNames = dataUser.map((item) => {
 					return item.name
 				})
+				console.log(arrNames);
 				if (!arrNames.includes(name)) {
 					dispatch(setNameValid(true))
 					setErrorName(true)
@@ -36,7 +37,7 @@ const InputName = ({ id, label, errorPar }) => {
 	return (
 		<div className={styles.wallet_input}>
 			<input
-				onInput={(e) => onNameValidate(e)}
+				onChange={(e) => onNameValidate(e)}
 				className={cn('input', {
 					[styles.success]: nameValid == true,
 					[styles.error]: nameValid == false,

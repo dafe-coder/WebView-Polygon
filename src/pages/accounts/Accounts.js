@@ -8,12 +8,10 @@ import Svg from '../../svgs/Svg'
 import Modal from './../../components/modal/Modal'
 import Input from './../../components/Input/Input'
 import styles from './accounts.module.css'
-import { useDispatch } from 'react-redux'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
 
-const Accounts = () => {
-	const dispatch = useDispatch()
+export const Accounts = () => {
     const navigate = useNavigate()
 
 	const onLock = () => {
@@ -22,7 +20,7 @@ const Accounts = () => {
 	}
 
 	const onImport = () => {
-		navigate('/wallet-restore')
+		navigate('/import')
 	}
 
 	return (
@@ -32,7 +30,7 @@ const Accounts = () => {
 					<div className='wallet-header'>
 						<Buttons
 							type='back'
-							onClick={() => navigate(-1)}></Buttons>
+							onClick={() => navigate('/wallet')}></Buttons>
 						<Title>
 							<Lang eng='Account' cny='帐户' />
 						</Title>
@@ -76,4 +74,3 @@ const Accounts = () => {
 		</section>
 	)
 }
-export default Accounts

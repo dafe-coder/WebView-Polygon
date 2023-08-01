@@ -21,7 +21,7 @@ export const Send = ({ dataLoading, dataList }) => {
 	const navigate = useNavigate()
 	const { state } = useLocation()
 	const { walletAddress } = useSelector((state) => state.wallet)
-	const { dataUser, currentAccount } = useSelector((state) => state.storage)
+	const { dataUser, currentAccount, chooseCoinOne} = useSelector((state) => state.storage)
 	const [disabledBtn, setDisabledBtn] = React.useState(true)
 	const [address, setAddress] = React.useState('')
 	const [amount, setAmount] = React.useState('')
@@ -31,6 +31,7 @@ export const Send = ({ dataLoading, dataList }) => {
 	const [openGas, setOpenGas] = React.useState(false)
 	const [hash, setHash] = React.useState('')
     const [loading, setLoading] = React.useState(false)
+	const [addressTo, setAddressTo] = React.useState('')
 
 	React.useEffect(() => {
 		console.log(hash)
@@ -89,7 +90,6 @@ export const Send = ({ dataLoading, dataList }) => {
 						dataWithBalance={dataList}
 						dataLoading={dataLoading}
 						portfolioOpen={state}
-						setValidToken={setValidToken}
 						transactionTokens={true}
 					/>
 					<div className='wallet-input'>
@@ -98,24 +98,24 @@ export const Send = ({ dataLoading, dataList }) => {
 							type='text'
 							id='address'
 							required={true}
-							value={value}
-							onChange={(e) => onWriteAddress(e)}
+							value={addressTo}
+							onChange={(e) => setAddressTo(e.target.value)}
 						/>
 						<label className='label' htmlFor='address'>
 							<Lang eng='Enter Address' cny='输入地址' />
 						</label>
 					</div>
-					{/* <Amount setAmount={setAmount} validToken={validToken} />
-					{validToken && tokenTransaction != null ? (
+					<Amount setAmount={setAmount} />
+					{chooseCoinOne != null ? (
 						<PaymentDetails
 							pageCurrent='Sent'
-							receiver={value}
-							data={tokenTransaction}
-							amount={tokenTransactionAmount}
+							receiver={addressTo}
+							data={chooseCoinOne}
+							amount={amount}
 						/>
 					) : (
 						<></>
-					)} */}
+					)}
 				</div>
 				<div className='wallet-bottom'>
 					<Button

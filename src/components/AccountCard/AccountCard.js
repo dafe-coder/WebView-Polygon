@@ -15,7 +15,7 @@ const AccountCard = ({ title, children, copy = true, one = false }) => {
 
 	React.useEffect(() => {
 		if(dataUser !== null && dataUser.length) {
-			setCurrencyAccountData(dataUser.find(item => item.title === currentAccount))
+			setCurrencyAccountData(dataUser.find(item => item.name === currentAccount))
 		}
 	}, [currentAccount, dataUser])
 

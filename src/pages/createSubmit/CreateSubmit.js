@@ -9,17 +9,15 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import GoBack from './../../components/GoBack/GoBack'
 import Lang from '../../components/Lang/Lang'
+import Title from '../../components/Title/Title'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateSubmit = () => {
-	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const [checkInfo, setCheckInfo] = useState(false)
 
 	const submitInfo = () => {
-		// if (checkInfo) {
-		// 	dispatch(setCurrentPage('WalletBackup'))
-		// } else {
-		// 	return
-		// }
+		navigate('/create-notebook', { replace: true })
 	}
 
 	return (
@@ -70,13 +68,11 @@ export const CreateSubmit = () => {
 						/>
 					</ConfirmInfo>
 					<Button
-						// onClick={submitInfo}
-                        to='/wallet'
+						onClick={submitInfo}
 						className={cn({ ['disabled']: checkInfo == false })}
 						type='primary'
 						id='confirm-info-btn'>
 						<Lang eng='Continue' cny='继续' />
-
 						<i className='fa-solid fa-arrow-right-long'></i>
 					</Button>
 				</div>
