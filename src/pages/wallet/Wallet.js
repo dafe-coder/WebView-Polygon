@@ -39,7 +39,6 @@ export const Wallet = () => {
 	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
-		console.log(dataUser);
 		if (dataWallet === null && dataUser !== null) {
 			let account = dataUser.find((item) => item.name === currentAccount)
 			dispatch(
@@ -53,7 +52,6 @@ export const Wallet = () => {
 
 	React.useEffect(() => {
 		if (dataWallet !== null && dataUser !== null) {
-			console.log(dataWallet);
 			let account = dataUser.find((item) => item.name === currentAccount)
 			if(account.address === '' || account.address === undefined ) {
 				dispatch(setAddressCurrentAccount({address: dataWallet.address, name: currentAccount}))
@@ -89,41 +87,45 @@ export const Wallet = () => {
 
 	const filterData = (type, list = balanceCoins) => {
 		setPortfolioListSorted([])
-			let sortedArr = []
-			if (type == 'name') {
-				sortedArr = list.sort(function (a, b) {
-					if (a.name.toUpperCase() > b.name.toUpperCase()) {
-						return 1
-					}
-					if (a.name.toUpperCase() < b.name.toUpperCase()) {
-						return -1
-					}
-					return 0
-				})
-			} else if (type == 'volume') {
-				sortedArr = list.sort(function (a, b) {
-					if (a.market_data.balance_crypto > b.market_data.balance_crypto) {
-						return -1
-					}
-					if (a.market_data.balance_crypto < b.market_data.balance_crypto) {
-						return 1
-					}
-					return 0
-				})
-			} else if (type == 'change') {
-				sortedArr = list.sort(function (a, b) {
-					if (a.changes.percent > b.changes.percent) {
-						return -1
-					}
-					if (a.changes.percent < b.changes.percent) {
-						return 1
-					}
-					return 0
-				})
-			} else {
-				sortedArr = list
-			}
-			setPortfolioListSorted(sortedArr)
+		let sortedArr = []
+		if (type == 'name') {
+			sortedArr = list.sort(function (a, b) {
+				const aName = a.name.toUpperCase()
+				const bName = b.name.toUpperCase()
+				if (aName > bName) {
+					return 1
+				}
+				if (aName < bName) {
+					return -1
+				}
+				return 0
+			})
+		} else if (type == 'value') {
+			sortedArr = list.sort(function (a, b) {
+				const aBalance =  a.market_data.balance_crypto
+				const bBalance = b.market_data.balance_crypto
+				if (aBalance > bBalance) {
+					return -1
+				}
+				if (aBalance < bBalance) {
+					return 1
+				}
+				return 0
+			})
+		} else if (type == 'change') {
+			sortedArr = list.sort(function (a, b) {
+				if (a.changes.percent > b.changes.percent) {
+					return -1
+				}
+				if (a.changes.percent < b.changes.percent) {
+					return 1
+				}
+				return 0
+			})
+		} else {
+			sortedArr = list
+		}
+		setPortfolioListSorted(sortedArr)
 	}
 
 	React.useEffect(() => {
