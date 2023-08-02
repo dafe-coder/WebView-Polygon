@@ -14,11 +14,6 @@ const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
 	const { chooseCoinOne, chooseCoinTwo} =
 		useSelector((state) => state.transaction)
 	
-
-	React.useEffect(() => {
-	console.log(chooseCoinTwo)
-	}, [chooseCoinTwo])
-	
 	const onChoosePersent = (value) => {
 		if (chooseCoinOne !== null) {
 			setValue(

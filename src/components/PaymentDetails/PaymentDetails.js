@@ -18,8 +18,10 @@ const PaymentDetails = ({ receiver, data }) => {
 	const {slippage, deadline} = useSelector(state => state.transaction)
 	
 	useEffect(() => {
-		let eth = allCoins.filter((item) => item.symbol.toUpperCase() == 'ETH')
-		setEth(eth[0])
+		if(allCoins !== null) {
+			let eth = allCoins.filter((item) => item.symbol.toUpperCase() == 'ETH')
+			setEth(eth[0])
+		}
 	}, [allCoins])
 
 	useEffect(() => {
@@ -94,7 +96,7 @@ const PaymentDetails = ({ receiver, data }) => {
 						<span>
 							<Lang eng='Receiver' cny='接收者' />
 						</span>
-						<span>{receiver}</span>
+						<span>{receiver.slice(0,25) + "..." + receiver.slice(-5)}</span>
 					</li>
 				) : (
 					<></>

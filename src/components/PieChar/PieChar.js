@@ -40,8 +40,8 @@ const ApexChart = ({setBtnsOut, data}) => {
 				sortedArr.forEach((item) => {
 					arr.push(item.symbol)
 					arrPrice.push(
-						+Number(item.market_data.balance) > 0
-							? +Number(item.market_data.balance).toFixed(15)
+						+Number(item.market_data.balance_crypto) > 0
+							? +Number(item.market_data.balance_crypto).toFixed(15)
 							: 0.00000001
 					)
 				})
@@ -56,7 +56,7 @@ const ApexChart = ({setBtnsOut, data}) => {
 
 	React.useEffect(() => {
 		if(data.length) {
-			onPieCharLoaded(data.slice(0, 4))
+			onPieCharLoaded(data)
 		}
 	}, [data])
 
@@ -195,7 +195,7 @@ const ApexChart = ({setBtnsOut, data}) => {
 							? {
 									marginLeft: '-25px',
 									marginRight: '-25px',
-									width: '400px',
+									width: '340px',
 									backgroundColor: 'white',
 									transition: 'all ease .5s',
 							  }

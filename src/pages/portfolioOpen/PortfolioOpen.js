@@ -16,9 +16,8 @@ export const PortfolioOpen = () => {
 	const {state} = useLocation()
 	const { dataWallet } = useSelector((state) => state.wallet)
 	const [transactionList, setTransactionList] = React.useState([])
-	React.useEffect(() => {
-	console.log(state)
-	}, [state])
+
+	
 	React.useEffect(() => {
 		if (dataWallet !== null && dataWallet.transactions?.length) {
 			let filtered = dataWallet.transactions.filter(

@@ -19,7 +19,7 @@ const SelectToken = ({
 	const { lang } = useSelector(
 		(state) => state.storage
 	)
-	const { chooseCoinOne } = useSelector(
+	const { chooseCoinOne, chooseCoinTwo } = useSelector(
 		(state) => state.transaction
 	)
 	const dispatch = useDispatch()
@@ -32,9 +32,12 @@ const SelectToken = ({
 	const [dataAllFiltered, setDataAllFiltered] = useState([])
 
 	React.useEffect(() => {
-		if(chooseCoinOne !== null && init) {
+		if(chooseCoinOne !== null && init && chooseCoin === 'one') {
 			setActive(chooseCoinOne.symbol)
 			setActiveElem(chooseCoinOne)
+		} else if (chooseCoinTwo !== null && chooseCoin === 'two') {
+			setActive(chooseCoinTwo.symbol)
+			setActiveElem(chooseCoinTwo)
 		}
 	}, [chooseCoinOne])
 

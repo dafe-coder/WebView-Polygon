@@ -12,7 +12,6 @@ const AccountCardReg = () => {
 	const [accountDataLoading, setAccountDataLoading] = useState(true)
 	
 	React.useEffect(() => {
-		console.log(dataUser);
 		if (dataWallet === null && dataUser !== null) {
 			let account = dataUser.find((item) => item.name === currentAccount)
 			dispatch(

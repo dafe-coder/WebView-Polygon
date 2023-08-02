@@ -1,33 +1,13 @@
-//check versions in package.json
 import Web3 from 'web3' // npm install web3
-import { Transaction } from 'ethereumjs-tx' // npm install ethereumjs-tx
-import CryptoJS from 'crypto-js'
+import { Transaction } from '@ethereumjs/tx' // npm install ethereumjs-tx
 
 /**
  * CONFIG
  * @param YOUR_INFRA_PROJECT_ID - goto https://infura.io/register, create an account and get the endpoint;
- * @param PRIVATE_KEY - address to send from private key. if you only have the wallet mnemonic phrase use logic from getPrivKey.js;
  * @param MIN_ABI - application binary interface, sould look like this don't change;
  */
 
-let INFRA_PROJECT_ID = 'df6302883a974978853fb350122bbc6d'
-
-const web3 = new Web3('wss://mainnet.infura.io/ws/v3/' + INFRA_PROJECT_ID)
-let PRIVATE_KEY = ''
-chrome.storage.local.get(['userData'], function (result) {
-	if (result.userData) {
-		result.userData.forEach((item) => {
-			chrome.storage.local.get(['WalletChoose'], function (res) {
-				if (res.WalletChoose == item.name) {
-					const kitkat = 'Qsx@ah&OR82WX9T6gCt'
-					PRIVATE_KEY = CryptoJS.AES.decrypt(item.privateKey, kitkat).toString(
-						CryptoJS.enc.Utf8
-					)
-				}
-			})
-		})
-	}
-})
+const web3 = new Web3('https://rpc.ankr.com/eth')
 
 const MIN_ABI = [
 	{
@@ -83,13 +63,14 @@ async function signAndSendTx(
 	value,
 	setHash,
 	setOpenModal,
-	setOpenModalGas
+	setOpenModalGas,
+	privateKey
 ) {
 	try {
 		var nonce = web3.utils.toHex(await web3.eth.getTransactionCount(from))
 		var gasPrice = web3.utils.toHex(await getGasPrice())
 		var gasLimit = web3.utils.toHex(await getGasLimit())
-
+		console.log(gasPrice)
 		var rawTransaction = {
 			nonce: nonce,
 			to: to,
@@ -103,7 +84,7 @@ async function signAndSendTx(
 		console.log(transaction)
 
 		//singing our tx with private key
-		transaction.sign(Buffer.from(PRIVATE_KEY, 'hex'))
+		transaction.sign(Buffer.from(privateKey, 'hex'))
 
 		console.log('Sending transaction...')
 		web3.eth.sendSignedTransaction(
@@ -136,7 +117,8 @@ async function transferErc20Token(
 	amount,
 	setHash,
 	setOpenModal,
-	setOpenModalGas
+	setOpenModalGas,
+	privateKey
 ) {
 	//format input
 	fromAddress = web3.utils.toChecksumAddress(fromAddress)
@@ -155,7 +137,8 @@ async function transferErc20Token(
 		null,
 		setHash,
 		setOpenModal,
-		setOpenModalGas
+		setOpenModalGas,
+		privateKey
 	)
 }
 
@@ -165,7 +148,8 @@ async function sendETH(
 	amount,
 	setHash,
 	setOpenModal,
-	setOpenModalGas
+	setOpenModalGas,
+	privateKey
 ) {
 	//format input
 	fromAddress = web3.utils.toChecksumAddress(fromAddress)
@@ -179,7 +163,8 @@ async function sendETH(
 		eth_amount,
 		setHash,
 		setOpenModal,
-		setOpenModalGas
+		setOpenModalGas,
+		privateKey
 	)
 }
 
@@ -197,16 +182,24 @@ export default async function transactionsSend(
 	ether = false,
 	setHash,
 	setOpenModal,
-	setOpenModalGas
+	setOpenModalGas,
+	privateKey
 ) {
 	// Set input data
 	const FROM = from // address to send from
 	const TO = to // address to send to
 	const TOKEN = token // token address
 	const AMOUNT = amount != 0 ? amount : '0' // amount of token/eth, has to be a String value: "322", "2.88" etc.
-
 	if (ether) {
-		sendETH(FROM, TO, AMOUNT, setHash, setOpenModal, setOpenModalGas) // or sendETH(FROM, TO, "0.0025")
+		sendETH(
+			FROM,
+			TO,
+			AMOUNT,
+			setHash,
+			setOpenModal,
+			setOpenModalGas,
+			privateKey
+		) // or sendETH(FROM, TO, "0.0025")
 			.then((message) => {
 				console.log(message)
 			})
@@ -221,7 +214,8 @@ export default async function transactionsSend(
 			AMOUNT,
 			setHash,
 			setOpenModal,
-			setOpenModalGas
+			setOpenModalGas,
+			privateKey
 		) // or sendETH(FROM, TO, "0.0025")
 			.then((message) => {
 				console.log(message)

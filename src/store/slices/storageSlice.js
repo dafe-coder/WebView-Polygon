@@ -50,7 +50,6 @@ const storageSlice = createSlice({
 			state.lang = action.payload
 		},
 		setChooseAssets(state, action) {
-			console.log(action.payload);
 			const newArr = state.chooseAssets.find(
 				(item) => item == action.payload.toLowerCase()
 			)

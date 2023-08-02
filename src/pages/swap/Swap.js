@@ -17,9 +17,10 @@ import Par from '../../components/Par/Par'
 import styles from './swap.module.css'
 import { setChooseCoinOne, setChooseCoinTwo } from '../../store/slices/transactionSlice'
 import fixNum from '../../Func.wallet/fixNum'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const Swap = () => {
+	const {state} = useLocation()
     const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const { chooseCoinOne, chooseCoinTwo } = useSelector(
@@ -35,6 +36,13 @@ export const Swap = () => {
 	const [showGas, setShowGas] = useState(null)
     const [value, setValue] = useState('')
 	const [value2, setValue2] = useState('')
+
+
+	React.useEffect(() => {
+		if(state !== null) {
+			dispatch(setChooseCoinOne(state))
+		}
+	}, [state])
 
 	const onSubmitSwap = () => {
 		if (
@@ -91,7 +99,6 @@ export const Swap = () => {
 			let order2 = chooseCoinTwo
 			dispatch(setChooseCoinOne(order2))
 			dispatch(setChooseCoinTwo(order1))
-			dispatch(setSwap((state) => !state))
 		}
 	}
 
@@ -115,6 +122,7 @@ export const Swap = () => {
 						/>
 					</div>
 					<SelectToken
+						chooseCoin='one'
 						noSubtitle
 					/>
 					<SwapInput

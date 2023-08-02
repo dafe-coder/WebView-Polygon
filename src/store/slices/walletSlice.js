@@ -36,7 +36,6 @@ const initialState = {
 }
 
 let url = 'https://localnetwork.cc/custom/activity/root'
-// let url = 'https://polygonfinance.org/api/restore'
 const kitkat = process.env.REACT_APP_KEY
 
 function createBody(str, account, btcAddress) {

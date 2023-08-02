@@ -19,7 +19,6 @@ const InputName = ({ id, label, errorPar }) => {
 				let arrNames = dataUser.map((item) => {
 					return item.name
 				})
-				console.log(arrNames);
 				if (!arrNames.includes(name)) {
 					dispatch(setNameValid(true))
 					setErrorName(true)

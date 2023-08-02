@@ -1,8 +1,8 @@
 {
-  "name": "sparrow",
+  "name": "Polygon",
   "version": "0.1.0",
   "private": true,
-  "description": "Sparrow is a wallet for those who value financial self sovereignty.",
+  "description": "Polygon is a wallet for those who value financial self sovereignty.",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "apexcharts": "^3.35.3",

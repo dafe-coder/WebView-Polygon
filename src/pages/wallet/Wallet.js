@@ -85,11 +85,10 @@ export const Wallet = () => {
 		if (balanceCoins.length) {
 			filterData(portfolioSort, balanceCoins)
 		}
-	}, [balanceCoins, portfolioSort])
+	}, [balanceCoins])
 
 	const filterData = (type, list = balanceCoins) => {
 		setPortfolioListSorted([])
-		idTimeout = setTimeout(() => {
 			let sortedArr = []
 			if (type == 'name') {
 				sortedArr = list.sort(function (a, b) {
@@ -125,8 +124,6 @@ export const Wallet = () => {
 				sortedArr = list
 			}
 			setPortfolioListSorted(sortedArr)
-			clearTimeout(idTimeout)
-		}, 100)
 	}
 
 	React.useEffect(() => {

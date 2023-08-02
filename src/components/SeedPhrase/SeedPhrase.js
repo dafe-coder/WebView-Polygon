@@ -20,10 +20,6 @@ const SeedPhraseBox = ({ show, prKey = false }) => {
 		}
 	}, [dataUser])
 
-	React.useEffect(() => {
-	console.log(currentAccountData)
-	}, [currentAccountData])
-
 	return (
 		<div
 			className={cn(styles.body, {

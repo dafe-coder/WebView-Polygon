@@ -1,13 +1,13 @@
 const webpack = require('webpack')
 module.exports = function override(config, env) {
-    config.resolve.alias = { "stream": require.resolve("stream-browserify") }
+    config.resolve.alias = {  }
     config.resolve.fallback = {
         util: require.resolve('util/'),
         url: require.resolve('url'),
         assert: require.resolve('assert'),
         buffer: require.resolve('buffer'),
+        stream: require.resolve("stream-browserify"),
         crypto: false , 
-        stream: false,
         'process/browser': require.resolve('process/browser')
     };
     config. plugins. push(

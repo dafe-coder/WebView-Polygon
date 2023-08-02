@@ -24,7 +24,6 @@ export const Receive = ({ dataLoading, dataList }) => {
 	const {chooseCoinOne} = useSelector(state => state.transaction)
 
 	React.useEffect(() => {	
-		console.log(state);
 		if(state !== null) {
 			dispatch(setChooseCoinOne(state))
 		}

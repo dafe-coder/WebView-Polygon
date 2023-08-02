@@ -1,8 +1,19 @@
 import React, { useEffect } from 'react'
 import PortfolioItem from '../PortfolioItem/PortfolioItem'
 import LoaderList from '../Loader/LoaderList'
+
 const PortfolioList = ({ className, data,  }) => {
-	return data !== null && data.length ? (
+	const [portfolioData, setPortfolioData] = React.useState(null)
+
+	React.useEffect(() => {
+		if(data.length) {
+			setPortfolioData(data)
+		} else {
+			setPortfolioData(null)
+		}
+	}, [data])
+
+	return portfolioData !== null && portfolioData.length ? (
 		<ul className={className} style={{ marginBottom: 70 }}>
 			{data.length ? (
 				data.map((item) => {

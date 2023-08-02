@@ -23,7 +23,6 @@ export default function () {
 	}, [password, autoLock])
 
 	React.useEffect(() => {
-		console.log(timer >= Date.parse(new Date()));
 		if (
 			timer <= Date.parse(new Date()) ||
 			timer == undefined ||

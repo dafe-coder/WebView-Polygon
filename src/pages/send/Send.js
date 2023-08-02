@@ -9,17 +9,19 @@ import styles from './sent.module.css'
 import cn from 'classnames'
 import Par from './../../components/Par/Par'
 import PaymentDetails from '../../components/PaymentDetails/PaymentDetails'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/Button/Button'
 import Lang from '../../components/Lang/Lang'
 import Spinner from '../../components/Loader/Spinner'
-// import transactionsSend from '../../Func.wallet/transaction'
-
+import transactionsSend from '../../Func.wallet/transaction'
 import { useNavigate, useLocation } from 'react-router-dom'
+import CryptoJS  from 'crypto-js';
+import { setChooseCoinOne } from '../../store/slices/transactionSlice'
 
-export const Send = ({ dataLoading, dataList }) => {
+export const Send = () => {
+	const {state} = useLocation()
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { state } = useLocation()
 	const { walletAddress } = useSelector((state) => state.wallet)
 	const { dataUser, currentAccount} = useSelector((state) => state.storage)
 	const {chooseCoinOne} = useSelector(state => state.transaction)
@@ -39,41 +41,46 @@ export const Send = ({ dataLoading, dataList }) => {
 	}, [hash])
 
 	React.useEffect(() => {
-		if (state !== null) {
-			setCheckEther(state.symbol.toUpperCase().includes('ETH'))
+		if (chooseCoinOne !== null) {
+			setCheckEther(chooseCoinOne.symbol.toUpperCase().includes('ETH'))
+		}
+	}, [chooseCoinOne])
+
+	React.useEffect(() => {
+		if(state !== null) {
+			dispatch(setChooseCoinOne(state))
 		}
 	}, [state])
 
 	React.useEffect(() => {
-		if (address !== '' && amount !== '' && state !== null) {
+		if (addressTo !== '' && amount !== '' && chooseCoinOne !== null) {
 			setShowPaymentsDetails(true)
 			setDisabledBtn(false)
 		} else {
 			setDisabledBtn(true)
 			setShowPaymentsDetails(false)
 		}
-	}, [address, amount])
+	}, [addressTo, amount, chooseCoinOne])
 
     const viewDetails = () => {
 		window.open(`https://etherscan.io/tx/${hash}`)
 	}
 
 	const onSendTransaction = () => {
-		const privateKey = dataUser.filter((d) => d.name == currentAccount)[0]
-			.privateKey
+		const privateKey = CryptoJS.AES.decrypt(dataUser.find((d) => d.name == currentAccount)
+		.privateKey, process.env.REACT_APP_KEY).toString(CryptoJS.enc.Utf8)
 		const amountSend = Number(amount)
-
-		// transactionsSend(
-		// 	walletAddress,
-		// 	address,
-		// 	state.contract_address,
-		// 	amountSend,
-		// 	checkEther,
-		// 	setHash,
-		// 	setOpenSuccess,
-		// 	setOpenGas,
-		// 	privateKey
-		// )
+		transactionsSend(
+			walletAddress,
+			addressTo,
+			chooseCoinOne.contract_address,
+			amountSend.toString(),
+			checkEther,
+			setHash,
+			setOpenSuccess,
+			setOpenGas,
+			privateKey
+		)
 	}
 
 	return (
@@ -119,7 +126,7 @@ export const Send = ({ dataLoading, dataList }) => {
 					<Button
 						style={{ position: 'relative', minHeight: '52px' }}
 						className={cn('btn', {
-							['disabled']: disabledBtn == false,
+							['disabled']: disabledBtn == true,
 						})}
 						type='primary'
 						onClick={onSendTransaction}>

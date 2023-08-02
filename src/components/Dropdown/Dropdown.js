@@ -17,9 +17,6 @@ const Dropdown = ({ dataDropdown, active, type }) => {
 		dispatch(setChooseTimeOut(value))
 	}
 
-	React.useEffect(() => {
-	console.log(current)
-	}, [current])
 	const onChoose = (e) => {
 		const target = e.target
 		target
