@@ -8,21 +8,18 @@ import Alert from '../../components/Alert/Alert'
 import Modal from '../../components/modal/Modal'
 import QRCode from 'react-qr-code'
 import { useState } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import GoBack from '../../components/GoBack/GoBack'
 import Lang from '../../components/Lang/Lang'
-import { setWalletNew } from '../../store/slices/walletSlice'
 import { useNavigate } from 'react-router-dom'
 
 export const CreatePhrase = () => {
     const navigate = useNavigate()
 	const [openQr, setOpenQr] = useState(false)
 	const { phrase } = useSelector((state) => state.create)
-	const dispatch = useDispatch()
 
 	const goToVereficatePhrase = () => {
 		navigate('/verificate-phrase-1')
-		dispatch(setWalletNew(true))
 	}
 	
 	return (

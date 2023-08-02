@@ -1,6 +1,6 @@
 {
   "name": "Polygon",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Polygon is a wallet for those who value financial self sovereignty.",
   "dependencies": {

