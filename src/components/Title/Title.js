@@ -2,9 +2,10 @@ import React from 'react'
 import cn from 'classnames'
 import styles from './title.module.css'
 
-const Title = ({ type = 'md', color = 'primary', children, mb = '30', mt }) => {
+const Title = ({ type = 'md', color = 'primary', children, mb = '30', mt, style, fw=700 }) => {
 	return (
 		<h2
+			style={{fontWeight: fw, ...style}}
 			className={cn(styles.title, {
 				[styles.sm]: type == 'sm',
 				[styles.md]: type == 'md',

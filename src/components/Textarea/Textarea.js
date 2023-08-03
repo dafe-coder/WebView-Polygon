@@ -3,16 +3,17 @@ import { useState } from 'react'
 import Par from '../Par/Par'
 import styles from './textarea.module.css'
 import cn from 'classnames'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	setRestorePhrase,
 	setRestorePhraseValid,
 } from '../../store/slices/createSlice.js'
 
 const Textarea = ({ id, label, errorPar, getAddress, countWords }) => {
+	const {restorePhrase, restorePhraseValid} = useSelector(state => state.create)
 	const [marginInput, setMarginInput] = useState(null)
-	const [phraseBoolean, setPhraseBoolean] = useState(null)
-	const [value, setValue] = useState('')
+	const [phraseBoolean, setPhraseBoolean] = useState(restorePhraseValid)
+	const [value, setValue] = useState(restorePhrase)
 	const dispatch = useDispatch()
 
 	function onBlur(value) {
@@ -24,18 +25,18 @@ const Textarea = ({ id, label, errorPar, getAddress, countWords }) => {
 	}
 	const onNameValidate = (e) => {
 		let phrase = e.target.value
+		let phraseArr = phrase.trim().split(' ')
+		const length = phraseArr.length
 		setValue(phrase)
 		dispatch(setRestorePhrase(phrase))
-		let phraseArr = phrase.trim().split(' ')
-		if (phraseArr.length == +countWords) {
+		if (length === 12 || length === 15 || length === 18 || length === 21 || length === 24) {
 			dispatch(setRestorePhraseValid(true))
 			setPhraseBoolean(true)
 			getAddress(phrase)
 		} else if (
-			'own' == countWords &&
-			phraseArr.length == 1 &&
-			phraseArr.length != 0 &&
-			phrase.length > 7
+			length == 1 &&
+			length != 0 &&
+			phrase.length === 64
 		) {
 			dispatch(setRestorePhraseValid(true))
 			setPhraseBoolean(true)

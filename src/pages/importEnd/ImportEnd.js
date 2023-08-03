@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '../../components/Button/Button'
 import Title from '../../components/Title/Title'
-import GoBack from '../../components/GoBack/GoBack'
 import AccountCardReg from './../../components/AccountCardReg/AccountCardReg'
 import Lang from '../../components/Lang/Lang'
 import { useDispatch } from 'react-redux'
@@ -15,7 +14,6 @@ export const ImportEnd = ({ setUpdateWallet, dataCoins }) => {
 
 	return (
 		<section className='bg-white'>
-			<GoBack goTo='RestoreWalletReg' />
 			<Title mt>
 				<Lang eng='Restore Wallet' cny='恢复钱包' />
 			</Title>

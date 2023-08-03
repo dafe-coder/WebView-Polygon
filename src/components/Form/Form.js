@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Par from './../../components/Par/Par'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
-// import { setCurrentPage } from '../../actions/createActions'
 import { useSelector } from 'react-redux'
 import cn from 'classnames'
 import Lang from '../Lang/Lang'
@@ -10,18 +9,18 @@ import { useNavigate } from 'react-router-dom'
 
 const Form = () => {
 	const navigate = useNavigate()
-	const { passwordValid, passwordMatch, nameValid } =
+	const { nameValid } =
 		useSelector((state) => state.create)
 
 	const [activeButton, setActiveButton] = useState(false)
 
 	useEffect(() => {
-		if (passwordValid && passwordMatch && nameValid) {
+		if (nameValid) {
 			setActiveButton(true)
 		} else {
 			setActiveButton(false)
 		}
-	}, [passwordValid, passwordMatch, nameValid])
+	}, [nameValid])
 
 	const submitForm = () => {
 		if (activeButton) {
@@ -48,17 +47,6 @@ const Form = () => {
 							cny='钱包名称至少需要 1 个字母，最多 40 个字母'
 						/>
 					}
-				/>
-				<Input
-					id='input-password'
-					label={<Lang eng='Spending password' cny='消费密码' />}
-					type='password'
-				/>
-				<Input
-					id='confirm-password'
-					label={<Lang eng='Spending password' cny='消费密码' />}
-					type='password-check'
-					errorPar={<Lang eng='Passwords doesn’t match!' cny='密码不符！' />}
 				/>
 			</div>
 			<Button

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { Start, ImportRestore, Accounts, ImportData, TransactionsHistory, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase, ManageAccount, Buy, Receive, ManageAssets, Swap, TransactionSettings, CreateNotebook, CreatePhrase, VerificatePhrase2, VerificatePhrase3 } from '../pages/'
+import { Start, ImportRestore, Accounts, ImportData, TransactionsHistory, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase, ManageAccount, Buy, Receive, ManageAssets, Swap, TransactionSettings, CreateNotebook, CreatePhrase, VerificatePhrase2, VerificatePhrase3, PasswordCreate } from '../pages/'
 
 import { RouterProvider } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -168,6 +168,10 @@ export default function () {
 			{
 				path: '/welcome-back',
 				element: <WelcomeBack />,
+			},
+			{
+				path: '/create-pass',
+				element: <PasswordCreate />,
 			},
 		])
 	}, [isLogin, timerCheck])

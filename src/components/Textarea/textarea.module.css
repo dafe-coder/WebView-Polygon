@@ -38,6 +38,7 @@
     top: 16px;
     transition: all ease .4s;
     cursor: auto;
+    pointer-events: none;
 }
 
 .success {

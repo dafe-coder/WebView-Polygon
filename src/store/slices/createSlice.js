@@ -15,7 +15,8 @@ const initialState = {
     countVerification: [],
     word1: '',
     word2: '',
-    word3: ''
+    word3: '',
+    registered: false
 }
 
 const createWalletSlice = createSlice({
@@ -37,7 +38,8 @@ const createWalletSlice = createSlice({
             state.countVerification = [],
             state.word1 = '',
             state.word2 = '',
-            state.word3 = ''
+            state.word3 = '',
+            state.registered = false
         },
 		setPasswordCheck(state, action) {
 			state.passwordCheck = action.payload
@@ -84,6 +86,9 @@ const createWalletSlice = createSlice({
         setWord3(state, action) {
             state.word3 = action.payload
         },
+        setRegistered(state, action) {
+            state.registered = action.payload
+        }
 	},
 })
 
@@ -103,7 +108,8 @@ export const {
     setWord1,
     setWord2,
     setWord3,
-    resetCreate
+    resetCreate,
+    setRegistered
 } = createWalletSlice.actions
 
 export default createWalletSlice.reducer

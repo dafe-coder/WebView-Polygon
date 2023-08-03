@@ -8,11 +8,6 @@ import generateAddressesFromSeed from '../../Func.wallet/generateAddress'
 import Lang from '../Lang/Lang'
 import CryptoJS from 'crypto-js'
 import {
-	setPasswordCheck,
-	setPasswordMatch,
-	setPasswordValid,
-	setName,
-	setNameValid,
 	resetCreate
 } from '../../store/slices/createSlice'
 import { setData, setPassword, setCurrentAccount, setIsLogin } from '../../store/slices/storageSlice'

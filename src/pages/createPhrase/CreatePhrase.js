@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import cn from 'classnames'
 import Title from '../../components/Title/Title'
 import Button from '../../components/Button/Button'
@@ -8,21 +8,53 @@ import Alert from '../../components/Alert/Alert'
 import Modal from '../../components/modal/Modal'
 import QRCode from 'react-qr-code'
 import { useState } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import GoBack from '../../components/GoBack/GoBack'
 import Lang from '../../components/Lang/Lang'
-import { setWalletNew } from '../../store/slices/walletSlice'
 import { useNavigate } from 'react-router-dom'
+import { resetWallet, setCurrentAccount, setData, setIsLogin } from '../../store/slices/storageSlice'
+import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice'
+import { logTimer } from '../../Func.wallet/logTimer'
+import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress'
+import CryptoJS from 'crypto-js'
+import { setRegistered } from '../../store/slices/createSlice'
+
+
+const kitkat = process.env.REACT_APP_KEY
 
 export const CreatePhrase = () => {
+	const dispatch = useDispatch()
     const navigate = useNavigate()
 	const [openQr, setOpenQr] = useState(false)
-	const { phrase } = useSelector((state) => state.create)
-	const dispatch = useDispatch()
+	const { name, phrase, registered } = useSelector((state) => state.create)
 
 	const goToVereficatePhrase = () => {
-		navigate('/verificate-phrase-1')
-		dispatch(setWalletNew(true))
+		if(!registered) {
+			dispatch(setWalletNew(true))
+			dispatch(setDataWallet(null))
+			dispatch(resetWallet())
+			logTimer('30 minutes', dispatch)
+			const privateKey = generatePrivateKeyFromSeed(phrase, 12)
+			let phraseCrypt =
+			phrase != ''
+				? CryptoJS.AES.encrypt(phrase, kitkat).toString()
+				: ''
+			let privateKeyCrypt = CryptoJS.AES.encrypt(
+				privateKey,
+				kitkat
+			).toString()
+			const newDataUser = {
+				name: name,
+				phrase: phraseCrypt,
+				address: '',
+				privateKey: privateKeyCrypt,
+			}
+			dispatch(setData(newDataUser))
+			dispatch(setCurrentAccount(name))
+			dispatch(setIsLogin(true))
+			dispatch(setRegistered(true))
+		}
+		navigate('/create-pass', {state: {to: '/wallet'}})
 	}
 	
 	return (

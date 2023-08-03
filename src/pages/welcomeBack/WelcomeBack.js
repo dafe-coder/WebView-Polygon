@@ -1,40 +1,42 @@
 import React, { useState } from 'react'
 import cn from 'classnames'
 import Title from '../../components/Title/Title'
-import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import styles from './welcome-back.module.css'
 import Modal from '../../components/modal/Modal'
 import Par from './../../components/Par/Par'
 import bgImage from './Frame.png'
-import { setPasswordInit } from '../../store/slices/createSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { logTimer } from '../../Func.wallet/logTimer'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
-import { resetWallet, setChooseTimeOut, setIsLogin } from '../../store/slices/storageSlice'
+import { resetWallet, setIsLogin } from '../../store/slices/storageSlice'
+import { PincodeConfirm } from '../../components/Pincode/PincodeConfirm';
 
 const WelcomeBack = () => {
 	const dispatch = useDispatch()
     const navigate = useNavigate()
-	const { password, chooseTimeOut } = useSelector((state) => state.storage)
-	const { passwordInit } = useSelector((state) => state.create)
+	const { chooseTimeOut } = useSelector((state) => state.storage)
 	const [open, setOpen] = useState(false)
 	const [goPage, setGoPage] = useState(false)
 	const [activeBtn, setActiveBtn] = useState(false)
 	const [timer, setTimer] = useState(10)
 	const [timerIDs, setTimerIDs] = useState(null)
+	const [validPass, setValidPass] = React.useState(false)
 //
     
 	const logIn = () => {
-        if (password === passwordInit) {
-            logTimer(chooseTimeOut, dispatch)
-            dispatch(setPasswordInit(''))
-            navigate('/wallet')
-        } else {
-            dispatch(setPasswordInit(''))
-        }
+       
 	}
+
+	React.useEffect(() => {
+		console.log(validPass);
+		if(validPass) {
+            logTimer(chooseTimeOut, dispatch)
+            navigate('/wallet')
+		}
+	}, [validPass])
+
 	const goDeleteWallets = (page) => {
 		setOpen(true)
 		setTimer(10)
@@ -63,9 +65,9 @@ const WelcomeBack = () => {
 			dispatch(resetWallet())
             dispatch(setIsLogin(false))
 			if (goPage === 'WalletRestore') {
-				navigate('/import')
+				navigate('/import', {state: {from: 'welcomeBack'}})
 			} else {
-				navigate('/create-data')
+				navigate('/create-data', {state: {from: 'welcomeBack'}})
 			}
 		}
 	}
@@ -87,12 +89,7 @@ const WelcomeBack = () => {
 						<Lang eng='Welcome back' cny='欢迎回来' />
 					</Title>
 					<form style={{ width: '100%' }}>
-						<Input
-							type='pass-log'
-							id='passwordLog'
-							label={<Lang eng='Password' cny='密码' />}
-							noAnim
-						/>
+						<PincodeConfirm setValid={setValidPass} />
 						<Button type='white' mt onClick={logIn}>
 							<Lang eng='Unlock' cny='开锁' />
 						</Button>

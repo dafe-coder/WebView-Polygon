@@ -4,29 +4,17 @@ import Buttons from '../../components/Buttons/Buttons'
 import Title from '../../components/Title/Title'
 import Par from '../../components/Par/Par'
 import Alert from '../../components/Alert/Alert'
-import Input from '../../components/Input/Input'
 import SeedPhraseBox from '../../components/SeedPhrase/SeedPhrase'
-import { useDispatch, useSelector } from 'react-redux'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
-import { setPasswordInit } from '../../store/slices/createSlice'
+import { PincodeConfirm } from '../../components/Pincode/PincodeConfirm'
 
 export const PrivateKey = () => {
     const navigate = useNavigate()
-	const dispatch = useDispatch()
-	const { passwordInit } = useSelector((state) => state.create)
-	const { password } = useSelector((state) => state.storage)
 	const [showPhrase, setShowPhrase] = useState(false)
 
 	const onSubmitSeed = () => {
-		if (password.length >= 8) {
-            if (password === passwordInit) {
-                setShowPhrase(true)
-                dispatch(setPasswordInit(''))
-            } else {
-                dispatch(setPasswordInit(''))
-            }
-		}
+		
 	}
 	return (
 		<section className='bg-white'>
@@ -60,11 +48,7 @@ export const PrivateKey = () => {
 					{showPhrase ? (
 						<></>
 					) : (
-						<Input
-							label={<Lang eng='password' cny='密码' />}
-							id='password-seed'
-							type='pass-log'
-						/>
+						<PincodeConfirm setValid={setShowPhrase}/>
 					)}
 					<SeedPhraseBox show={showPhrase} prKey />
 				</div>

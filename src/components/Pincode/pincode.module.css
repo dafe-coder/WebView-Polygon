@@ -1,0 +1,15 @@
+.input {
+    border-radius: 16px;
+    border: 1px solid var(--primary);
+    background: var(--white);
+    width: 47px;
+    height: 52px;
+    text-align: center;
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+}

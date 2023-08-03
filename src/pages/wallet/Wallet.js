@@ -15,7 +15,6 @@ import { fetchDataWallet, fetchAllCoins, setAllCoins, fetchCurrencyPrice, setCur
 import { rebuildObjPortfolioDefaultCoins, rebuildObjPortfolio} from '../../Func.wallet/rebObj'
 import { setAddressCurrentAccount} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
-let idTimeout
 
 export const Wallet = () => {
 	const dispatch = useDispatch()
@@ -64,6 +63,10 @@ export const Wallet = () => {
 			dispatch(fetchAllCoins())
 		}
 	}, [coins])
+
+	React.useEffect(() => {
+	console.log(dataUser)
+	}, [dataUser])
 
 	// React.useEffect(() => {
 	// 	if (currentAccount !== '' && walletAddress !== '') {

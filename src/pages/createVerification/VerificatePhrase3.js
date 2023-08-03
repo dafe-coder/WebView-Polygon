@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import GoBack from '../../components/GoBack/GoBack'
 import Lang from '../../components/Lang/Lang'
-import { resetWallet, setCurrentAccount, setData, setIsLogin } from '../../store/slices/storageSlice'
 import CryptoJS from 'crypto-js'
 import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress'
 import {
@@ -16,9 +15,10 @@ import {
 } from '../../store/slices/createSlice'
 import { logTimer } from '../../Func.wallet/logTimer'
 import Modal from '../../components/modal/Modal'
-import { setPassword } from '../../store/slices/storageSlice'
 import { useNavigate } from 'react-router-dom'
-import { setDataWallet } from '../../store/slices/walletSlice'
+import { resetWallet, setCurrentAccount, setData, setIsLogin } from '../../store/slices/storageSlice'
+import { setPassword } from '../../store/slices/storageSlice'
+import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice'
 
 
 const kitkat = process.env.REACT_APP_KEY
@@ -45,6 +45,7 @@ export const VerificatePhrase3 = () => {
 				phraseArr[countVerification[1] - 1] === word2 &&
 				phraseArr[countVerification[2] - 1] === word3
 			) {
+				dispatch(setWalletNew(true))
 				dispatch(setDataWallet(null))
 				setLoadingFinished(false)
 				setShowSuccessVerification(true)
