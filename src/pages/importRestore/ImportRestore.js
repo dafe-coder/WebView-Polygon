@@ -4,11 +4,13 @@ import RestoreCountWords from '../../components/RestoreCountWordsList/RestoreCou
 import GoBack from '../../components/GoBack/GoBack'
 import WalletLogo from './wallet.png'
 import Lang from '../../components/Lang/Lang'
+import { useLocation } from 'react-router-dom';
 
 export const ImportRestore = () => {
+	const {state} = useLocation()
 	return (
 		<section>
-			<GoBack fill='white' goTo='Home' backAccount />
+			<GoBack to={state !== null && state.from == 'welcomeBack' ? '/' : ''} />
 			<Title color='white' mt>
 				<Lang eng='Restore Wallet' cny='恢复钱包' />
 			</Title>

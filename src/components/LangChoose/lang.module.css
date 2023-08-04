@@ -1,8 +1,8 @@
 button.btn {
-	border: 1px solid var(--white);
+	border: 1px solid var(--primary);
 	border-radius: 4px;
 	background: transparent;
-	color: var(--white);
+	color: var(--primary);
 	padding: 7px 4px;
 	display: flex;
 	justify-content: center;
@@ -30,10 +30,11 @@ button.btn svg {
 	width: 6px;
 	transform: scale(1);
 	transition: all ease .3s;
+	fill: var(--primary);
 }
 button.btn.active svg {
 	transform: scale(-1);
-	fill: var(--dark)
+	fill: var(--primary)
 }
 
 .choose_body {

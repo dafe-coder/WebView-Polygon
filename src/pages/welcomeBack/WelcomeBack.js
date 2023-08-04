@@ -63,9 +63,9 @@ const WelcomeBack = () => {
 			dispatch(resetWallet())
             dispatch(setIsLogin(false))
 			if (goPage === 'WalletRestore') {
-				navigate('/import')
+				navigate('/import', {state: {from: 'welcomeBack'}})
 			} else {
-				navigate('/create-data')
+				navigate('/create-data', {state: {from: 'welcomeBack'}})
 			}
 		}
 	}

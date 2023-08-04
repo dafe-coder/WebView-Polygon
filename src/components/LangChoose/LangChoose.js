@@ -11,10 +11,9 @@ const LangChoose = () => {
 	const dispatch = useDispatch()
 	const { langList } = useSelector((state) => state.wallet)
 	const { lang } = useSelector((state) => state.storage)
-
 	const [isOpen, setIsOpen] = useState(false)
+
 	const onChooseLang = (langItem) => {
-		chrome.storage.local.set({ lang: langItem.short }, function () {
 			dispatch(setLang(langItem.short))
 			dispatch(
 				setPortfolioSort(
@@ -22,8 +21,8 @@ const LangChoose = () => {
 				)
 			)
 			setIsOpen(false)
-		})
 	}
+
 	return (
 		<div className={styles.choose_body}>
 			<button

@@ -23,6 +23,9 @@
 .primary:hover {
     background: var(--primary-dark)
 }
+.primary svg {
+    fill: var(--white)
+}
 .arrow {
     margin-left: 10px;
 }

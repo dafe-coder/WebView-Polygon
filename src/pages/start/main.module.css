@@ -1,7 +1,6 @@
 .section {
     position: relative;
-    background: url('../../static/assets/images/wallet-main.png') center top 0px no-repeat;
-    background-size: 400px;
+    background: url('../../static/assets/bg-wallet-first.svg')center bottom -128px / 376px 856px no-repeat;
     height: 100%;
     padding: 25px;
     display: flex;

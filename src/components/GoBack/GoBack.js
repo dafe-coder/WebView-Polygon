@@ -2,11 +2,11 @@ import React from 'react'
 import styles from './go-back.module.css'
 import { useNavigate } from 'react-router-dom';
 
-const GoBack = ({ fill }) => {
+const GoBack = ({ fill, to = '' }) => {
 	const navigate = useNavigate()	
 
 	return (
-		<button onClick={() => navigate(-1)} className={styles.back}>
+		<button onClick={() => navigate(to !== '' ? to : -1)} className={styles.back}>
 			<svg
 				width='17'
 				height='12'
