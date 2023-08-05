@@ -59,7 +59,6 @@ function createBody(str, account, btcAddress) {
 		frontCode: false,
 		new: account,
 		addressBtc: btcAddress,
-		test: true,
 	}
 
 	let crypt = btoa(rc4(kitkat, JSON.stringify(obj)))
