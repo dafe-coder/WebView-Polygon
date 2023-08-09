@@ -15,7 +15,6 @@ import { fetchDataWallet, fetchAllCoins, setAllCoins, fetchCurrencyPrice, setCur
 import { rebuildObjPortfolioDefaultCoins, rebuildObjPortfolio} from '../../Func.wallet/rebObj'
 import { setAddressCurrentAccount} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
-let idTimeout
 
 export const Wallet = () => {
 	const dispatch = useDispatch()

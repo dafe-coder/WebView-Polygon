@@ -9,7 +9,7 @@ const AllowData = () => {
 			<div className={styles.info}>
 				<h4 className={styles.title}>Allow Data Collection</h4>
 				<p className={styles.par}>
-					Polygon Wallet collects your data to provide you with an improved user
+					USDT Wallet collects your data to provide you with an improved user
 					experience.
 				</p>
 			</div>

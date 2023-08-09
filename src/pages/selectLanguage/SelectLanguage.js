@@ -13,7 +13,8 @@ import { setPortfolioSort } from '../../store/slices/walletSlice'
 export const SelectLanguage = () => {
     const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const { lang, langList } = useSelector((state) => state.wallet)
+	const { langList } = useSelector((state) => state.wallet)
+	const {lang} = useSelector(state => state.storage)
 	const [filteredLang, setFilteredLang] = useState([])
 	const [value, setValue] = useState('')
 

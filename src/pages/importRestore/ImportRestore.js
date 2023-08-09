@@ -9,9 +9,9 @@ import { useLocation } from 'react-router-dom';
 export const ImportRestore = () => {
 	const {state} = useLocation()
 	return (
-		<section>
+		<section className='bg-white'>
 			<GoBack to={state !== null && state.from == 'welcomeBack' ? '/' : ''} />
-			<Title color='white' mt>
+			<Title mt>
 				<Lang eng='Restore Wallet' cny='恢复钱包' />
 			</Title>
 			<div className='wallet_body'>
@@ -25,10 +25,10 @@ export const ImportRestore = () => {
 					<img
 						src={WalletLogo}
 						alt=''
-						style={{ width: '135px', height: '130px' }}
+						style={{ width: '75px', height: '75px' }}
 					/>
 				</div>
-				<div className='wallet-body__bottom' style={{ marginTop: '-15px' }}>
+				<div className='wallet-body__bottom' style={{ marginTop: '30px', flex: 1 }}>
 					<RestoreCountWords />
 				</div>
 			</div>

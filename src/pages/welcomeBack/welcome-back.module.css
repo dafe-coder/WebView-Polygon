@@ -1,21 +1,23 @@
+.bgWelcome {
+	background: url('../../static/assets/bg-wallet-welcome.png') center center / cover no-repeat;
+}
 .reg {
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
-	margin-bottom: 25px;
-	color: var(--white)
+	color: var(--primary)
 }
 .reg p {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
-	color: var(--white);
+	color: var(--primary);
 	width: 100%;
 }
 
 .reg a {
 	text-decoration-line: underline;
-	color: var(--white)
+	color: var(--primary)
 }
 .reg a:first-of-type {
 	margin-right: 5px;

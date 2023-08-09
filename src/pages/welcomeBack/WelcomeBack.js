@@ -77,10 +77,9 @@ const WelcomeBack = () => {
 	}
 
 	return (
-		<section>
-			<div className='wallet_body'>
+		<section className={styles.bgWelcome}>
+			<div className={cn('wallet_body')}>
 				<div className={styles.top}>
-					<img src={bgImage} alt='wallet logo' />
 				</div>
 				<div className={styles.bottom}>
 					<Title color='white' mt>
