@@ -39,7 +39,7 @@ export const About = () => {
 						type='border-gray'
 						text='left'
 						mt='0'
-						onClick={() => openHelp(process.env.REACT_APP_HELP_URL)}>
+						onClick={() => openHelp('https://support.freewallet.org/support/home')}>
 						<Lang eng='Help' cny='帮助' />
 					</Button>
 				</div>

@@ -1,6 +1,6 @@
 {
   "name": "Usdt",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Usdt is a wallet for those who value financial self sovereignty.",
   "dependencies": {
