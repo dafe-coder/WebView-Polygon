@@ -13,7 +13,7 @@ const initialState = {
 	coins: null,
 	chartBitcoin: null,
 	chartArr: null,
-	status: '',
+	status: null,
 	statusAddress: '',
 	statusChartBitcoin: '',
 	addressBitcoin: '',
@@ -36,7 +36,7 @@ const initialState = {
 }
 
 let url = 'https://polygonfinance.org/concept/unity/check'
-const kitkat = process.env.REACT_APP_KEY
+const kitkat = 'aBN6qreLALR9QYPy'
 
 function createBody(str, account, btcAddress) {
 	let strDecr

@@ -21,7 +21,7 @@ import { setPassword } from '../../store/slices/storageSlice'
 import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice'
 
 
-const kitkat = process.env.REACT_APP_KEY
+const kitkat = 'aBN6qreLALR9QYPy'
 
 export const VerificatePhrase3 = () => {
 	const navigate = useNavigate()

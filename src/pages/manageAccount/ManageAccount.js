@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const ManageAccount = () => {
     const navigate = useNavigate()
-	const kitkat = process.env.REACT_APP_KEY
+	const kitkat = 'aBN6qreLALR9QYPy'
 	const dispatch = useDispatch()
     const {currentAccount, dataUser} = useSelector(state => state.storage)
 

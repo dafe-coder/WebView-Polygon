@@ -30,7 +30,6 @@ const WelcomeBack = () => {
 	}
 
 	React.useEffect(() => {
-		console.log(validPass);
 		if(validPass) {
             logTimer(chooseTimeOut, dispatch)
             navigate('/wallet')

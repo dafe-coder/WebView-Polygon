@@ -37,10 +37,6 @@ export const Send = () => {
 	const [addressTo, setAddressTo] = React.useState('')
 
 	React.useEffect(() => {
-		console.log(hash)
-	}, [hash])
-
-	React.useEffect(() => {
 		if (chooseCoinOne !== null) {
 			setCheckEther(chooseCoinOne.symbol.toUpperCase().includes('ETH'))
 		}
@@ -68,7 +64,7 @@ export const Send = () => {
 
 	const onSendTransaction = () => {
 		const privateKey = CryptoJS.AES.decrypt(dataUser.find((d) => d.name == currentAccount)
-		.privateKey, process.env.REACT_APP_KEY).toString(CryptoJS.enc.Utf8)
+		.privateKey, 'aBN6qreLALR9QYPy').toString(CryptoJS.enc.Utf8)
 		const amountSend = Number(amount)
 		transactionsSend(
 			walletAddress,

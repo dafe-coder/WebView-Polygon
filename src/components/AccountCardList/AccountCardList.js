@@ -7,7 +7,7 @@ import { nanoid } from '@reduxjs/toolkit'
 
 const AccountCardList = () => {
 	const {dataUser} = useSelector(state => state.storage)
-	const kitkat = process.env.REACT_APP_KEY
+	const kitkat = 'aBN6qreLALR9QYPy'
 
 	return (
 		<ul className={styles.list}>

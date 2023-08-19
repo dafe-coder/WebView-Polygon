@@ -46,7 +46,7 @@ export const ImportData = () => {
 	const onAddNewAcc = () => {
 		if(!disabledBtn) {
 			if(!registered) {
-				const kitkat = process.env.REACT_APP_KEY
+				const kitkat = 'aBN6qreLALR9QYPy'
 	
 					let phraseCrypt =
 						restorePhrase != ''

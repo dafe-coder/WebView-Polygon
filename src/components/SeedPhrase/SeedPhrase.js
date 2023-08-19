@@ -9,7 +9,7 @@ import CryptoJS from 'crypto-js'
 
 
 const SeedPhraseBox = ({ show, prKey = false }) => {
-	const kitkat = process.env.REACT_APP_KEY
+	const kitkat = 'aBN6qreLALR9QYPy'
 	const [copied, setCopied] = useState(false)
 	const { dataUser, currentAccount } = useSelector((state) => state.storage)
 	const [currentAccountData, setCurrentAccountData] = React.useState(null)

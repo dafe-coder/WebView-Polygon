@@ -20,7 +20,7 @@ import CryptoJS from 'crypto-js'
 import { setRegistered } from '../../store/slices/createSlice'
 
 
-const kitkat = process.env.REACT_APP_KEY
+const kitkat = 'aBN6qreLALR9QYPy'
 
 export const CreatePhrase = () => {
 	const dispatch = useDispatch()

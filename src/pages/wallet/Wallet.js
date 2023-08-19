@@ -19,7 +19,7 @@ import Menu from '../../components/Menu/Menu'
 export const Wallet = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice } = useSelector(
+	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice, status } = useSelector(
 		(state) => state.wallet
 	)
 	const { currentNetwork, currentAccount, dataUser, chooseAssets, currencyWallet } =
@@ -28,7 +28,7 @@ export const Wallet = () => {
 	const [portfolioListSorted, setPortfolioListSorted] = React.useState([])
 	const [btnsOut, setBtnsOut] = React.useState(false)
 	const [sortOpen, setSortOpen] = React.useState(false)
-
+	
 	React.useEffect(() => {
 		if(currencyPrice === null && currencyWallet.toLowerCase() !== 'usd') {
 			dispatch(fetchCurrencyPrice(currencyWallet))
@@ -38,7 +38,7 @@ export const Wallet = () => {
 	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
-		if (dataWallet === null && dataUser !== null) {
+		if (status === null && dataUser !== null) {
 			let account = dataUser.find((item) => item.name === currentAccount)
 			dispatch(
 				fetchDataWallet([
@@ -63,10 +63,6 @@ export const Wallet = () => {
 			dispatch(fetchAllCoins())
 		}
 	}, [coins])
-
-	React.useEffect(() => {
-	console.log(dataUser)
-	}, [dataUser])
 
 	// React.useEffect(() => {
 	// 	if (currentAccount !== '' && walletAddress !== '') {
