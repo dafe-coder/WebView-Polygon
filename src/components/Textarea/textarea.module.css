@@ -1,11 +1,11 @@
 .textarea {
-    background: var(--white);
-    border: 1px solid var(--gray);
-    color: var(--dark-gray);
-    border-radius: 8px;
+    background: #2F4925;
+    border: 1px solid var(--white);
+    color: var(--dark);
+    border-radius: 16px;
     width: 100%;
     padding: 16px 20px;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     height: 112px;
     resize: none;
@@ -32,7 +32,7 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: var(--dark-gray);
+    color: var(--dark);
     position: absolute;
     left: 20px;
     top: 16px;

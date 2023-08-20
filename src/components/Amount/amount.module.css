@@ -8,9 +8,9 @@
 
 .list li {
 	flex-basis: 23.07%;
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid transparent;
+	border-radius: 8px;
 	padding: 7px 5px 5px;
 	display: flex;
 	justify-content: center;
@@ -22,12 +22,12 @@
 	transition: all ease .2s;
 }
 .list li:hover {
-	color: var(--primary);
+	color: var(--success);
 	font-weight: 600;
-	border-color: var(--primary);
+	border-color: var(--success);
 }
 .list .active {
-	border-color: var(--primary);
-	color: var(--primary);
+	border-color: var(--success);
+	color: var(--success);
 	font-weight: 600;
 }

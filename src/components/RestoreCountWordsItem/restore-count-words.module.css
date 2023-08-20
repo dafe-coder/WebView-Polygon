@@ -1,14 +1,14 @@
 .btn {
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background: #5E9F53;
+	border: 1px solid var(--white);
+	border-radius: 16px;
 	width: 100%;
 	padding: 14px 20px;
 	box-shadow: 0px 3px 5px rgb(79 51 163 / 5%);
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: var(--primary);
+    color: var(--dark);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -25,23 +25,26 @@
 }
 
 .collapse {
-    background: var(--white);
-    border-radius: 0px 0px 8px 8px;
+    background: #5E9F53;
+    color: var(--dark);
+    border-radius: 0px 0px 16px 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: -6px;
+    margin-top: -14px;
     position: relative;
     z-index: 1;
 }
 
 .active {
     box-shadow: 0px 0px 15px rgb(79 51 163 / 10%);
+    background: #5E9F53;
+    border: 1px solid var(--white)
 }
 .collapse_body {
     color: var(--dark-gray);
-    border-bottom: 1px solid rgba(79, 51, 163, .1);
+    border-bottom: 1px solid var(--white);
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -53,15 +56,15 @@
 .open_body {
     overflow: visible;
     opacity: 1;
-    padding: 12px 20px 8px;
+    padding: 30px 20px 18px;
 }
 .collapse_link {
-    color: var(--dark-gray);
+    color: var(--dark);
     border: none;
     display: flex;
     text-decoration: none;
     align-items: center;
-    padding: 15px 20px 10px;
+    padding: 25px 20px 10px;
     border-radius: 0px 0px 8px 8px;
     border-top: none;
     width: 100%;
@@ -77,18 +80,23 @@
 }
 
 .chooseBtn {
-	border: 1px solid #EBEBEB;
+	border: 1px solid var(--success);
+    color: var(--success);  
 	box-shadow: 0px 3px 5px rgba(79, 51, 163, 0.05);
+}
+
+.chooseBtn svg {
+    fill: var(--success)
 }
 
 .collapse_link svg {
 	margin-left: 10px;
 	transition: all ease .3s;
+    fill: var(--dark);
 }
 
 
 .active_link {
-    color: var(--primary);
     padding-top: 10px;
 }
 .active_link svg {

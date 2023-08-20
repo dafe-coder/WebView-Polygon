@@ -3,21 +3,23 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #FFFFFF;
-	border: 1px solid var(--primary);
-	border-radius: 4px;
+	background: #7CFB5C;
+	border: 1px solid #1F2226;
+	border-radius: 12px;
 	width: 31.5%;
 	cursor: pointer;
 	transition: all ease .2s;
+	color: #1F2226
 }
 .btn:hover {
-	color: var(--white);
-	background: var(--primary);
+	color: #1F2226;
+	background: #66d24b;
 }
 .btn:hover svg {
-	fill: var(--white);
+	fill: #1F2226
 }
 .btn svg {
 	margin-right: 10px;
 	transition: all ease .2s;
+	fill: #1F2226;
 }

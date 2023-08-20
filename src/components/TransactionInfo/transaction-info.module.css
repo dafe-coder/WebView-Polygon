@@ -20,7 +20,7 @@
 	font-weight: 700;
 	font-size: 14px;
 	line-height: 18px;
-	color: var(--primary)
+	color: var(--white)
 }
 .info {
 	display: flex;
@@ -39,5 +39,5 @@
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 18px;
-	color: var(--primary)
+	color: var(--white)
 }

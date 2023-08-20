@@ -20,7 +20,7 @@ let idTimeout
 export const Wallet = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice } = useSelector(
+	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice, status } = useSelector(
 		(state) => state.wallet
 	)
 	const { currentNetwork, currentAccount, dataUser, chooseAssets, currencyWallet } =
@@ -39,7 +39,8 @@ export const Wallet = () => {
 	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
-		if (dataWallet === null && dataUser !== null) {
+		console.log(status);
+		if (dataWallet === null && dataUser !== null && status === 'initial') {
 			let account = dataUser.find((item) => item.name === currentAccount)
 			dispatch(
 				fetchDataWallet([
@@ -48,7 +49,7 @@ export const Wallet = () => {
 				])
 			)
 		}
-	}, [dataUser, dataWallet])
+	}, [status])
 
 	React.useEffect(() => {
 		if (dataWallet !== null && dataUser !== null) {

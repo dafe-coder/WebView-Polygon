@@ -1,31 +1,3 @@
-.white {
-	color: var(--primary);
-	background: var(--white);
-    transition: all ease .2s;
-}
-.transparent {
-	background: transparent;
-	color: var(--white);
-}
-
-.white:hover {
-    background: var(--primary);
-	color: var(--white);
-}
-.white:hover svg {
-    fill: var(--white);
-}
-.primary {
-    background: var(--primary);
-    color: var(--white);
-    transition: all ease .2s;
-}
-.primary:hover {
-    background: var(--primary-dark)
-}
-.arrow {
-    margin-left: 10px;
-}
 .btn {
     display: flex;
     justify-content: center;
@@ -35,10 +7,71 @@
     line-height: 20px;
     cursor: pointer;
     margin-top: 30px;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 1px solid;
     font-weight: 600;
+    transition: all ease .2s;
 }
+.btn svg {
+    transition: all ease .2s;
+}
+.white {
+	color: var(--green-bg);
+	background: var(--dark);
+    transition: all ease .2s;
+}
+.transparent {
+	background: transparent;
+	color: var(--dark);
+}
+
+.white:hover {
+    background: var(--primary);
+	color: var(--dark);
+}
+.white:hover svg {
+    fill: var(--dark);
+}
+.primary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    transition: all ease .2s;
+    border-color: var(--white);
+}
+.primary svg {
+    fill: var(--white)
+}
+.primary:hover svg {
+    fill: var(--dark)
+}
+.primary:hover {
+    background: #4b923f;
+    border-color: var(--white);
+    color: var(--white)
+
+}
+.primary_green {
+    background: transparent;
+    color: var(--white);
+    transition: all ease .2s;
+    border-color: var(--white);
+}
+.primary_green svg {
+    fill: var(--white)
+}
+.primary_green:hover svg {
+    fill: var(--dark)
+}
+.primary_green:hover {
+    background: #4b923f;
+    border-color: var(--white);
+    color: var(--white)
+
+}
+.arrow {
+    margin-left: 10px;
+}
+
 
 .svg_right svg {
     margin-left: 10px;
@@ -55,10 +88,11 @@
 .border_primary:hover {
     background: var(--primary);
     color: var(--white)
+    
 }
 .border_primary svg {
     transition: all ease .2s;
-    fill: var(--primary)
+    fill: var(--primary);
 }
 .border_primary:hover svg {
     fill: var(--white)
@@ -74,11 +108,11 @@
 
 .border_error:hover {
     background: var(--error-light);
-    color: var(--white);
+    color: var(--dark);
     border-color: var(--error-light);
 }
 .border_error:hover svg{
-    fill: var(--white);
+    fill: var(--dark);
 }
 .mt_0 {
     margin-top: 0;
@@ -95,15 +129,25 @@
 }
 
 .border_gray {
-    background: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 8px;
+    background: #2F4925;
+    border: 1px solid var(--white);
+    border-radius: 16px;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     text-transform: capitalize;
-    color: var(--dark-gray);
+    color: var(--dark);
 }
 .text_between {
     justify-content: space-between;
+}
+
+.green {
+    background: #7CFB5C;
+    border: none
+}
+
+.border_green {
+    background: #7CFB5C;
+    border: 1px solid #1F2226;
 }

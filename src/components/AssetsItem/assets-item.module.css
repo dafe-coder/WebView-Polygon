@@ -1,7 +1,7 @@
 .item {
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background: #5E9F53;
+	border: 1px solid var(--white);
+	border-radius: 16px;
 	padding: 16px 20px;
 	display: flex;
 	justify-content: space-between;

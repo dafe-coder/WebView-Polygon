@@ -2,7 +2,6 @@
     position: relative;
     margin-bottom: 15px;
 }
-
 .success {
     border-color: var(--success);
 }

@@ -13,7 +13,7 @@ const initialState = {
 	coins: null,
 	chartBitcoin: null,
 	chartArr: null,
-	status: '',
+	status: 'initial',
 	statusAddress: '',
 	statusChartBitcoin: '',
 	addressBitcoin: '',

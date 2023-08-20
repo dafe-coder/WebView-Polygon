@@ -1,6 +1,6 @@
 .btn {
 	border-style: solid;
-	border-color: #4F33A3;
+	border-color: var(--primary);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -9,24 +9,33 @@
 	font-size: 12px;
 	line-height: 10px;
 	text-align: center;
-	color: var(--primary);
-	background: var(--white);
+	color: var(--dark);
+	background: var(--primary);
 	position: absolute;
 	top: 50%;
 	cursor: pointer;
-	transition: all ease .5s;
 	z-index: 4;
 	width: 82px;
 	transform: translateY(-50%) ;
 	transition: all ease .2s;
 }
 .btn:hover {
-	background: var(--primary);
-	color: var(--white)
+	background: var(--primary-dark);
 }
-.btn svg {
+.btn svg, .btn svg path, .btn svg rect {
 	margin-bottom: 7px;
 	transition: all ease .2s;
+	width: 16px;
+	height: 16px;
+	transition: all ease .2s;
+}
+
+.btn:hover svg path {
+	fill: var(--primary-dark);
+}
+
+ .btn:hover svg rect {
+	stroke:  var(--primary-dark);
 }
 
 .send {
@@ -35,18 +44,10 @@
 	padding: 10px 10px 10px 10px;
 	left: -25px;
 }
-.send:hover svg {
-	transform: rotate(45deg);
-	fill: var(--white)
-}
 
 .receive {
 	border-width: 1px 0px 1px 1px;
 	border-radius: 8px 0px 0px 8px;
 	padding: 10px 10px 10px 10px;
 	right: -25px;
-}
-.receive:hover svg {
-	transform: rotate(45deg);
-	fill: var(--white)
 }

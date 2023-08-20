@@ -4,11 +4,15 @@ import styles from './main.module.css'
 import cn from 'classnames'
 import Button from '../../components/Button/Button'
 import Lang from '../../components/Lang/Lang'
+import logo from '../../static/assets/images/logo.png'
 
 export const Start = () => {
 	return (
 		<section className={cn(styles.section)}>
 			<LangChoose />
+			<div className={styles.logoWrap}>
+				<img src={logo} alt="pepe" style={{width: 206}}/>
+			</div>
 			<div className='btn-list-row'>
 				<Button
 					type='white'
@@ -18,7 +22,7 @@ export const Start = () => {
 						width='16'
 						height='14'
 						viewBox='0 0 16 14'
-						fill='#4F33A3'
+						fill='#4C9540'
 						xmlns='http://www.w3.org/2000/svg'>
 						<path d='M14.25 0C14.6562 0 15 0.34375 15 0.75C15 1.1875 14.6562 1.5 14.25 1.5H2.75C2.03125 1.5 1.5 2.0625 1.5 2.75V11.25C1.5 11.9688 2.03125 12.5 2.75 12.5H13.25C13.9375 12.5 14.5 11.9688 14.5 11.25V5.75C14.5 5.0625 13.9375 4.5 13.25 4.5H3.75C3.3125 4.5 3 4.1875 3 3.75C3 3.34375 3.3125 3 3.75 3H13.25C14.75 3 16 4.25 16 5.75V11.25C16 12.7812 14.75 14 13.25 14H2.75C1.21875 14 0 12.7812 0 11.25V2.75C0 1.25 1.21875 0 2.75 0H14.25ZM11 8.5C11 7.96875 11.4375 7.5 12 7.5C12.5312 7.5 13 7.96875 13 8.5C13 9.0625 12.5312 9.5 12 9.5C11.4375 9.5 11 9.0625 11 8.5Z' />
 					</svg>

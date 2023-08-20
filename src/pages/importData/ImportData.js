@@ -10,9 +10,9 @@ export const ImportData = () => {
 	const {state} = useLocation()
 	
 	return (
-		<section className={cn('bg-white')}>
+		<section>
 			<GoBack goTo='WalletRestore' />
-			<Title mt>
+			<Title mt color='white'>
 				<Lang eng='Create Wallet' cny='创建钱包' />
 			</Title>
 			<div className='wallet_body'>

@@ -27,12 +27,9 @@ const RestoreCountWords = () => {
 				}
 				walletKey='15'>
 				<Lang
-					eng='If you have a recovery phrase consisting of 12 words, choose this option
-				to restore your wallet. If you have a recovery phrase consisting of 12
-				words, choose this option to restore your wallet. If you have a recovery
-				phrase consisting of 12 words, choose this option to restore your
-				wallet.'
-					cny='如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。'
+					eng='If you have a recovery phrase consisting of 15 words, choose this option
+				to restore your wallet.'
+					cny='如果您有一个由 15 个单词组成的恢复短语，请选择此选项来恢复您的钱包。'
 				/>
 			</RestoreCountWordsItem>
 			<RestoreCountWordsItem
@@ -44,20 +41,17 @@ const RestoreCountWords = () => {
 				}
 				walletKey='24'>
 				<Lang
-					eng='If you have a recovery phrase consisting of 12 words, choose this option
-				to restore your wallet. If you have a recovery phrase consisting of 12
-				words, choose this option to restore your wallet. If you have a recovery
-				phrase consisting of 12 words, choose this option to restore your
-				wallet.'
-					cny='如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。'
+					eng='If you have a recovery phrase consisting of 24 words, choose this option
+				to restore your wallet.'
+					cny='如果您有一个由 24 个单词组成的恢复短语，请选择此选项来恢复您的钱包。'
 				/>
 			</RestoreCountWordsItem>
 			<RestoreCountWordsItem
 				title={<Lang eng='Enter a private key' cny='输入私钥' />}
 				walletKey='own'>
 				<Lang
-					eng='If you have a recovery phrase consisting of 12 words, choose this option to restore your wallet. If you have a recovery phrase consisting of 12 words, choose this option to restore your wallet. If you have a recovery phrase consisting of 12 words, choose this option to restore your wallet.'
-					cny='如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。 如果您有一个由 12 个单词组成的恢复短语，请选择此选项来恢复您的钱包。'
+					eng='If you have a private key, choose this option to restore your wallet.'
+					cny='如果您有私钥，请选择此选项来恢复您的钱包。'
 				/>
 			</RestoreCountWordsItem>
 		</ul>

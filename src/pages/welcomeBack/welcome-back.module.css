@@ -2,20 +2,19 @@
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
-	margin-bottom: 25px;
-	color: var(--white)
+	color: var(--dark)
 }
 .reg p {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
-	color: var(--white);
+	color: var(--dark);
 	width: 100%;
 }
 
 .reg a {
 	text-decoration-line: underline;
-	color: var(--white)
+	color: var(--dark)
 }
 .reg a:first-of-type {
 	margin-right: 5px;
@@ -37,4 +36,19 @@
 
 .bottom {
 	margin-top: -65px;
+}
+
+.walletLogo {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 115px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.inputBg {
+	background: #2F4925;
 }

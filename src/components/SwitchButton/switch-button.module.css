@@ -8,7 +8,7 @@
 	display: none;
 }
 .slider {
-	border: 1px solid var(--disabled);
+	border: 1px solid rgba(255, 255, 255, 0.5);
 	border-radius: 7.5px;
 	position: absolute;
 	cursor: pointer;
@@ -16,7 +16,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: var(--white);
+	background-color:  #5E9F53;
 	-webkit-transition: .4s;
 	transition: .4s;
 }
@@ -29,13 +29,14 @@
  	left: 3px;
 	bottom: 3px;
   border-radius: 50px;
-  background-color: var(--disabled);
+  background-color: rgba(255, 255, 255, 0.5);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 .input:checked + .slider {
-  background-color: var(--primary);
+  background-color:  #5E9F53;
+  border-color: var(--white)
 }
 
 .input:checked + .slider:before {

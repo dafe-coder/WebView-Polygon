@@ -2,7 +2,7 @@ import React from 'react'
 import Title from '../../components/Title/Title'
 import RestoreCountWords from '../../components/RestoreCountWordsList/RestoreCountWords'
 import GoBack from '../../components/GoBack/GoBack'
-import WalletLogo from './wallet.png'
+import WalletLogo from '../../static/assets/images/logo.png'
 import Lang from '../../components/Lang/Lang'
 
 export const ImportRestore = () => {
@@ -23,10 +23,10 @@ export const ImportRestore = () => {
 					<img
 						src={WalletLogo}
 						alt=''
-						style={{ width: '135px', height: '130px' }}
+						style={{ width: '54px', height: '54px' }}
 					/>
 				</div>
-				<div className='wallet-body__bottom' style={{ marginTop: '-15px' }}>
+				<div className='wallet-body__bottom' style={{ marginTop: 30, flexGrow: 1 }}>
 					<RestoreCountWords />
 				</div>
 			</div>

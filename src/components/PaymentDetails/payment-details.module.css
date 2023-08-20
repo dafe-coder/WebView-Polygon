@@ -3,9 +3,9 @@
 }
 .table {
 	padding: 20px;
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background: #5E9F53;
+	border: 1px solid var(--white);
+	border-radius: 16px;
 	margin: 0;
 	list-style: none;
 	margin-top: 15px;

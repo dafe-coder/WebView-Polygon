@@ -3,9 +3,9 @@
 }
 .btn {
 	padding: 16px 20px;
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background:  #5E9F53;
+	border: 1px solid var(--white);
+	border-radius: 16px;
 	width: 100%;
 	font-weight: 400;
 	font-size: 14px;
@@ -18,15 +18,15 @@
 }
 .list {
 	position: absolute;
-	top: 93%;
+	top: 75%;
 	width: 100%;
-	padding: 0 20px;
+	padding: 12px 20px 8px;
 	margin: 0;
 	list-style: none;
-	background: var(--white);
-	border: 1px solid var(--gray);
+	background:  #5E9F53;
+	border: 1px solid var(--white);
 	border-top: 0;
-	border-radius: 0 0 8px 8px;
+	border-radius: 0 0 16px 16px;
 	z-index: 2;
 	display: none;
 }
@@ -37,7 +37,10 @@
 	line-height: 20px;
 	padding: 10px 0; 
 	cursor: pointer;
-	border-top: 1px solid var(--gray);
+	border-top: 1px solid var(--dark-gray);
+}
+.btn svg path {
+	fill: var(--dark)
 }
 .list li:hover {
 	color: var(--primary)

@@ -1,12 +1,12 @@
 .item {
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background:  #5E9F53;
+	border-radius: 16px;
 	padding: 16px 20px;
 	display: flex;
 	flex-direction: column;
 	cursor: pointer;
 	transition: all ease .2s;
+	border: 1px solid var(--white)
 }
 .item:hover {
 	transform: scale(1.03);
@@ -22,8 +22,8 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid var(--gray);
-	padding: 0 0 5px;
+	border-bottom: 1px solid var(--white);
+	padding: 0 0 10px;
 }
 .info {
 	display: flex;
@@ -42,7 +42,7 @@
 	line-height: 12px;
 }
 .bottom {
-	padding-top: 5px;
+	padding-top: 10px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -51,7 +51,7 @@
 	font-size: 10px;
 	line-height: 10px;
 	text-transform: uppercase;
-	color: var(--dark-gray);
+	color: var(--dark);
 }
 .profit {
 	font-weight: 500;

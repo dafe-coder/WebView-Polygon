@@ -3,9 +3,9 @@
 	position: relative;
 }
 .phrase {
-	background: var(--white);
+	background: #2F4925;
 	border: 1px solid var(--success);
-	border-radius: 8px;
+	border-radius: 16px;
 	padding: 16px 20px;
 }
 .label {
@@ -13,13 +13,13 @@
 	font-size: 12px;
 	line-height: 18px;
 	text-transform: capitalize;
-	color: var(--dark-gray);
+	color: var(--white);
 	margin-bottom: 5px;
 	display: flex;
 }
 
 .btn svg {
-	fill: var(--dark-gray);
+	fill: var(--white);
 }
 
 .btn {

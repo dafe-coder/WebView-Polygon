@@ -10,9 +10,9 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 20px;
-    background: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 8px 8px 0px 0px;
+    background: #5E9F53;
+    border: 1px solid var(--white);
+    border-radius: 16px 16px 0px 0px;
     margin: 0;
     border-bottom: none;
 }
@@ -20,8 +20,9 @@
 .list li {
     padding: 5px;
     flex-basis: 23.5%;
-    border: 1px solid var(--gray);
-    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     margin-right: 5px;
     margin-bottom: 5px;
     text-align: center;
@@ -37,6 +38,7 @@
 
 .buttons {
     display: flex;
+    border-top: 1px solid var(--white);
 }
 
 .buttons button:first-child {
@@ -45,13 +47,19 @@
 }
 .buttons button:last-child {
     border-radius: 0px 0px 8px 0px;
+    border-left: 1px solid var(--white);
+}
+.buttons button:hover {
+    background: #4b923f;
+    border-color: var(--white)
 }
 .buttons button svg {
     margin-right: 5px;
 }
 .buttons button {
-    border: 1px solid var(--gray);
-    background: var(--white);
+    border: 1px solid var(--white);
+    border-top: none;
+    background: #5E9F53;
     flex-basis: 50%;
     text-align: center;
     padding: 10px;
@@ -68,8 +76,8 @@
 }
 
 .list_ver {
-    border-bottom: 1px solid var(--gray);
-    border-radius: 8px;
+    border-bottom: 1px solid var(--white);
+    border-radius: 16px;
 }
 
 .active {
@@ -80,8 +88,8 @@
     cursor: pointer;
 }
 .choose_list li:hover {
-    border-color: var(--primary);
-    color: var(--primary)
+    border-color: var(--success);
+    color: var(--success)
 }
 .success {
     color: var(--success)

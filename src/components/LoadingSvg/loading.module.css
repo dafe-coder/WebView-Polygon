@@ -1,0 +1,115 @@
+.loading_page {
+	position: fixed;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	background: linear-gradient(0deg, #4C9540, #4C9540), #1F2226;
+}
+.title {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 60px;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 28px;
+	text-align: center;
+	color: #FDFDFF;
+	margin: 0;
+	display: flex;
+	width: 120px;
+	z-index: 10;
+}
+.loading_page svg {
+	height: 100%;
+	width: 100%;
+}
+.loading_page svg path {
+	mix-blend-mode: color-dodge;
+}
+.logoIcon {
+	position: absolute;
+	z-index: 8;
+	top: 140px;
+	left: 50%;
+	transform: translateX(-50%);
+	animation: scaleInAnim 1s linear alternate forwards;
+}
+
+@keyframes scaleAnim  {
+	from {
+		transform: scale(1)
+	}
+	to {
+		transform: scale(1.3)
+	}
+}
+@keyframes scaleInAnim  {
+	from {
+		transform: translateX(-50%) scale(0)
+	}
+	to {
+		transform: translateX(-50%) scale(1) 
+	}
+}
+@keyframes rotateThis  {
+	from {
+		transform: rotate(0deg)
+	}
+	to {
+		transform:  rotate(-12deg)
+	}
+}
+@keyframes flyingAnim {
+	0% {
+		bottom: 21%;
+		left: -6%;
+	}
+	10% {
+		bottom: 22%;
+		left: -0%;
+	}
+	20% {
+		bottom: 23%;
+		left: 6%;
+	}
+	30% {
+		bottom: 24%;
+    	left: 12%;
+	}
+	40% {
+		bottom: 25%;
+    	left: 18%;
+	}
+	50% {
+		bottom: 26%;
+    	left: 24%;
+	}
+	60% {
+		bottom: 27%;
+    	left: 30%;
+	}
+	70% {
+		bottom: 28%;
+    	left: 36%;
+	}
+	80% {
+		bottom: 29%;
+   	 	left: 42%;
+	}
+	90% {
+		bottom: 30%;
+   	 	left: 48%;
+	}
+	100% {
+		bottom: 31%;
+   	 	left: 54%;
+	}
+}
+
+.active  {
+	display: flex;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import styles from './title.module.css'
 
-const Title = ({ type = 'md', color = 'primary', children, mb = '30', mt }) => {
+const Title = ({ type = 'md', color = 'white', children, mb = '30', mt }) => {
 	return (
 		<h2
 			className={cn(styles.title, {

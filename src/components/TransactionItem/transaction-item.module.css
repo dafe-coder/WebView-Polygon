@@ -1,14 +1,15 @@
 .item {
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 8px;
+	background: #5E9F53;
+	border-radius: 16px;
 	padding: 16px 20px;
+	border: 1px solid var(--white)
+	
 }
 
 .top {
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--gray);
+	border-bottom: 1px solid var(--white);
 	padding-bottom: 10px;
 }
 
@@ -54,13 +55,13 @@ color: var(--success)
 color: var(--error)
 }
 .c_blue {
-color: var(--primary)
+color: var(--white)
 }
 .green {
 	border-color: var(--success)
 }
 .blue {
-	border-color: var(--primary)
+	border-color: var(--white)
 }
 .red {
 	border-color: var(--error)
@@ -71,7 +72,7 @@ color: var(--primary)
 	width: 8px;
 }
 .blue svg {
-	fill: var(--primary);
+	fill: var(--white);
 	height: 10px;
 	width: 10px;
 }
@@ -100,14 +101,14 @@ color: var(--primary)
 	font-weight: 500;
 	font-size: 10px;
 	line-height: 10px; 
-	color: var(--dark-gray)
+	color: var(--dark)
 }
 
 .bottom p {
 	font-weight: 300;
 	font-size: 10px;
 	line-height: 10px;
-	color: var(--dark-gray);
+	color: var(--dark);
 	margin: 0;
 }
 .bottom p strong {
