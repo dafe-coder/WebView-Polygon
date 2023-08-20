@@ -51,7 +51,6 @@ export const SeedPhrase = () => {
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
 						}
-						danger={true}
 						style={{ margin: '20px 0' }}>
 						<Lang
 							eng='Do not share this phrase with anyone! These words can be used to

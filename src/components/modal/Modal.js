@@ -13,6 +13,7 @@ const Modal = ({
 	white = false,
 	closeIcon = false,
 	closeOnBody = true,
+	style
 }) => {
 	const dispatch = useDispatch()
 
@@ -35,6 +36,7 @@ const Modal = ({
 			})}
 			id={id}>
 			<div
+				style={style}
 				className={cn(white ? styles.white_body : styles.body, {
 					[styles.padding30]: padding == '30',
 					[styles.padding20]: padding == '20',

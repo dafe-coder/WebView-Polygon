@@ -14,7 +14,7 @@
 	font-weight: 600;
 	font-size: 14px;
 	line-height: 18px;
-	color: #4C9540;
+	color: var(--white);
 	max-width: max-content;
 }
 .list_body p .button {
@@ -32,9 +32,9 @@
 }
 .list li {
 	flex-basis: 23.07%;
-	background: var(--white);
-	border: 1px solid var(--gray);
-	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid transparent;
+	border-radius: 10px;
 	padding: 2px 7px ;
 	display: flex;
 	justify-content: center;
@@ -47,13 +47,13 @@
 	transition: all ease .2s;
 }
 .list li:hover {
-	color: var(--primary);
+	color: var(--white);
 	font-weight: 600;
-	border-color: var(--primary);
+	border-color: var(--white);
 }
 .list .active {
-	border-color: var(--primary);
-	color: var(--primary);
+	border-color: var(--white);
+	color: var(--white);
 	font-weight: 600;
 }
 .custom {
@@ -65,9 +65,12 @@
 	border: none;
 	width: 100%;
 	height: 100%;
-	color: var(--dark-gray);
+	color: var(--white);
 	text-align: center;
 	padding: 5px;
+}
+.custom input::placeholder {
+	color: #fff
 }
 .custom input:focus {
 	outline: none;
@@ -107,10 +110,14 @@
 .input input {
 	width: 75px;
 	height: 28px;
-	background: var(--white);
-	border: 1px solid var(--gray);
+	background: rgba(255, 255, 255, 0.2);
+	border: 1px solid transparent;
 	border-radius: 4px;
 	text-align: center;
+	color: var(--white)
+}
+.input input::placeholder {
+	color: var(--white);
 }
 .input input:focus {
 	outline: none;
@@ -128,17 +135,17 @@
 
 .tooltip {
 	padding: 10px;
-    border: 1px solid var(--gray);
+    border: 1px solid var(--white);
     font-size: 10px;
     line-height: 14px;
     width: 160px;
     position: absolute;
     right: -168px;
     top: -4px;
-    background: var(--white);
+    background: #5E9F53;
     z-index: 3;
-    border-radius: 8px;
+    border-radius: 16px;
     font-weight: 300;
-    color: var(--dark);
+    color: var(--white);
 	display: none;
 }

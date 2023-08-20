@@ -83,20 +83,20 @@ const PhraseBox = ({
 						{copied == true ? (
 							<>
 								<SvgPhrase type='check' />
-								<span>
+								<span style={{color: 'white'}}>
 									<Lang eng='Copied' cny='已复制' />
 								</span>
 							</>
 						) : (
 							<>
 								<SvgPhrase type='copy' />
-								<span>
+								<span style={{color: 'white'}}>
 									<Lang eng='Copy' cny='复制' />
 								</span>
 							</>
 						)}
 					</button>
-					<button id='create-qr-btn' onClick={() => setOpenQr(true)}>
+					<button id='create-qr-btn' onClick={() => setOpenQr(true)}  style={{color: 'white'}}>
 						<SvgPhrase type='qrCode' />
 						<Lang eng='QR Code' cny='QR码' />
 					</button>

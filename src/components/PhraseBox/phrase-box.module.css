@@ -81,8 +81,8 @@
 }
 
 .active {
-    color: var(--primary);
-    border-color: var(--primary) !important;
+    color: var(--success);
+    border-color: var(--success) !important;
 }
 .choose_list li {
     cursor: pointer;

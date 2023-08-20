@@ -37,13 +37,13 @@
 	line-height: 20px;
 	padding: 10px 0; 
 	cursor: pointer;
-	border-top: 1px solid var(--dark-gray);
+	border-top: 1px solid var(--white);
 }
 .btn svg path {
 	fill: var(--dark)
 }
 .list li:hover {
-	color: var(--primary)
+	color: var(--success)
 }
 .open {
 	display: block;

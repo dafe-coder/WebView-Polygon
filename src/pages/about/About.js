@@ -2,11 +2,10 @@ import React from 'react'
 import Buttons from '../../components/Buttons/Buttons'
 import Title from '../../components/Title/Title'
 import BoxWithIcon from './../../components/BoxWithIcon/BoxWithIcon'
-import Svg from './../../svgs/Svg'
 import Button from './../../components/Button/Button'
 import Lang from '../../components/Lang/Lang'
 import { useNavigate } from 'react-router-dom'
-
+import logo from '../../static/assets/images/logo.png'
 import manifestVersion from '../../../package.json'
 
 export const About = () => {
@@ -32,16 +31,16 @@ export const About = () => {
 					</div>
 					<BoxWithIcon
 						style={{ marginBottom: '30px' }}
-						title={<Lang eng='Polygon Wallet' cny='多边形钱包' />}
+						title={<Lang eng='Pepe' cny='Pepe' />}
 						par={manifestVersion.version}
-						colorPar='dark-gray'>
-						<Svg type='polygon' style={{ marginBottom: '20px' }} />
+						colorPar='white'>
+							<img style={{width: 62, marginBottom: 30}} src={logo} alt="Pepe" />
 					</BoxWithIcon>
 					<Button
 						type='border-gray'
 						text='left'
 						mt='0'
-						onClick={() => openHelp('https://polygon.technology/community/')}>
+						onClick={() => openHelp('https://t.me/pepecoineth')}>
 						<Lang eng='Help' cny='帮助' />
 					</Button>
 				</div>

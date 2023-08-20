@@ -1,9 +1,6 @@
 import React from 'react'
 import styles from './wallet.module.css'
 import { useDispatch } from 'react-redux'
-import ApexChart from '../../components/PieChar/PieChar'
-import PortfolioList from './../../components/PortfolioList/PortfolioList'
-import TransferBtn from '../../components/TransferBtn/TransferBtn'
 import Title from '../../components/Title/Title'
 import Buttons from './../../components/Buttons/Buttons'
 import { useSelector } from 'react-redux'
@@ -15,19 +12,20 @@ import { fetchDataWallet, fetchAllCoins, setAllCoins, fetchCurrencyPrice, setCur
 import { rebuildObjPortfolioDefaultCoins, rebuildObjPortfolio} from '../../Func.wallet/rebObj'
 import { setAddressCurrentAccount} from '../../store/slices/storageSlice'
 import Menu from '../../components/Menu/Menu'
-let idTimeout
+import LoaderPrice from '../../components/Loader/LoaderPrice';
+import LoaderPriceChange from '../../components/Loader/LoaderPriceChange';
+import PortfolioList from '../../components/PortfolioList/PortfolioList';
 
 export const Wallet = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { dataWallet, coins, walletNew, portfolioSort, currencyPrice, status } = useSelector(
+	const { dataWallet, coins, walletNew,walletPrices, portfolioSort, currencyPrice, status } = useSelector(
 		(state) => state.wallet
 	)
 	const { currentNetwork, currentAccount, dataUser, chooseAssets, currencyWallet } =
 		useSelector((state) => state.storage)
 	const [balanceCoins, setBalanceCoins] = React.useState([])
 	const [portfolioListSorted, setPortfolioListSorted] = React.useState([])
-	const [btnsOut, setBtnsOut] = React.useState(false)
 	const [sortOpen, setSortOpen] = React.useState(false)
 
 	React.useEffect(() => {
@@ -39,17 +37,20 @@ export const Wallet = () => {
 	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
-		console.log(status);
+		console.log(1);
 		if (dataWallet === null && dataUser !== null && status === 'initial') {
 			let account = dataUser.find((item) => item.name === currentAccount)
-			dispatch(
-				fetchDataWallet([
-					account.phrase !== '' ? account.phrase : account.privateKey,
-					walletNew,
-				])
-			)
+			console.log(account);
+			if(account !== undefined) {
+				dispatch(
+					fetchDataWallet([
+						account.phrase !== '' ? account.phrase : account.privateKey,
+						walletNew,
+					])
+				)
+			}
 		}
-	}, [status])
+	}, [])
 
 	React.useEffect(() => {
 		if (dataWallet !== null && dataUser !== null) {
@@ -170,7 +171,9 @@ export const Wallet = () => {
 			dispatch(setAllCoins(otherCoins))
 		}
 	}, [coins, dataWallet, currentNetwork, chooseAssets])
-
+	React.useEffect(() => {
+	console.log(walletPrices)
+	}, [walletPrices])
 	return (
 		<section className={'bg-white'} style={{position: 'relative'}}>
 			<div className='wallet-body'>
@@ -187,23 +190,41 @@ export const Wallet = () => {
 						onClick={() => navigate('/accounts')}
 						type='account'></Buttons>
 				</div>
-				<div className='wallet-top' style={{ position: 'relative' }}>
-					<TransferBtn
-						onClick={() => navigate('/send')}
-						type='send'
-						style={btnsOut ? { left: '-120px' } : {}}>
-						<Lang eng='Transfer' cny='转移' />
-					</TransferBtn>
-					<ApexChart
-						data={portfolioListSorted}
-						setBtnsOut={setBtnsOut}
-					/>
-					<TransferBtn
-						onClick={() => navigate('/receive')}
-						type='receive'
-						style={btnsOut ? { right: '-120px' } : {}}>
-						<Lang eng='Receive' cny='收到' />
-					</TransferBtn>
+				<div className={styles.priceBlock}>
+					{walletPrices != null ? (
+						<Title
+							style={{
+								marginBottom: 0,
+								marginTop: 0,
+								fontSize: '24px',
+								lineHeight: '28px',
+							}}>
+							{setLabelCurrency() +
+								fixNum(walletPrices.total_value * priceConvert)}
+						</Title>
+					) : (
+						<div style={{ marginBottom: '4px' }}>
+							<LoaderPrice />
+						</div>
+					)}
+					{walletPrices != null ? (
+						<div className={styles.priceChange}>
+							<span>
+								{walletPrices.relative_change_24h < 0 ? '-' : '+'}
+								{setLabelCurrency() +
+									Math.abs(
+										fixNum(walletPrices.absolute_change_24h * priceConvert)
+									)}{' '}
+								(
+								{walletPrices.relative_change_24h > 0 &&
+									walletPrices.relative_change_24h.toFixed(2)}
+								%)
+							</span>
+							<span>last 24h</span>
+						</div>
+					) : (
+						<LoaderPriceChange />
+					)}
 				</div>
 				<div className='wallet-bottom'>
 					<ul className={styles.navigation}>

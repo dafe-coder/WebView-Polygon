@@ -1,0 +1,25 @@
+.circle {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+    top: -41px;
+    background: #5E9F53;
+}
+
+.circle svg {
+	max-width: 32px;
+	max-height: 32px;
+	margin-bottom: 0 !important;
+}
+
+.circleGreen {
+	border: 1px solid var(--white);
+}
+
+.circleRed {
+	border: 1px solid var(--white);
+}

@@ -43,8 +43,7 @@ export const CreatePhrase = () => {
 					<Alert
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
-						}
-						danger={true}>
+						}>
 						<Lang
 							eng='Anyone with your mnemonic can access your wallet assets. Please back
 						up your mnemonic before you receive transfers or delete the app.'
@@ -64,7 +63,7 @@ export const CreatePhrase = () => {
 						<Lang eng='Mnemonic Phrase QR Code' cny='助记词二维码' />
 					</Title>
 					<div id='qrcode'>
-						<QRCode size={220} value={phrase} />
+						<QRCode bgColor='#5E9F53' fgColor='white' size={220} value={phrase} />
 					</div>
 					<Button type='primary' onClick={setOpenQr}>
 						<Lang eng='Close' cny='关' />

@@ -10,7 +10,7 @@ const BoxWithIcon = ({ children, title, style, par, colorPar }) => {
 			{children}
 			<Title mb='0'>{title}</Title>
 			{par ? (
-				<Par color={colorPar}>
+				<Par color={colorPar} style={{marginTop: 10}}>
 					<Lang eng='Version' cny='版本' /> {par}
 				</Par>
 			) : (

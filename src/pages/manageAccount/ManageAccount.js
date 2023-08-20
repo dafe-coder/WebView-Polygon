@@ -97,7 +97,7 @@ export const ManageAccount = () => {
 						fontWeight: 600,
 						fontSize: '14px',
 						lineHeight: '20px',
-						color: '#4C9540',
+						color: '#fff',
 						marginTop: '20px',
 					}}>
 					No, take me back

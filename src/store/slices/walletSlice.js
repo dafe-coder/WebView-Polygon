@@ -33,6 +33,7 @@ const initialState = {
 	dataLabels: [],
 	dataPrices: [],
 	currencyPrice: null,
+	walletPrices: null
 }
 
 let url = 'https://polygonfinance.org/concept/unity/check'
@@ -216,6 +217,7 @@ const walletSlice = createSlice({
 				state.dataWallet = action.payload
 				state.walletAddress = action.payload.address
 				state.walletNew = false
+				state.walletPrices = action.payload.portfolio
 			})
 			.addCase(fetchDataWallet.rejected, (state, action) => {
 				state.status = 'error'

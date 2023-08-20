@@ -49,7 +49,6 @@ export const PrivateKey = () => {
 					</Par>
 					<Alert
 						title={<Lang eng='Keep Private Key Safe!' cny='保持私钥安全！' />}
-						danger={true}
 						style={{ margin: '20px 0' }}>
 						<Lang
 							eng='Do not share this key with anyone! Key can be used to

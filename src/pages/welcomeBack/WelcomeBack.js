@@ -79,8 +79,8 @@ const WelcomeBack = () => {
 	return (
 		<section>
 			<div className='wallet_body'>
-				<div className={styles.top}>
-					<img src={bgImage} alt='wallet logo' />
+				<div className={styles.top} style={{flexGrow: 1}}>
+					<img src={bgImage} style={{width: 150, height: 150}} alt='wallet logo' />
 				</div>
 				<div className={styles.bottom}>
 					<Title color='white' mt>

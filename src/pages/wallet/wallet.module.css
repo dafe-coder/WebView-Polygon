@@ -13,7 +13,7 @@
 	font-weight: 500;
 	font-size: 10px;
 	line-height: 10px;
-	color: var(--primary);
+	color: var(--white);
 }
 .navigation li span {
 	cursor: pointer;
@@ -21,9 +21,12 @@
 
 .navigation li svg {
 	margin-right: 5px;
+	fill: var(--dark)
 }
 .navigation li svg:nth-child(2) {
 	margin-left: 5px;
+	top: -2px;
+    position: relative;
 }
 
 .portfolio_list {
@@ -33,4 +36,35 @@
 
 .portfolio_list > *:not(:last-child) {
 	margin-bottom: 10px;
+}
+.priceChange {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.priceChange span:first-child {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: var(--white);
+	margin-right: 10px;
+}
+
+.priceChange span:last-child {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: var(--dark);
+}
+
+.priceBlock {
+	margin-top: 50px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 70px;
 }

@@ -80,19 +80,18 @@
     margin-right: 10px;
 }
 .border_primary {
-    border-color: var(--primary);
-    color: var(--primary);
+    border-color: var(--white);
+    color: var(--white);
     background: transparent;
     transition: all ease .2s;
 }
 .border_primary:hover {
-    background: var(--primary);
     color: var(--white)
     
 }
 .border_primary svg {
     transition: all ease .2s;
-    fill: var(--primary);
+    fill: var(--white);
 }
 .border_primary:hover svg {
     fill: var(--white)

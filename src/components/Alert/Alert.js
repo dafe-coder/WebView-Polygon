@@ -29,7 +29,7 @@ const Alert = ({ children, danger = false, title, icon = false, style }) => {
 					{title}
 				</Title>
 			)}
-			<Par type='sm' style={{ marginBottom: 0 }}>
+			<Par type='sm' style={{ marginBottom: 0, textAlign: 'center' }}>
 				{children}
 			</Par>
 		</div>

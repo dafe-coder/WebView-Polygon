@@ -131,7 +131,7 @@
 	text-transform: uppercase;
 }
 .list li:hover {
-	color: var(--primary);
+	color: var(--success);
 }
 .list li:not(:first-child):hover {
 	transform: scale(1.02);
@@ -141,11 +141,11 @@
 }
 
 .list .active {
-	border-color: var(--primary)
+	border-color: var(--success)
 }
 
 .active h5 {
-	color: var(--primary)
+	color: var(--success)
 }
 .svg {
 	transition: transform ease .3s;
