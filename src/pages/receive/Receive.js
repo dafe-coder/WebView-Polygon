@@ -50,6 +50,8 @@ export const Receive = ({ dataLoading, dataList }) => {
 						<div id='qrcode'>
 							{walletAddress != undefined ? (
 								<QRCode
+									bgColor='#4C9540'
+									fgColor='white'
 									size={110}
 									value={walletAddress}
 								/>
@@ -58,7 +60,7 @@ export const Receive = ({ dataLoading, dataList }) => {
 							)}
 						</div>
 					</div>
-					<Par color='black'>
+					<Par color='white' style={{marginBottom: 40}}>
 						<Lang
 							eng='Please scan the QR code to get information for payment'
 							cny='请扫描二维码获取支付信息'

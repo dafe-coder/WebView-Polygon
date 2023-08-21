@@ -11,6 +11,7 @@
     border: 1px solid;
     font-weight: 600;
     transition: all ease .2s;
+    font-family: 'Comfortaa', cursive;
 }
 .btn svg {
     transition: all ease .2s;
@@ -143,7 +144,8 @@
 
 .green {
     background: #7CFB5C;
-    border: none
+    border: none;
+    font-weight: 400;
 }
 
 .border_green {

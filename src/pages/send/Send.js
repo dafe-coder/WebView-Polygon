@@ -67,20 +67,22 @@ export const Send = () => {
 	}
 
 	const onSendTransaction = () => {
-		const privateKey = CryptoJS.AES.decrypt(dataUser.find((d) => d.name == currentAccount)
-		.privateKey, process.env.REACT_APP_KEY).toString(CryptoJS.enc.Utf8)
-		const amountSend = Number(amount)
-		transactionsSend(
-			walletAddress,
-			addressTo,
-			chooseCoinOne.contract_address,
-			amountSend.toString(),
-			checkEther,
-			setHash,
-			setOpenSuccess,
-			setOpenGas,
-			privateKey
-		)
+		if(!disabledBtn) {
+			const privateKey = CryptoJS.AES.decrypt(dataUser.find((d) => d.name == currentAccount)
+			.privateKey, process.env.REACT_APP_KEY).toString(CryptoJS.enc.Utf8)
+			const amountSend = Number(amount)
+			transactionsSend(
+				walletAddress,
+				addressTo,
+				chooseCoinOne.contract_address,
+				amountSend.toString(),
+				checkEther,
+				setHash,
+				setOpenSuccess,
+				setOpenGas,
+				privateKey
+			)
+		}
 	}
 
 	return (

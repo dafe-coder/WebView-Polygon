@@ -63,9 +63,9 @@ const PaymentDetails = ({ receiver, data }) => {
 					<span>
 						1{' '}
 						{data.length
-							? data[0].symbol.toUpperCase()
+							? data[0]?.symbol?.toUpperCase()
 							: data
-							? data.symbol.toUpperCase()
+							? data?.symbol?.toUpperCase()
 							: ''}{' '}
 						= {price != null ? fixNum(price) : 0}{' '}
 						{data.length ? data[1].symbol.toUpperCase() : 'ETH'}

@@ -81,7 +81,7 @@ const TransactionItem = ({ type, itemData }) => {
 						</h4>
 						<span className={styles.value_green}>
 						+ {fixNum(itemData.attributes.transfers[0].quantity.float) + ' '}
-							{itemData.attributes.transfers[0].fungible_info.symbol}
+							{itemData.attributes.transfers[0].fungible_info?.symbol}
 						</span>
 					</div>
 					<div className={styles.bottom}>

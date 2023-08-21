@@ -38,6 +38,7 @@ const Button = ({
 			className={cn('btn', styles.btn, className, {
 				[styles.transparent]: type == 'transparent',
 				[styles.white]: type == 'white',
+				[styles.green]: type == 'green',
 				[styles.primary]: type == 'primary',
 				[styles.svg_right]: positionSvg == 'right',
 				[styles.svg_left]: positionSvg == 'left',
