@@ -14,16 +14,16 @@ button.btn {
 }
 button.btn:hover {
 	background: var(--dark);
-	color: var(--white);
+	color: var(--black);
 }
 button.btn:hover svg{
-	fill: var(--white);
+	fill: var(--black);
 }	
 button.btn.active {
 	background: var(--dark);
 	border-bottom-left-radius: 0; 
 	border-bottom-right-radius: 0; 
-	color: var(--white);
+	color: var(--black);
 	border: none
 }
 button.btn svg {
@@ -34,7 +34,7 @@ button.btn svg {
 }
 button.btn.active svg {
 	transform: scale(-1);
-	fill: var(--primary)
+	fill: var(--black)
 }
 
 .choose_body {
@@ -71,13 +71,13 @@ button.btn.active svg {
 	cursor: pointer;
 	font-weight: 400;
 	transition: all ease .1s;
-	color: var(--white)
+	color: var(--black)
 }
 .choose_body ul li:hover {
 	transform: scale(1.03);
-	color: var(--primary)
+	color: var(--green-bg)
 }
 .choose_body ul li.active {
-	color: var(--primary);
+	color: var(--green-bg);
 	font-weight: 600;
 }
