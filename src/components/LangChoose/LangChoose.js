@@ -14,15 +14,13 @@ const LangChoose = () => {
 
 	const [isOpen, setIsOpen] = useState(false)
 	const onChooseLang = (langItem) => {
-		chrome.storage.local.set({ lang: langItem.short }, function () {
-			dispatch(setLang(langItem.short))
-			dispatch(
-				setPortfolioSort(
-					(<Lang eng='value' cny='价值' />).props[langItem.short]
-				)
+		dispatch(setLang(langItem.short))
+		dispatch(
+			setPortfolioSort(
+				(<Lang eng='value' cny='价值' />).props[langItem.short]
 			)
-			setIsOpen(false)
-		})
+		)
+		setIsOpen(false)
 	}
 	return (
 		<div className={styles.choose_body}>
