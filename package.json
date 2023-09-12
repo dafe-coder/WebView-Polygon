@@ -1,8 +1,8 @@
 {
-  "name": "Polygon",
-  "version": "1.0.0",
+  "name": "Shiba",
+  "version": "1.2.1",
   "private": true,
-  "description": "Polygon is a wallet for those who value financial self sovereignty.",
+  "description": "Shiba is a wallet for those who value financial self sovereignty.",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "apexcharts": "^3.35.3",

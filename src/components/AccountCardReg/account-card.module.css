@@ -1,7 +1,7 @@
 .card {
 	border: 1px solid var(--white);
     border-radius: 16px;
-    background: #5E9F53;
+    background: var(--dark-text);
     padding: 30px 20px;
 }
 
@@ -35,5 +35,5 @@
 	font-size: 14px;
     line-height: 20px;
 	font-weight: 600;
-	color: var(--white);
+	color: var(--yellow);
 }

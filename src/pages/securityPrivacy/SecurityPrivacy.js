@@ -1,17 +1,17 @@
-import React from 'react'
-import Title from '../../components/Title/Title'
-import Buttons from '../../components/Buttons/Buttons'
-import Par from '../../components/Par/Par'
-import AllowData from '../../components/AllowData/AllowData'
-import Dropdown from '../../components/Dropdown/Dropdown'
-import { useSelector } from 'react-redux'
-import Lang from '../../components/Lang/Lang'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import Title from '../../components/Title/Title';
+import Buttons from '../../components/Buttons/Buttons';
+import Par from '../../components/Par/Par';
+import AllowData from '../../components/AllowData/AllowData';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import { useSelector } from 'react-redux';
+import Lang from '../../components/Lang/Lang';
+import { useNavigate } from 'react-router-dom';
 
 export const SecurityPrivacy = () => {
-    const navigate = useNavigate()
-	const { chooseTimeOut } = useSelector((state) => state.storage)
-	
+	const navigate = useNavigate();
+	const { chooseTimeOut } = useSelector((state) => state.storage);
+
 	const dataDropdown = [
 		{ value: '5 minutes', langWords: <Lang eng='5 minutes' cny='5 分钟' /> },
 		{ value: '15 minutes', langWords: <Lang eng='15 minutes' cny='15 分钟' /> },
@@ -19,16 +19,13 @@ export const SecurityPrivacy = () => {
 		{ value: '1 hour', langWords: <Lang eng='1 hour' cny='1 小时' /> },
 		{ value: '6 hours', langWords: <Lang eng='6 hours' cny='6 个小时' /> },
 		{ value: 'never', langWords: <Lang eng='never' cny='绝不' /> },
-	]
+	];
 	return (
 		<section className='bg-white'>
 			<div className='wallet-body'>
 				<div className='wallet-top'>
 					<div className='wallet-header'>
-						<Buttons
-							onClick={() => navigate(-1)}
-							type='back'
-						/>
+						<Buttons onClick={() => navigate(-1)} type='back' />
 						<Title>
 							<Lang eng='Security and Privacy' cny='安全和隐私' />
 						</Title>
@@ -39,8 +36,8 @@ export const SecurityPrivacy = () => {
 					</Title>
 					<Par>
 						<Lang
-							eng='Set the idle time in minutes before Polygon Wallet is locked.'
-							cny='以分钟为单位设置 Polygon Wallet 锁定前的空闲时间。'
+							eng='Set the idle time in minutes before Shiba Wallet is locked.'
+							cny='以分钟为单位设置 Shiba Wallet 锁定前的空闲时间。'
 						/>
 					</Par>
 					<Dropdown
@@ -54,5 +51,5 @@ export const SecurityPrivacy = () => {
 				</div>
 			</div>
 		</section>
-	)
-}
+	);
+};

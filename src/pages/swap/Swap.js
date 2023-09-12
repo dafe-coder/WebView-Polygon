@@ -1,62 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import cn from 'classnames'
-import Buttons from './../../components/Buttons/Buttons'
-import Title from '../../components/Title/Title'
-import SelectToken from './../../components/SelectToken/SelectToken'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import SwapInput from '../../components/SwapInput/SwapInput'
-import Button from './../../components/Button/Button'
-import Svg from './../../svgs/Svg'
-import PaymentDetails from './../../components/PaymentDetails/PaymentDetails'
-import Spinner from '../../components/Loader/Spinner'
-import Modal from '../../components/modal/Modal'
-import BoxWithIcon from '../../components/BoxWithIcon/BoxWithIcon'
-import Lang from '../../components/Lang/Lang'
-import Par from '../../components/Par/Par'
-import styles from './swap.module.css'
-import { setChooseCoinOne, setChooseCoinTwo } from '../../store/slices/transactionSlice'
-import fixNum from '../../Func.wallet/fixNum'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
+import Buttons from './../../components/Buttons/Buttons';
+import Title from '../../components/Title/Title';
+import SelectToken from './../../components/SelectToken/SelectToken';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import SwapInput from '../../components/SwapInput/SwapInput';
+import Button from './../../components/Button/Button';
+import Svg from './../../svgs/Svg';
+import PaymentDetails from './../../components/PaymentDetails/PaymentDetails';
+import Spinner from '../../components/Loader/Spinner';
+import Modal from '../../components/modal/Modal';
+import BoxWithIcon from '../../components/BoxWithIcon/BoxWithIcon';
+import Lang from '../../components/Lang/Lang';
+import Par from '../../components/Par/Par';
+import styles from './swap.module.css';
+import {
+	setChooseCoinOne,
+	setChooseCoinTwo,
+} from '../../store/slices/transactionSlice';
+import fixNum from '../../Func.wallet/fixNum';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Swap = () => {
-	const {state} = useLocation()
-    const navigate = useNavigate()
-	const dispatch = useDispatch()
+	const { state } = useLocation();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const { chooseCoinOne, chooseCoinTwo } = useSelector(
 		(state) => state.transaction
-	)
-	const { allCoins } = useSelector(
-		(state) => state.wallet
-	)
-	const [openModal, setOpenModal] = useState(false)
-	const [gasValid, setGasValid] = useState(true)
-	const [spinner, setSpinner] = useState(false)
-	const [showBtn, setShowBtn] = useState(false)
-	const [showGas, setShowGas] = useState(null)
-    const [value, setValue] = useState('')
-	const [value2, setValue2] = useState('')
-
+	);
+	const { allCoins } = useSelector((state) => state.wallet);
+	const [openModal, setOpenModal] = useState(false);
+	const [gasValid, setGasValid] = useState(true);
+	const [spinner, setSpinner] = useState(false);
+	const [showBtn, setShowBtn] = useState(false);
+	const [showGas, setShowGas] = useState(null);
+	const [value, setValue] = useState('');
+	const [value2, setValue2] = useState('');
 
 	React.useEffect(() => {
-		if(state !== null) {
-			dispatch(setChooseCoinOne(state))
+		if (state !== null) {
+			dispatch(setChooseCoinOne(state));
 		}
-	}, [state])
+	}, [state]);
 
 	const onSubmitSwap = () => {
-		if (
-			allCoins !== null &&
-			allCoins.length >= 1 
-		) {
-			setSpinner(true)
+		if (allCoins !== null && allCoins.length >= 1) {
+			setSpinner(true);
 
 			let filtered = allCoins.filter(
 				(item) => item.symbol.toUpperCase() == 'ETH'
-			)
+			);
 			let filtered2 = allCoins.filter(
 				(item) => item.symbol.toUpperCase() == 'MATIC'
-			)
+			);
 			// filtered2[0].market_data &&
 			// filtered2[0].market_data.balance_crypto.usd >= 5
 			if (
@@ -65,46 +62,46 @@ export const Swap = () => {
 				filtered[0].market_data.balance_crypto.usd >= 5
 			) {
 				setTimeout(() => {
-					setShowGas(false)
-					setOpenModal(true)
-					setGasValid(true)
-					setSpinner(false)
-				}, 3000)
+					setShowGas(false);
+					setOpenModal(true);
+					setGasValid(true);
+					setSpinner(false);
+				}, 3000);
 			} else {
 				setTimeout(() => {
-					setGasValid(false)
-					setShowGas(true)
-					setSpinner(false)
-				}, 3000)
+					setGasValid(false);
+					setShowGas(true);
+					setSpinner(false);
+				}, 3000);
 			}
 		} else {
 			setTimeout(() => {
-				setShowGas(true)
-				setGasValid(false)
-				setSpinner(false)
-			}, 3000)
+				setShowGas(true);
+				setGasValid(false);
+				setSpinner(false);
+			}, 3000);
 		}
-	}
+	};
 	useEffect(() => {
 		if (value !== '' && value2 !== '') {
-			setShowBtn(true)
+			setShowBtn(true);
 		} else {
-			setShowBtn(false)
+			setShowBtn(false);
 		}
-	}, [value, value2])
+	}, [value, value2]);
 
 	const onSwapOrder = () => {
 		if (chooseCoinOne !== null && chooseCoinTwo !== null) {
-			let order1 = chooseCoinOne
-			let order2 = chooseCoinTwo
-			dispatch(setChooseCoinOne(order2))
-			dispatch(setChooseCoinTwo(order1))
+			let order1 = chooseCoinOne;
+			let order2 = chooseCoinTwo;
+			dispatch(setChooseCoinOne(order2));
+			dispatch(setChooseCoinTwo(order1));
 		}
-	}
+	};
 
-    const viewDetails = () => {
-		window.open(`https://etherscan.io/tx/${hash}`)
-	}
+	const viewDetails = () => {
+		window.open(`https://etherscan.io/tx/${hash}`);
+	};
 
 	return (
 		<section className='bg-white' style={{ width: '100%', height: '100%' }}>
@@ -114,29 +111,32 @@ export const Swap = () => {
 						<Buttons type='back' onClick={() => navigate(-1)} />
 						<Title>
 							<Lang eng='Swap' cny='交换' />{' '}
-							<span style={{ fontWeight: 300 }}>(Polygon)</span>
+							<span style={{ fontWeight: 300 }}>(Shiba)</span>
 						</Title>
 						<Buttons
 							type='cog'
 							onClick={() => navigate('/transaction-settings')}
 						/>
 					</div>
-					<SelectToken
-						chooseCoin='one'
-						noSubtitle
-					/>
+					<SelectToken chooseCoin='one' noSubtitle />
 					<SwapInput
 						type='sell'
-						setValue={setValue} setValue2={setValue2} value={value} value2={value2}
+						setValue={setValue}
+						setValue2={setValue2}
+						value={value}
+						value2={value2}
 					/>
 					<button className='swap-btn' onClick={onSwapOrder}>
 						<Svg type='swap-vertical' />
 					</button>
-					<SelectToken
-                        chooseCoin='two'
-						noSubtitle
+					<SelectToken chooseCoin='two' noSubtitle />
+					<SwapInput
+						type='buy'
+						setValue={setValue}
+						setValue2={setValue2}
+						value={value}
+						value2={value2}
 					/>
-					<SwapInput type='buy' setValue={setValue} setValue2={setValue2} value={value} value2={value2} />
 					{chooseCoinOne != null && chooseCoinTwo != null ? (
 						<PaymentDetails
 							pageCurrent='Swap'
@@ -156,12 +156,9 @@ export const Swap = () => {
 							['disabled']: showBtn == false,
 							['gas_error']:
 								gasValid == false && showBtn == true && showGas == true,
-						})}>
-						{(gasValid == false) || spinner == true ? (
-							<></>
-						) : (
-							<Svg type='swap' />
-						)}
+						})}
+					>
+						{gasValid == false || spinner == true ? <></> : <Svg type='swap' />}
 						{spinner ? (
 							<Spinner />
 						) : gasValid == false ? (
@@ -201,7 +198,8 @@ export const Swap = () => {
 						height='94'
 						viewBox='0 0 94 94'
 						fill='#4C9540'
-						xmlns='http://www.w3.org/2000/svg'>
+						xmlns='http://www.w3.org/2000/svg'
+					>
 						<rect opacity='0.1' width='94' height='94' rx='47' fill='#4C9540' />
 						<path
 							opacity='0.9'
@@ -217,17 +215,19 @@ export const Swap = () => {
 					<div className={styles.sent_btn}>
 						<button
 							onClick={viewDetails}
-							className={cn(styles.transparent, styles.btn)}>
+							className={cn(styles.transparent, styles.btn)}
+						>
 							<Lang eng='View Details' cny='查看详情' />
 						</button>
 						<button
 							onClick={() => setOpenModal(false)}
-							className={cn(styles.primary, styles.btn)}>
+							className={cn(styles.primary, styles.btn)}
+						>
 							<Lang eng='Got it' cny='知道了' />
 						</button>
 					</div>
 				</BoxWithIcon>
 			</Modal>
 		</section>
-	)
-}
+	);
+};

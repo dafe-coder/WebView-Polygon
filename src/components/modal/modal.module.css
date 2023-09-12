@@ -11,7 +11,7 @@
     padding: 30px;
 }
 .white {
-    background: var(--green-bg);
+    background: var(--dark-bg);
 }
 .white_body {
     width: calc(100% - 50px);

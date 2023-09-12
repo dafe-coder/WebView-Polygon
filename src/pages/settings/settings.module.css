@@ -1,12 +1,13 @@
 .settings_list {
-	background: #5E9F53;
+	background: var(--dark-text);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	padding: 0 20px;
 	margin: 0;
 	list-style: none;
 }
 .settings_list > *:not(:last-child) {
-	border-bottom: 1px solid var(--white);
+	border-bottom: 1px solid var(--dark-border);
 }
 .settings_list li {
 	padding: 15px 0;

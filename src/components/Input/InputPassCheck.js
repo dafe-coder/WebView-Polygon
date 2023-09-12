@@ -1,30 +1,33 @@
-import React from 'react'
-import Par from '../Par/Par'
-import cn from 'classnames'
-import ShowPass from '../ShowPass/ShowPass'
-import styles from './input.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { setPasswordMatch, setPasswordCheck } from '../../store/slices/createSlice'
+import React from 'react';
+import Par from '../Par/Par';
+import cn from 'classnames';
+import ShowPass from '../ShowPass/ShowPass';
+import styles from './input.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	setPasswordMatch,
+	setPasswordCheck,
+} from '../../store/slices/createSlice';
 
 const InputPassCheck = ({ id, label, errorPar }) => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const { passwordMatch, passwordInit, passwordCheck } = useSelector(
 		(state) => state.create
-	)
+	);
 
 	const checkPassValid = (value) => {
-		if (passwordInit === value) {
-			dispatch(setPasswordMatch(true))
+		if (passwordInit.length >= 8 && passwordInit === value) {
+			dispatch(setPasswordMatch(true));
 		} else {
-			dispatch(setPasswordMatch(false))
+			dispatch(setPasswordMatch(false));
 		}
-	}
+	};
 
 	const onPassCheckValidate = (e) => {
-		let value = e.target.value
-		dispatch(setPasswordCheck(value))
-		checkPassValid(value)
-	}
+		let value = e.target.value;
+		dispatch(setPasswordCheck(value));
+		checkPassValid(value);
+	};
 	return (
 		<div className={styles.wallet_input}>
 			<div className='pos-r'>
@@ -55,7 +58,7 @@ const InputPassCheck = ({ id, label, errorPar }) => {
 				<></>
 			)}
 		</div>
-	)
-}
+	);
+};
 
-export default InputPassCheck
+export default InputPassCheck;

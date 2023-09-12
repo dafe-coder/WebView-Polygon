@@ -1,10 +1,18 @@
-import React from 'react'
-import cn from 'classnames'
-import styles from './title.module.css'
+import React from 'react';
+import cn from 'classnames';
+import styles from './title.module.css';
 
-const Title = ({ type = 'md', color = 'white', children, mb = '30', mt }) => {
+const Title = ({
+	style,
+	type = 'md',
+	color = 'white',
+	children,
+	mb = '30',
+	mt,
+}) => {
 	return (
 		<h2
+			style={style}
 			className={cn(styles.title, {
 				[styles.sm]: type == 'sm',
 				[styles.md]: type == 'md',
@@ -21,10 +29,11 @@ const Title = ({ type = 'md', color = 'white', children, mb = '30', mt }) => {
 				[styles.mt_30]: mt == '30',
 				[styles.mb_20]: mb == '20',
 				[styles.mb_30]: mb == '30',
-			})}>
+			})}
+		>
 			{children}
 		</h2>
-	)
-}
+	);
+};
 
-export default Title
+export default Title;

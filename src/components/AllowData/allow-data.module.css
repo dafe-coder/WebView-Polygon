@@ -9,8 +9,8 @@
 }
 
 .body::before {
-	border-top: 1px solid var(--white);
-	border-bottom: 1px solid var(--white);
+	border-top: 1px solid var(--dark-border);
+	border-bottom: 1px solid var(--dark-border);
 	content: '';
 	position: absolute;
 	bottom: 0;
@@ -18,7 +18,7 @@
 	transform: translateX(-50%)  scale(0.99);
 	width: 120%;
 	height: 100%;
-	background: #5E9F53;
+	background: var(--dark-text);
 	z-index: -1;
 }
 
@@ -35,6 +35,7 @@
 	font-size: 10px;
 	line-height: 16px;
 	color: var(--white);
+	opacity: .4;
 	width: 212px;
 	margin-bottom: 0;
 }

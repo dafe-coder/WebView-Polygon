@@ -22,3 +22,11 @@
     display: inline-block;
     fill: var(--white)
 }
+
+.activeLink {
+    color: var(--success)
+}
+
+.activeLink svg {
+    fill: var(--success) !important
+}

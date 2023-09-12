@@ -3,8 +3,8 @@
 }
 .btn {
 	padding: 16px 20px;
-	background:  #5E9F53;
-	border: 1px solid var(--white);
+	background: var(--dark-text);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	width: 100%;
 	font-weight: 400;
@@ -23,8 +23,8 @@
 	padding: 12px 20px 8px;
 	margin: 0;
 	list-style: none;
-	background:  #5E9F53;
-	border: 1px solid var(--white);
+	background: var(--dark-text);
+	border: 1px solid var(--dark-border);
 	border-top: 0;
 	border-radius: 0 0 16px 16px;
 	z-index: 2;
@@ -37,13 +37,13 @@
 	line-height: 20px;
 	padding: 10px 0; 
 	cursor: pointer;
-	border-top: 1px solid var(--white);
+	border-top: 1px solid var(--dark-border);
 }
 .btn svg path {
 	fill: var(--dark)
 }
 .list li:hover {
-	color: var(--success)
+	color: var(--yellow)
 }
 .open {
 	display: block;

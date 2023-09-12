@@ -19,12 +19,12 @@
 	  box-sizing: border-box;
   }
   *::-webkit-scrollbar { width: 3px !important; height: 1px;}
-  *::-webkit-scrollbar-button { background-color: var(--success) !important; height: 0 !important; }
+  *::-webkit-scrollbar-button { background-color: var(--dark-text) !important; height: 0 !important; }
   *::-webkit-scrollbar-track { background-color: #6347b97c !important;}
-  *::-webkit-scrollbar-track-piece { background-color: var(--white) !important;}
-  *::-webkit-scrollbar-thumb { height: 50px; background-color: var(--success) !important;  border-radius: 3px !important;}
+  *::-webkit-scrollbar-track-piece { background-color: var(--dark-bg) !important;}
+  *::-webkit-scrollbar-thumb { height: 50px; background-color: var(--dark-text) !important;  border-radius: 3px !important;}
   *::-webkit-scrollbar-corner { background-color: #999 !important;}
-  *::-webkit-resizer { background-color: var(--success) !important;}
+  *::-webkit-resizer { background-color: var(--dark-text) !important;}
   i {
 	  font-family: 'MyFont2' !important;
   }
@@ -48,15 +48,18 @@
   html {
 	  width: 375px;
 	  height: 600px;
-	  background: var(--green-bg);
+	  background: var(--dark-bg);
   }
   
   :root {
 	  --white: #fff;
-	  --black: #000;
+	  --black: #0D0F16;
 	  --primary: #FBF55C;
+	  --yellow: #F3A73D;
 	  --primary-dark: #c4bf2c;
-	  --disabled: #24292F;
+	  --disabled: #333241;
+	  --dark-border: #262935;
+	  --dark-text: #141824;
 	  --disabled-light: #999999;
 	  --gray: #ebebeb;
 	  --dark: #FDFDFF;
@@ -64,8 +67,8 @@
 	  --red: #EB5757;
 	  --error: #8B2323;
 	  --error-light: #d64444c7;
-	  --green-bg: #4C9540;
-	  --success: #83EE68;
+	  --dark-bg: #0E111A;
+	  --success: #23AC00;
 	  --green-light: #7CFB5C;
 	  --warning: #FAD200;
 	  --blue: #4D69FF;
@@ -85,26 +88,26 @@
 	  margin-right: 10px;
   }
   button.disabled {
-	  color: rgba(255, 255, 255, 0.5);
-	 background: rgba(255, 255, 255, 0.1);
-	  width: 100%;
-	  font-weight: 600;
-	  font-size: 14px;
-	  line-height: 20px;
-	  cursor: not-allowed;
-	  border-color: rgba(255, 255, 255, 0.1);
+	color: var(--disabled-light);
+	background: var(--disabled);
+	width: 100%;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	cursor: not-allowed;
+	border-color: var(--disabled);
   }
   button.disabled svg {
-	  fill:  rgba(255, 255, 255, 0.5);
+	  fill:  var(--disabled-light);
   }
   
   button.disabled:hover {
-	  color: rgba(255, 255, 255, 0.5);
-	  background: rgba(255, 255, 255, 0.1);
-	  border-color: rgba(255, 255, 255, 0.1);
+	  color: var(--disabled-light);
+	  background: var(--disabled);
+	  border-color: var(--disabled);
   }
   button.disabled:hover  svg{
-	   fill:  rgba(255, 255, 255, 0.5);
+	   fill:  var(--disabled-light);
   }
   
   .btn-list-row {
@@ -126,7 +129,7 @@
   }
   
   .bg-white {
-	  background: var(--green-bg);
+	  background: var(--dark-bg);
 	  /* background: url('./static/assets/bg-wallet.png') center bottom -143px / 535px 778px no-repeat; */
   }
   
@@ -296,9 +299,9 @@
 	  margin-top: 15px;
   }
   .input {
-	  background: #2F4925;
-	  border: 1px solid var(--white);
-	  color: var(--dark);
+	  background: var(--dark-text);
+	  border: 1px solid var(--dark-border);
+	  color: var(--white);
 	  border-radius: 16px;
 	  width: 100%;
 	  padding: 16px 20px;
@@ -346,7 +349,7 @@
   }
   
   ul li.active-time {
-	  color: var(--success);
+	  color: var(--yellow);
 	  font-weight: 600;
   }
   

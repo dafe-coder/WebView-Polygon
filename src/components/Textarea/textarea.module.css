@@ -1,7 +1,7 @@
 .textarea {
-    background: #2F4925;
-    border: 1px solid var(--white);
-    color: var(--dark);
+    background: var(--dark-text);
+    border: 1px solid var(--dark-border);
+    color: var(--white);
     border-radius: 16px;
     width: 100%;
     padding: 16px 20px;

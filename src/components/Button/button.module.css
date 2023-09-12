@@ -17,21 +17,27 @@
     transition: all ease .2s;
 }
 .white {
-	color: var(--green-bg);
+	color: var(--dark-bg);
 	background: var(--dark);
     transition: all ease .2s;
 }
 .transparent {
 	background: transparent;
 	color: var(--dark);
+    border: none;
+    color: var(--yellow);
+}
+
+.transparent svg {
+    fill: var(--yellow);
 }
 
 .white:hover {
-    background: var(--primary);
-	color: var(--dark);
+    background: rgba(255, 255, 255, 0.86);
+	color: var(--black);
 }
 .white:hover svg {
-    fill: var(--dark);
+    fill: var(--black);
 }
 .primary {
     background: rgba(255, 255, 255, 0.1);
@@ -129,8 +135,8 @@
 }
 
 .border_gray {
-    background: #2F4925;
-    border: 1px solid var(--white);
+    background: var(--dark-text);
+    border: 1px solid var(--dark-border);
     border-radius: 16px;
     font-weight: 400;
     font-size: 14px;
