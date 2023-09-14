@@ -206,7 +206,7 @@ export const Send = () => {
 						/>
 					</svg>
 
-					<Title color='dark' mb='0'>
+					<Title color='red' mb='0'>
 						<Lang eng='Insufficient funds' cny='不充足的资金' />
 					</Title>
 					<Par>

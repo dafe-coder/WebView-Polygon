@@ -3,13 +3,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: var(--yellow);
-	border: 1px solid #1F2226;
+	border: 1px solid var(--yellow);
+	background: transparent;
 	border-radius: 12px;
 	width: 31.5%;
 	cursor: pointer;
 	transition: all ease .2s;
-	color: #1F2226
+	color: var(--yellow);
 }
 .btn:hover {
 	color: #1F2226;
@@ -21,5 +21,5 @@
 .btn svg {
 	margin-right: 10px;
 	transition: all ease .2s;
-	fill: #1F2226;
+	fill: var(--yellow);
 }

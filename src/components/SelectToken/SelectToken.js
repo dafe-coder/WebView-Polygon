@@ -1,84 +1,89 @@
-import React, { useState, useEffect } from 'react'
-import cn from 'classnames'
-import styles from './select-token.module.css'
-import Svg from '../../svgs/Svg'
-import { useDispatch } from 'react-redux'
-import { setChooseCoinOne, setChooseCoinTwo } from '../../store/slices/transactionSlice'
-import Lang from '../Lang/Lang'
-import { useSelector } from 'react-redux'
-import fixNum from '../../Func.wallet/fixNum'
+import React, { useState, useEffect } from 'react';
+import cn from 'classnames';
+import styles from './select-token.module.css';
+import Svg from '../../svgs/Svg';
+import { useDispatch } from 'react-redux';
+import {
+	setChooseCoinOne,
+	setChooseCoinTwo,
+} from '../../store/slices/transactionSlice';
+import Lang from '../Lang/Lang';
+import { useSelector } from 'react-redux';
+import fixNum from '../../Func.wallet/fixNum';
 
-const SelectToken = ({
-	noSubtitle,
-	chooseCoin = 'one',
-	init = true
-}) => {
-	const { allCoins } = useSelector(
-		(state) => state.wallet
-	)
-	const { lang } = useSelector(
-		(state) => state.storage
-	)
+const SelectToken = ({ noSubtitle, chooseCoin = 'one', init = true }) => {
+	const { allCoins } = useSelector((state) => state.wallet);
+	const { lang } = useSelector((state) => state.storage);
 	const { chooseCoinOne, chooseCoinTwo } = useSelector(
 		(state) => state.transaction
-	)
-	const dispatch = useDispatch()
-	const [value, setValue] = useState('')
-	const [active, setActive] = useState(chooseCoinOne !== null && init ? chooseCoinOne.symbol : 
-		(<Lang eng='Select a token' cny='选择一个令牌' />).props[lang] 
-	)
-	const [activeElem, setActiveElem] = useState(chooseCoinOne !== null && init ? chooseCoinOne : {})
-	const [openDropdown, setOpenDropdown] = useState(false)
-	const [dataAllFiltered, setDataAllFiltered] = useState([])
+	);
+	const dispatch = useDispatch();
+	const [value, setValue] = useState('');
+	const [active, setActive] = useState(
+		chooseCoinOne !== null && init
+			? chooseCoinOne.symbol
+			: (<Lang eng='Select a token' cny='选择一个令牌' />).props[lang]
+	);
+	const [activeElem, setActiveElem] = useState(
+		chooseCoinOne !== null && init ? chooseCoinOne : {}
+	);
+	const [openDropdown, setOpenDropdown] = useState(false);
+	const [dataAllFiltered, setDataAllFiltered] = useState([]);
 
 	React.useEffect(() => {
-		if(chooseCoinOne !== null && init && chooseCoin === 'one') {
-			setActive(chooseCoinOne.symbol)
-			setActiveElem(chooseCoinOne)
+		if (chooseCoinOne !== null && init && chooseCoin === 'one') {
+			setActive(chooseCoinOne.symbol);
+			setActiveElem(chooseCoinOne);
 		} else if (chooseCoinTwo !== null && chooseCoin === 'two') {
-			setActive(chooseCoinTwo.symbol)
-			setActiveElem(chooseCoinTwo)
+			setActive(chooseCoinTwo.symbol);
+			setActiveElem(chooseCoinTwo);
 		}
-	}, [chooseCoinOne])
+	}, [chooseCoinOne]);
 
 	React.useEffect(() => {
-		if(allCoins !== null) {
-			setDataAllFiltered(allCoins)
+		if (allCoins !== null) {
+			setDataAllFiltered(allCoins);
 		}
-	}, [allCoins])
-	
+	}, [allCoins]);
+
 	useEffect(() => {
-		if(allCoins !== null && value !== '') {
-			setDataAllFiltered(allCoins.filter(
-				(item) =>
-					item.symbol.toLowerCase().includes(value.toLowerCase()) ||
-					item.name.toLowerCase().includes(value.toLowerCase())
-			))
+		if (allCoins !== null && value !== '') {
+			setDataAllFiltered(
+				allCoins.filter(
+					(item) =>
+						item.symbol.toLowerCase().includes(value.toLowerCase()) ||
+						item.name.toLowerCase().includes(value.toLowerCase())
+				)
+			);
+		} else {
+			setDataAllFiltered(allCoins);
 		}
-	}, [value, allCoins])
+	}, [value, allCoins]);
 
 	const onChooseToken = (item) => {
-		setActiveElem(item)
-		setActive(item.symbol)
-		setOpenDropdown(false)
-		if(chooseCoin === 'one') {
-			dispatch(setChooseCoinOne(item))
+		setActiveElem(item);
+		setActive(item.symbol);
+		setOpenDropdown(false);
+		if (chooseCoin === 'one') {
+			dispatch(setChooseCoinOne(item));
 		} else {
-			dispatch(setChooseCoinTwo(item))
+			dispatch(setChooseCoinTwo(item));
 		}
-	}
+	};
 
 	return (
 		<div className={styles.body}>
 			<label
 				className={styles.label_relative}
-				style={noSubtitle ? { display: 'none' } : { display: 'block' }}>
+				style={noSubtitle ? { display: 'none' } : { display: 'block' }}
+			>
 				<Lang eng='Asset Name' cny='资产名称' />
 			</label>
 			<div className={styles.dropdown}>
 				<button
 					className={styles.select}
-					onClick={() => setOpenDropdown(!openDropdown)}>
+					onClick={() => setOpenDropdown(!openDropdown)}
+				>
 					{active ==
 					(<Lang eng='Select a token' cny='选择一个令牌' />).props[lang] ? (
 						active
@@ -103,7 +108,8 @@ const SelectToken = ({
 				<ul
 					className={cn(styles.list, {
 						[styles.open]: openDropdown == true,
-					})}>
+					})}
+				>
 					<li className={styles.search}>
 						<input
 							type='text'
@@ -126,7 +132,8 @@ const SelectToken = ({
 									className={cn({
 										[styles.active]: active == item.symbol,
 									})}
-									onClick={() => onChooseToken(item)}>
+									onClick={() => onChooseToken(item)}
+								>
 									<div className={styles.logo}>
 										<img src={item.image.thumb} alt='' />
 									</div>
@@ -136,7 +143,7 @@ const SelectToken = ({
 									</div>
 									<span>{fixNum(item.market_data.balance)}</span>
 								</li>
-							)
+							);
 						})
 					) : (
 						<h4>
@@ -146,6 +153,6 @@ const SelectToken = ({
 				</ul>
 			</div>
 		</div>
-	)
-}
-export default SelectToken
+	);
+};
+export default SelectToken;

@@ -391,15 +391,17 @@
 	  font-weight: 400;
 	  font-size: 10px;
 	  line-height: 16px;
-	  color: var(--white);
+	  color: #AAA;
   }
   .swap-prices p:first-child {
 	  margin-right: 15px;
   }
   
   .gas_error {
-	  background: var(--error-light) !important;
-  border-color: var(--error-light) !important}
+	 	background: var(--error-light) !important;
+		border-color: var(--error-light) !important;
+		color: #fff !important;
+	}
   
   .buy_body {
 	  padding-bottom: 90px;

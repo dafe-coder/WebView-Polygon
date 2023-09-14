@@ -5,7 +5,7 @@ import styles from './title.module.css';
 const Title = ({
 	style,
 	type = 'md',
-	color = 'red',
+	color = 'white',
 	children,
 	mb = '30',
 	mt,

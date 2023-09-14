@@ -1,7 +1,7 @@
 .body {
 	width: 135px;
 	background: var(--dark-text);
-	border: 1px solid var(--white);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	position: absolute;
 	top: calc(100% + 10px);
@@ -11,7 +11,7 @@
 	z-index: 10;
 }
 .body > *:not(:last-child){
-	border-bottom: 1px solid var(--white);
+	border-bottom: 1px solid var(--dark-border);
 }
 
 .body li {
@@ -27,12 +27,12 @@
 	transition: all ease .2s;
 }
 .body li:hover {
-	color: var(--success);
+	color: var(--yellow);
 	font-weight: 600;
 }
 .body li.active {
 	font-weight: 700;
-	color: var(--success);
+	color: var(--yellow);
 }
 .active svg {
 	margin-bottom: -1px;

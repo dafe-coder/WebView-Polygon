@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import cn from 'classnames'
-import styles from './swap-input.module.css'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import cn from 'classnames';
+import styles from './swap-input.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 // import {
 // 	setAssetSwapPrice1,
 // 	setAssetSwapPrice2,
 // 	setAssetSwapValue,
 // } from '../../actions/wallet'
-import Lang from '../Lang/Lang'
-import fixNum from './../../Func.wallet/fixNum'
+import Lang from '../Lang/Lang';
+import fixNum from './../../Func.wallet/fixNum';
 
 const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
-	const { chooseCoinOne, chooseCoinTwo} =
-		useSelector((state) => state.transaction)
-	
+	const { chooseCoinOne, chooseCoinTwo } = useSelector(
+		(state) => state.transaction
+	);
+
 	const onChoosePersent = (value) => {
 		if (chooseCoinOne !== null) {
 			setValue(
 				(chooseCoinOne.market_data.balance / 100) *
 					Number(value.replace(/[^0-9]/g, ''))
-			)
+			);
 		}
-	}
+	};
 	const onMax = () => {
 		if (chooseCoinOne !== null) {
-			setValue(chooseCoinOne.market_data.balance)
+			setValue(chooseCoinOne.market_data.balance);
 		}
-	}
+	};
 	const onTypeInput1 = (e) => {
-		setValue(e.target.value)
-	}
+		setValue(e.target.value);
+	};
 	const onTypeInput2 = (e) => {
-		setValue2(e.target.value)
-	}
+		setValue2(e.target.value);
+	};
 
 	React.useEffect(() => {
-		if(chooseCoinOne !== null && chooseCoinTwo !== null && value !== '') {
-			setValue2(value * chooseCoinOne.market_data.current_price / chooseCoinTwo.market_data.current_price)
+		if (chooseCoinOne !== null && chooseCoinTwo !== null && value !== '') {
+			setValue2(
+				(value * chooseCoinOne.market_data.current_price) /
+					chooseCoinTwo.market_data.current_price
+			);
 		}
-	}, [chooseCoinOne, chooseCoinTwo, value])
+	}, [chooseCoinOne, chooseCoinTwo, value]);
 
 	switch (type) {
 		case 'sell':
@@ -55,7 +59,9 @@ const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
 									{chooseCoinOne != null
 										? fixNum(chooseCoinOne.market_data.balance)
 										: 0}{' '}
-									{chooseCoinOne != null ? chooseCoinOne.symbol.toUpperCase() : 'ETH'}
+									{chooseCoinOne != null
+										? chooseCoinOne.symbol.toUpperCase()
+										: 'ETH'}
 								</span>
 							</p>
 						</div>
@@ -79,11 +85,14 @@ const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
 						<li onClick={(e) => onChoosePersent(e.target.textContent)}>100%</li>
 					</ul>
 				</div>
-			)
+			);
 		default:
 			return (
 				<div className={styles.swap_input}>
-					<div className={styles.body}>
+					<div
+						className={styles.body}
+						style={{ borderColor: 'var(--dark-border)' }}
+					>
 						<div className={styles.top}>
 							<span className={styles.title}>
 								<Lang eng='Buy' cny='买' />
@@ -94,11 +103,13 @@ const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
 									{chooseCoinTwo != null
 										? fixNum(chooseCoinTwo.market_data.balance)
 										: 0}{' '}
-									{chooseCoinTwo != null ? chooseCoinTwo.symbol.toUpperCase() : 'USDT'}
+									{chooseCoinTwo != null
+										? chooseCoinTwo.symbol.toUpperCase()
+										: 'USDT'}
 								</span>
 							</p>
 						</div>
-						<div className={styles.bottom} style={{pointerEvents: 'none'}}>
+						<div className={styles.bottom} style={{ pointerEvents: 'none' }}>
 							<input
 								onChange={(e) => onTypeInput2(e)}
 								className={styles.input}
@@ -109,7 +120,7 @@ const SwapInput = ({ type, setValue, setValue2, value, value2 }) => {
 						</div>
 					</div>
 				</div>
-			)
+			);
 	}
-}
-export default SwapInput
+};
+export default SwapInput;

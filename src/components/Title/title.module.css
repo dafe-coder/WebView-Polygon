@@ -37,7 +37,7 @@
 	text-align: center;
 }
 .red {
-	color: var(--red)
+	color: var(--error)
 }
 .error_sm {
 	color: var(--error);
@@ -84,7 +84,4 @@
 
 .white {
 	color: var(--dark)
-}
-.red {
-	color: var(--red)
 }
