@@ -1,5 +1,5 @@
 .item {
-	background: #5E9F53;
+	background: var(--dark-text);
 	border-radius: 16px;
 	padding: 16px 20px;
 	border: 1px solid var(--white)

@@ -36,7 +36,9 @@
 	line-height: 20px;
 	text-align: center;
 }
-
+.red {
+	color: var(--red)
+}
 .error_sm {
 	color: var(--error);
 	margin: 0 0 10px;

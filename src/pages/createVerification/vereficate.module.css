@@ -7,7 +7,7 @@
 	align-items: center;
 	position: absolute;
     top: -41px;
-    background: #5E9F53;
+    background: var(--dark-text);
 }
 
 .circle svg {

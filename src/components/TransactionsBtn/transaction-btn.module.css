@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #7CFB5C;
+	background: var(--yellow);
 	border: 1px solid #1F2226;
 	border-radius: 12px;
 	width: 31.5%;
@@ -13,7 +13,7 @@
 }
 .btn:hover {
 	color: #1F2226;
-	background: #66d24b;
+	background: var(--yellow);
 }
 .btn:hover svg {
 	fill: #1F2226

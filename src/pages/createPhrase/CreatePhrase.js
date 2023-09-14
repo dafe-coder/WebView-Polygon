@@ -1,27 +1,27 @@
-import React, { useEffect } from 'react'
-import cn from 'classnames'
-import Title from '../../components/Title/Title'
-import Button from '../../components/Button/Button'
-import PhraseBox from '../../components/PhraseBox/PhraseBox'
-import Par from '../../components/Par/Par'
-import Alert from '../../components/Alert/Alert'
-import Modal from '../../components/modal/Modal'
-import QRCode from 'react-qr-code'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import GoBack from '../../components/GoBack/GoBack'
-import Lang from '../../components/Lang/Lang'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import cn from 'classnames';
+import Title from '../../components/Title/Title';
+import Button from '../../components/Button/Button';
+import PhraseBox from '../../components/PhraseBox/PhraseBox';
+import Par from '../../components/Par/Par';
+import Alert from '../../components/Alert/Alert';
+import Modal from '../../components/modal/Modal';
+import QRCode from 'react-qr-code';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import GoBack from '../../components/GoBack/GoBack';
+import Lang from '../../components/Lang/Lang';
+import { useNavigate } from 'react-router-dom';
 
 export const CreatePhrase = () => {
-    const navigate = useNavigate()
-	const [openQr, setOpenQr] = useState(false)
-	const { phrase } = useSelector((state) => state.create)
+	const navigate = useNavigate();
+	const [openQr, setOpenQr] = useState(false);
+	const { phrase } = useSelector((state) => state.create);
 
 	const goToVereficatePhrase = () => {
-		navigate('/verificate-phrase-1')
-	}
-	
+		navigate('/verificate-phrase-1');
+	};
+
 	return (
 		<section className={cn('bg-white')}>
 			<GoBack goTo='WalletBackup' />
@@ -41,9 +41,11 @@ export const CreatePhrase = () => {
 				</div>
 				<div className='wallet_body__bottom'>
 					<Alert
+						danger
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
-						}>
+						}
+					>
 						<Lang
 							eng='Anyone with your mnemonic can access your wallet assets. Please back
 						up your mnemonic before you receive transfers or delete the app.'
@@ -52,8 +54,9 @@ export const CreatePhrase = () => {
 					</Alert>
 					<Button
 						onClick={goToVereficatePhrase}
-						type='primary'
-						id='confirm-info-btn'>
+						type='white'
+						id='confirm-info-btn'
+					>
 						<Lang eng='Yes, I’ve written it down' cny='是的，我已经写下来了' />
 						<i className='fa-solid fa-arrow-right-long'></i>
 					</Button>
@@ -63,13 +66,18 @@ export const CreatePhrase = () => {
 						<Lang eng='Mnemonic Phrase QR Code' cny='助记词二维码' />
 					</Title>
 					<div id='qrcode'>
-						<QRCode bgColor='#5E9F53' fgColor='white' size={220} value={phrase} />
+						<QRCode
+							bgColor='var(--dark-text)'
+							fgColor='white'
+							size={220}
+							value={phrase}
+						/>
 					</div>
-					<Button type='primary' onClick={setOpenQr}>
+					<Button type='white' onClick={setOpenQr}>
 						<Lang eng='Close' cny='关' />
 					</Button>
 				</Modal>
 			</div>
 		</section>
-	)
-}
+	);
+};

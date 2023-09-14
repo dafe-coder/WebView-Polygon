@@ -1,86 +1,94 @@
-import React, { useState } from 'react'
-import cn from 'classnames'
-import Title from '../../components/Title/Title'
-import Input from '../../components/Input/Input'
-import Button from '../../components/Button/Button'
-import styles from './welcome-back.module.css'
-import Modal from '../../components/modal/Modal'
-import Par from './../../components/Par/Par'
-import bgImage from './Frame.png'
-import { setPasswordInit } from '../../store/slices/createSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { logTimer } from '../../Func.wallet/logTimer'
-import Lang from '../../components/Lang/Lang'
-import { useNavigate } from 'react-router-dom'
-import { resetWallet, setChooseTimeOut, setIsLogin } from '../../store/slices/storageSlice'
+import React, { useState } from 'react';
+import cn from 'classnames';
+import Title from '../../components/Title/Title';
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
+import styles from './welcome-back.module.css';
+import Modal from '../../components/modal/Modal';
+import Par from './../../components/Par/Par';
+import bgImage from '../../static/assets/images/logo.png';
+import { setPasswordInit } from '../../store/slices/createSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logTimer } from '../../Func.wallet/logTimer';
+import Lang from '../../components/Lang/Lang';
+import { useNavigate } from 'react-router-dom';
+import {
+	resetWallet,
+	setChooseTimeOut,
+	setIsLogin,
+} from '../../store/slices/storageSlice';
 
 const WelcomeBack = () => {
-	const dispatch = useDispatch()
-    const navigate = useNavigate()
-	const { password, chooseTimeOut } = useSelector((state) => state.storage)
-	const { passwordInit } = useSelector((state) => state.create)
-	const [open, setOpen] = useState(false)
-	const [goPage, setGoPage] = useState(false)
-	const [activeBtn, setActiveBtn] = useState(false)
-	const [timer, setTimer] = useState(10)
-	const [timerIDs, setTimerIDs] = useState(null)
-//
-    
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { password, chooseTimeOut } = useSelector((state) => state.storage);
+	const { passwordInit } = useSelector((state) => state.create);
+	const [open, setOpen] = useState(false);
+	const [goPage, setGoPage] = useState(false);
+	const [activeBtn, setActiveBtn] = useState(false);
+	const [timer, setTimer] = useState(10);
+	const [timerIDs, setTimerIDs] = useState(null);
+	//
+
 	const logIn = () => {
-        if (password === passwordInit) {
-            logTimer(chooseTimeOut, dispatch)
-            dispatch(setPasswordInit(''))
-            navigate('/wallet')
-        } else {
-            dispatch(setPasswordInit(''))
-        }
-	}
+		if (password === passwordInit) {
+			logTimer(chooseTimeOut, dispatch);
+			dispatch(setPasswordInit(''));
+			navigate('/wallet');
+		} else {
+			dispatch(setPasswordInit(''));
+		}
+	};
 	const goDeleteWallets = (page) => {
-		setOpen(true)
-		setTimer(10)
-		setActiveBtn(false)
-		setTimerIDs(setInterval(timerDisabled, 1000))
+		setOpen(true);
+		setTimer(10);
+		setActiveBtn(false);
+		setTimerIDs(setInterval(timerDisabled, 1000));
 		function timerDisabled() {
 			setTimer((state) => {
 				if (state == 0) {
-					setActiveBtn(true)
-					clearInterval(timerIDs)
-					return 0
+					setActiveBtn(true);
+					clearInterval(timerIDs);
+					return 0;
 				} else {
-					return state - 1
+					return state - 1;
 				}
-			})
+			});
 		}
 		if (page == 'import') {
-			setGoPage('WalletRestore')
+			setGoPage('WalletRestore');
 		} else {
-			setGoPage('CreateWalletReg')
+			setGoPage('CreateWalletReg');
 		}
-	}
+	};
 
 	const onDeleteAllAccounts = () => {
 		if (timer == 0 && activeBtn == true) {
-			dispatch(resetWallet())
-            dispatch(setIsLogin(false))
+			dispatch(resetWallet());
+			dispatch(setIsLogin(false));
 			if (goPage === 'WalletRestore') {
-				navigate('/import')
+				navigate('/import');
 			} else {
-				navigate('/create-data')
+				navigate('/create-data');
 			}
 		}
-	}
+	};
 
 	const onCancel = () => {
-		setActiveBtn(true)
-		clearInterval(timerIDs)
-		setOpen(false)
-	}
+		setActiveBtn(true);
+		clearInterval(timerIDs);
+		setOpen(false);
+	};
 
 	return (
-		<section>
+		<section className={styles.body}>
 			<div className='wallet_body'>
-				<div className={styles.top} style={{flexGrow: 1}}>
-					<img src={bgImage} style={{width: 150, height: 150}} alt='wallet logo' />
+				<div className={styles.top} style={{ flexGrow: 1 }}>
+					<img
+						src={bgImage}
+						style={{ width: 150, height: 150 }}
+						alt='wallet logo'
+					/>
 				</div>
 				<div className={styles.bottom}>
 					<Title color='white' mt>
@@ -103,13 +111,15 @@ const WelcomeBack = () => {
 						</p>
 						<a
 							style={{ cursor: 'pointer' }}
-							onClick={() => goDeleteWallets('import')}>
+							onClick={() => goDeleteWallets('import')}
+						>
 							<Lang eng='Import' cny='进口' />
 						</a>
 						<Lang eng='or' cny='或者' />
 						<a
 							style={{ cursor: 'pointer' }}
-							onClick={() => goDeleteWallets('create')}>
+							onClick={() => goDeleteWallets('create')}
+						>
 							<Lang eng='create a new wallet' cny='创建一个新钱包' />
 						</a>
 						.
@@ -138,20 +148,22 @@ const WelcomeBack = () => {
 				<Button
 					onClick={onDeleteAllAccounts}
 					className={cn({ ['disabled']: activeBtn == false })}
-					type='primary'
+					type='white'
 					mt
-					style={{ marginTop: '20px' }}>
+					style={{ marginTop: '20px' }}
+				>
 					<Lang eng='Continue' cny='继续' />{' '}
 					{activeBtn == false ? `(${timer} s)` : ''}
 				</Button>
 				<a
 					style={{ cursor: 'pointer' }}
 					className='link primary-link'
-					onClick={() => onCancel()}>
+					onClick={() => onCancel()}
+				>
 					<Lang eng='Back' cny='后退' />
 				</a>
 			</Modal>
 		</section>
-	)
-}
-export default WelcomeBack
+	);
+};
+export default WelcomeBack;

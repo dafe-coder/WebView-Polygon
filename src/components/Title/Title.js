@@ -5,7 +5,7 @@ import styles from './title.module.css';
 const Title = ({
 	style,
 	type = 'md',
-	color = 'white',
+	color = 'red',
 	children,
 	mb = '30',
 	mt,
@@ -22,6 +22,7 @@ const Title = ({
 				[styles.error_sm]: type == 'error-sm',
 				[styles.error_sm_alert]: type == 'error-sm-alert',
 				[styles.dark]: color == 'dark',
+				[styles.red]: color == 'red',
 				[styles.white]: color == 'white',
 				[styles.primary]: color == 'primary',
 				[styles.mt]: mt == true,

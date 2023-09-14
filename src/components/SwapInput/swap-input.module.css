@@ -1,5 +1,5 @@
 .body {
-	background:#5E9F53;
+	background:var(--dark-text);
 	border: 1px solid  #fff;
 	border-radius: 16px;
 	padding: 16px 20px;
@@ -63,7 +63,7 @@
 	flex-grow: 1;
 	text-align: left;
 	padding-right: 30px;
-	background: #5E9F53;
+	background: var(--dark-text);
 	color: var(--dark)
 }
 
@@ -86,7 +86,7 @@
 
 .list li {
 	flex-basis: 23.07%;
-	background: #5E9F53;
+	background: var(--dark-text);
 	border-radius: 10px;
 	padding: 7px 5px 5px;
 	display: flex;

@@ -1,49 +1,53 @@
-import React, { useEffect, useState } from 'react'
-import Buttons from './../../components/Buttons/Buttons'
-import Title from '../../components/Title/Title'
-import AccountCard from '../../components/AccountCard/AccountCard'
-import Button from './../../components/Button/Button'
-import Svg from '../../svgs/Svg'
-import { useDispatch, useSelector } from 'react-redux'
-import Lang from '../../components/Lang/Lang'
-import Modal from './../../components/modal/Modal'
-import CryptoJS from 'crypto-js'
-import { setTimer, setDeleteWallet, resetWallet } from '../../store/slices/storageSlice'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import Buttons from './../../components/Buttons/Buttons';
+import Title from '../../components/Title/Title';
+import AccountCard from '../../components/AccountCard/AccountCard';
+import Button from './../../components/Button/Button';
+import Svg from '../../svgs/Svg';
+import { useDispatch, useSelector } from 'react-redux';
+import Lang from '../../components/Lang/Lang';
+import Modal from './../../components/modal/Modal';
+import CryptoJS from 'crypto-js';
+import {
+	setTimer,
+	setDeleteWallet,
+	resetWallet,
+} from '../../store/slices/storageSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const ManageAccount = () => {
-    const navigate = useNavigate()
-	const kitkat = process.env.REACT_APP_KEY
-	const dispatch = useDispatch()
-    const {currentAccount, dataUser} = useSelector(state => state.storage)
+	const navigate = useNavigate();
+	const kitkat = process.env.REACT_APP_KEY;
+	const dispatch = useDispatch();
+	const { currentAccount, dataUser } = useSelector((state) => state.storage);
 
-	const [data, setData] = useState(undefined)
-	const [openModal, setOpenModal] = useState(false)
+	const [data, setData] = useState(undefined);
+	const [openModal, setOpenModal] = useState(false);
 
 	useEffect(() => {
-        if (dataUser !== null && dataUser.length >= 1) {
-            setData(dataUser.find(item => item.name === currentAccount))
-        }
-	}, [])
-    
+		if (dataUser !== null && dataUser.length >= 1) {
+			setData(dataUser.find((item) => item.name === currentAccount));
+		}
+	}, []);
+
 	const onDelete = () => {
-        if(dataUser !== null && dataUser.length >= 2) {
-            dispatch(setDeleteWallet(currentAccount))
-            navigate('/accounts')
-        } else {
-            dispatch(resetWallet())
-            navigate('/')
-        }
-	}
+		if (dataUser !== null && dataUser.length >= 2) {
+			dispatch(setDeleteWallet(currentAccount));
+			navigate('/accounts');
+		} else {
+			dispatch(resetWallet());
+			navigate('/');
+		}
+	};
 
 	const deleteAcc = () => {
-		setOpenModal(true)
-	}
+		setOpenModal(true);
+	};
 
 	const onLock = () => {
-		dispatch(setTimer(null))
-		navigate('/welcome-back')
-	}
+		dispatch(setTimer(null));
+		navigate('/welcome-back');
+	};
 
 	return (
 		<section className='bg-white'>
@@ -52,7 +56,8 @@ export const ManageAccount = () => {
 					<div className='wallet-header'>
 						<Buttons
 							onClick={() => navigate('/accounts')}
-							type='back'></Buttons>
+							type='back'
+						></Buttons>
 						<Title>
 							<Lang eng='Account' cny='帐户' />
 						</Title>
@@ -63,18 +68,28 @@ export const ManageAccount = () => {
 					<AccountCard
 						title={data ? data.name : 'Wallet'}
 						copy={true}
-						one={true}>
-						{data && data.address !== ''
-							&& data.address}
+						one={true}
+					>
+						{data && data.address !== '' && data.address}
 					</AccountCard>
 					{data && data.phrase != '' ? (
-						<Button text='left' type='border-primary' mt onClick={() => navigate('/seed-phrase')}>
+						<Button
+							text='left'
+							type='border-primary'
+							mt
+							onClick={() => navigate('/seed-phrase')}
+						>
 							<Lang eng='View recovery phrase' cny='查看恢复短语' />
 						</Button>
 					) : (
 						<></>
 					)}
-					<Button text='left' type='border-primary' mt onClick={() => navigate('/private-key')}>
+					<Button
+						text='left'
+						type='border-primary'
+						mt
+						onClick={() => navigate('/private-key')}
+					>
 						<Lang eng='View private key' cny='查看私钥' />
 					</Button>
 				</div>
@@ -87,7 +102,7 @@ export const ManageAccount = () => {
 			</div>
 			<Modal openFunc={setOpenModal} open={openModal}>
 				<Title>Did you back up the mnemonic phrase?</Title>
-				<Button onClick={onDelete} mt='0' type='primary'>
+				<Button onClick={onDelete} mt='0' type='white'>
 					Yes
 				</Button>
 				<span
@@ -99,10 +114,11 @@ export const ManageAccount = () => {
 						lineHeight: '20px',
 						color: '#fff',
 						marginTop: '20px',
-					}}>
+					}}
+				>
 					No, take me back
 				</span>
 			</Modal>
 		</section>
-	)
-}
+	);
+};

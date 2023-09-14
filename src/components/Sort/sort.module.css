@@ -1,6 +1,6 @@
 .body {
 	width: 135px;
-	background: #5E9F53;
+	background: var(--dark-text);
 	border: 1px solid var(--white);
 	border-radius: 16px;
 	position: absolute;

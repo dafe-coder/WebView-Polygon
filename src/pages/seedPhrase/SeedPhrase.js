@@ -1,33 +1,33 @@
-import React, { useState } from 'react'
-import Button from '../../components/Button/Button'
-import Buttons from '../../components/Buttons/Buttons'
-import Title from '../../components/Title/Title'
-import Par from '../../components/Par/Par'
-import Alert from './../../components/Alert/Alert'
-import Input from './../../components/Input/Input'
-import SeedPhraseBox from '../../components/SeedPhrase/SeedPhrase'
-import { useDispatch, useSelector } from 'react-redux'
-import Lang from '../../components/Lang/Lang'
-import { useNavigate } from 'react-router-dom'
-import { setPasswordInit } from '../../store/slices/createSlice'
+import React, { useState } from 'react';
+import Button from '../../components/Button/Button';
+import Buttons from '../../components/Buttons/Buttons';
+import Title from '../../components/Title/Title';
+import Par from '../../components/Par/Par';
+import Alert from './../../components/Alert/Alert';
+import Input from './../../components/Input/Input';
+import SeedPhraseBox from '../../components/SeedPhrase/SeedPhrase';
+import { useDispatch, useSelector } from 'react-redux';
+import Lang from '../../components/Lang/Lang';
+import { useNavigate } from 'react-router-dom';
+import { setPasswordInit } from '../../store/slices/createSlice';
 
 export const SeedPhrase = () => {
-    const navigate = useNavigate()
-	const dispatch = useDispatch()
-	const { passwordInit } = useSelector((state) => state.create)
-	const { password } = useSelector((state) => state.storage)
-	const [showPhrase, setShowPhrase] = useState(false)
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { passwordInit } = useSelector((state) => state.create);
+	const { password } = useSelector((state) => state.storage);
+	const [showPhrase, setShowPhrase] = useState(false);
 
 	const onSubmitSeed = () => {
 		if (password.length >= 8) {
-            if (password === passwordInit) {
-                setShowPhrase(true)
-                dispatch(setPasswordInit(''))
-            } else {
-                dispatch(setPasswordInit(''))
-            }
+			if (password === passwordInit) {
+				setShowPhrase(true);
+				dispatch(setPasswordInit(''));
+			} else {
+				dispatch(setPasswordInit(''));
+			}
 		}
-	}
+	};
 	return (
 		<section className='bg-white'>
 			<div className='wallet_body'>
@@ -48,10 +48,12 @@ export const SeedPhrase = () => {
 						/>
 					</Par>
 					<Alert
+						danger
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
 						}
-						style={{ margin: '20px 0' }}>
+						style={{ margin: '20px 0' }}
+					>
 						<Lang
 							eng='Do not share this phrase with anyone! These words can be used to
 						steal all of your accounts.'
@@ -73,7 +75,7 @@ export const SeedPhrase = () => {
 					{showPhrase ? (
 						<></>
 					) : (
-						<Button mb type='primary' onClick={onSubmitSeed}>
+						<Button mb type='white' onClick={onSubmitSeed}>
 							<Lang eng='Next' cny='下一个' />
 						</Button>
 					)}
@@ -83,5 +85,5 @@ export const SeedPhrase = () => {
 				</div>
 			</div>
 		</section>
-	)
-}
+	);
+};

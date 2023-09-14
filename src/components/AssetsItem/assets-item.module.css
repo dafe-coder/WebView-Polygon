@@ -1,6 +1,6 @@
 .item {
-	background: #5E9F53;
-	border: 1px solid var(--white);
+	background: var(--dark-text);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	padding: 16px 20px;
 	display: flex;

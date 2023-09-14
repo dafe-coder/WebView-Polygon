@@ -1,12 +1,12 @@
 .item {
-	background:  #5E9F53;
+	background:  var(--dark-text);
 	border-radius: 16px;
 	padding: 16px 20px;
 	display: flex;
 	flex-direction: column;
 	cursor: pointer;
 	transition: all ease .2s;
-	border: 1px solid var(--white)
+	box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.15);
 }
 .item:hover {
 	transform: scale(1.03);
@@ -22,7 +22,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid var(--white);
+	border-bottom: 1px solid var(--dark-border);
 	padding: 0 0 10px;
 }
 .info {

@@ -142,7 +142,7 @@
     position: absolute;
     right: -168px;
     top: -4px;
-    background: #5E9F53;
+    background: var(--dark-text);
     z-index: 3;
     border-radius: 16px;
     font-weight: 300;

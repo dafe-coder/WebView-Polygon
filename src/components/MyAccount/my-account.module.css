@@ -1,10 +1,10 @@
 .account_card {
-	background: #5E9F53;
-	border: 1px solid var(--white);
+	background: var(--dark-text);
 	border-radius: 16px;
 	padding: 20px;
 	width: 100%;
 	margin-bottom: 30px;
+	box-shadow: 0px 0px 12px 6px rgba(0, 0, 0, 0.15);
 }
 
 .top {

@@ -64,8 +64,7 @@
 	  --gray: #ebebeb;
 	  --dark: #FDFDFF;
 	  --dark-gray: #737373;
-	  --red: #EB5757;
-	  --error: #8B2323;
+	  --error: #EB5757;
 	  --error-light: #d64444c7;
 	  --dark-bg: #0E111A;
 	  --success: #23AC00;
@@ -97,8 +96,8 @@
 	cursor: not-allowed;
 	border-color: var(--disabled);
   }
-  button.disabled svg {
-	  fill:  var(--disabled-light);
+  button.disabled svg path {
+	  fill:  var(--disabled-light) !important;
   }
   
   button.disabled:hover {
@@ -193,8 +192,8 @@
   }
   
   .choose-word .active {
-	  color: var(--success);
-	  border-color: var(--success);
+	  color: var(--yellow);
+	  border-color: var(--yellow);
 	  font-weight: 700;
   }
   #chart {
@@ -355,7 +354,7 @@
   
   
   ul li.active-wallet {
-	  border-color: var(--success)
+	  border-color: var(--yellow)
   }
   
   input::-webkit-outer-spin-button,
@@ -407,4 +406,12 @@
   }
   .swap_body {
 	  min-height: auto;
+  }
+  
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+	  transition: background-color 600000s 0s, color 600000s 0s !important;
+  }
+  input[data-autocompleted] {
+	  background-color: transparent !important;
   }

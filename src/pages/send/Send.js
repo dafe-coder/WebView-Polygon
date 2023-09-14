@@ -1,76 +1,78 @@
-import React from 'react'
-import Buttons from './../../components/Buttons/Buttons'
-import Title from '../../components/Title/Title'
-import SelectToken from '../../components/SelectToken/SelectToken'
-import Amount from './../../components/Amount/Amount'
-import Modal from '../../components/modal/Modal'
-import BoxWithIcon from '../../components/BoxWithIcon/BoxWithIcon'
-import styles from './sent.module.css'
-import cn from 'classnames'
-import Par from './../../components/Par/Par'
-import PaymentDetails from '../../components/PaymentDetails/PaymentDetails'
-import { useDispatch, useSelector } from 'react-redux'
-import Button from '../../components/Button/Button'
-import Lang from '../../components/Lang/Lang'
-import Spinner from '../../components/Loader/Spinner'
-import transactionsSend from '../../Func.wallet/transaction'
-import { useNavigate, useLocation } from 'react-router-dom'
-import CryptoJS  from 'crypto-js';
-import { setChooseCoinOne } from '../../store/slices/transactionSlice'
+import React from 'react';
+import Buttons from './../../components/Buttons/Buttons';
+import Title from '../../components/Title/Title';
+import SelectToken from '../../components/SelectToken/SelectToken';
+import Amount from './../../components/Amount/Amount';
+import Modal from '../../components/modal/Modal';
+import BoxWithIcon from '../../components/BoxWithIcon/BoxWithIcon';
+import styles from './sent.module.css';
+import cn from 'classnames';
+import Par from './../../components/Par/Par';
+import PaymentDetails from '../../components/PaymentDetails/PaymentDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../components/Button/Button';
+import Lang from '../../components/Lang/Lang';
+import Spinner from '../../components/Loader/Spinner';
+import transactionsSend from '../../Func.wallet/transaction';
+import { useNavigate, useLocation } from 'react-router-dom';
+import CryptoJS from 'crypto-js';
+import { setChooseCoinOne } from '../../store/slices/transactionSlice';
 
 export const Send = () => {
-	const {state} = useLocation()
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
-	const { walletAddress } = useSelector((state) => state.wallet)
-	const { dataUser, currentAccount} = useSelector((state) => state.storage)
-	const {chooseCoinOne} = useSelector(state => state.transaction)
-	const [disabledBtn, setDisabledBtn] = React.useState(true)
-	const [address, setAddress] = React.useState('')
-	const [amount, setAmount] = React.useState('')
-	const [showPaymentsDetails, setShowPaymentsDetails] = React.useState(false)
-	const [checkEther, setCheckEther] = React.useState(false)
-	const [openSuccess, setOpenSuccess] = React.useState(false)
-	const [openGas, setOpenGas] = React.useState(false)
-	const [hash, setHash] = React.useState('')
-    const [loading, setLoading] = React.useState(false)
-	const [addressTo, setAddressTo] = React.useState('')
+	const { state } = useLocation();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const { walletAddress } = useSelector((state) => state.wallet);
+	const { dataUser, currentAccount } = useSelector((state) => state.storage);
+	const { chooseCoinOne } = useSelector((state) => state.transaction);
+	const [disabledBtn, setDisabledBtn] = React.useState(true);
+	const [address, setAddress] = React.useState('');
+	const [amount, setAmount] = React.useState('');
+	const [showPaymentsDetails, setShowPaymentsDetails] = React.useState(false);
+	const [checkEther, setCheckEther] = React.useState(false);
+	const [openSuccess, setOpenSuccess] = React.useState(false);
+	const [openGas, setOpenGas] = React.useState(false);
+	const [hash, setHash] = React.useState('');
+	const [loading, setLoading] = React.useState(false);
+	const [addressTo, setAddressTo] = React.useState('');
 
 	React.useEffect(() => {
-		console.log(hash)
-	}, [hash])
+		console.log(hash);
+	}, [hash]);
 
 	React.useEffect(() => {
 		if (chooseCoinOne !== null) {
-			setCheckEther(chooseCoinOne.symbol.toUpperCase().includes('ETH'))
+			setCheckEther(chooseCoinOne.symbol.toUpperCase().includes('ETH'));
 		}
-	}, [chooseCoinOne])
+	}, [chooseCoinOne]);
 
 	React.useEffect(() => {
-		if(state !== null) {
-			dispatch(setChooseCoinOne(state))
+		if (state !== null) {
+			dispatch(setChooseCoinOne(state));
 		}
-	}, [state])
+	}, [state]);
 
 	React.useEffect(() => {
 		if (addressTo !== '' && amount !== '' && chooseCoinOne !== null) {
-			setShowPaymentsDetails(true)
-			setDisabledBtn(false)
+			setShowPaymentsDetails(true);
+			setDisabledBtn(false);
 		} else {
-			setDisabledBtn(true)
-			setShowPaymentsDetails(false)
+			setDisabledBtn(true);
+			setShowPaymentsDetails(false);
 		}
-	}, [addressTo, amount, chooseCoinOne])
+	}, [addressTo, amount, chooseCoinOne]);
 
-    const viewDetails = () => {
-		window.open(`https://etherscan.io/tx/${hash}`)
-	}
+	const viewDetails = () => {
+		window.open(`https://etherscan.io/tx/${hash}`);
+	};
 
 	const onSendTransaction = () => {
-		if(!disabledBtn) {
-			const privateKey = CryptoJS.AES.decrypt(dataUser.find((d) => d.name == currentAccount)
-			.privateKey, process.env.REACT_APP_KEY).toString(CryptoJS.enc.Utf8)
-			const amountSend = Number(amount)
+		if (!disabledBtn) {
+			const privateKey = CryptoJS.AES.decrypt(
+				dataUser.find((d) => d.name == currentAccount).privateKey,
+				process.env.REACT_APP_KEY
+			).toString(CryptoJS.enc.Utf8);
+			const amountSend = Number(amount);
 			transactionsSend(
 				walletAddress,
 				addressTo,
@@ -81,9 +83,9 @@ export const Send = () => {
 				setOpenSuccess,
 				setOpenGas,
 				privateKey
-			)
+			);
 		}
-	}
+	};
 
 	return (
 		<section className='bg-white'>
@@ -96,9 +98,7 @@ export const Send = () => {
 						</Title>
 						<div></div>
 					</div>
-					<SelectToken
-						chooseCoin='one'
-					/>
+					<SelectToken chooseCoin='one' />
 					<div className='wallet-input'>
 						<input
 							className='input'
@@ -112,7 +112,7 @@ export const Send = () => {
 							<Lang eng='Enter Address' cny='输入地址' />
 						</label>
 					</div>
-					<Amount setAmount={setAmount} amount={amount}/>
+					<Amount setAmount={setAmount} amount={amount} />
 					{chooseCoinOne != null ? (
 						<PaymentDetails
 							pageCurrent='Sent'
@@ -130,8 +130,9 @@ export const Send = () => {
 						className={cn('btn', {
 							['disabled']: disabledBtn == true,
 						})}
-						type='primary'
-						onClick={onSendTransaction}>
+						type='white'
+						onClick={onSendTransaction}
+					>
 						{loading ? <Spinner /> : <Lang eng='Next' cny='下一个' />}
 					</Button>
 				</div>
@@ -147,7 +148,8 @@ export const Send = () => {
 						height='94'
 						viewBox='0 0 94 94'
 						fill='#4C9540'
-						xmlns='http://www.w3.org/2000/svg'>
+						xmlns='http://www.w3.org/2000/svg'
+					>
 						<rect opacity='0.1' width='94' height='94' rx='47' fill='#4C9540' />
 						<path
 							opacity='0.9'
@@ -163,12 +165,14 @@ export const Send = () => {
 					<div className={styles.sent_btn}>
 						<button
 							onClick={viewDetails}
-							className={cn(styles.transparent, styles.btn)}>
+							className={cn(styles.transparent, styles.btn)}
+						>
 							<Lang eng='View Details' cny='查看详情' />
 						</button>
 						<button
 							onClick={() => setOpenSuccess(false)}
-							className={cn(styles.primary, styles.btn)}>
+							className={cn(styles.primary, styles.btn)}
+						>
 							<Lang eng='Got it' cny='知道了' />
 						</button>
 					</div>
@@ -185,7 +189,8 @@ export const Send = () => {
 						height='94'
 						viewBox='0 0 95 94'
 						fill='none'
-						xmlns='http://www.w3.org/2000/svg'>
+						xmlns='http://www.w3.org/2000/svg'
+					>
 						<rect
 							opacity='0.1'
 							x='0.5'
@@ -213,12 +218,13 @@ export const Send = () => {
 					<div className={styles.sent_btn}>
 						<button
 							onClick={() => setOpenGas(false)}
-							className={cn(styles.btn, styles.btn_error)}>
+							className={cn(styles.btn, styles.btn_error)}
+						>
 							<Lang eng='Take me back' cny='带我回去' />
 						</button>
 					</div>
 				</BoxWithIcon>
 			</Modal>
 		</section>
-	)
-}
+	);
+};

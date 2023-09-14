@@ -39,6 +39,9 @@
 .white:hover svg {
     fill: var(--black);
 }
+.white:not(.disabled) svg path {
+    fill: var(--black);
+}
 .primary {
     background: rgba(255, 255, 255, 0.1);
     color: var(--white);
@@ -149,12 +152,12 @@
 }
 
 .green {
-    background: #7CFB5C;
+    background: var(--yellow);
     border: none;
     font-weight: 400;
 }
 
 .border_green {
-    background: #7CFB5C;
+    background: var(--yellow);
     border: 1px solid #1F2226;
 }

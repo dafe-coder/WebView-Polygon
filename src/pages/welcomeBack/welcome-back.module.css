@@ -2,7 +2,11 @@
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
-	color: var(--dark)
+	color: var(--dark);
+}
+
+.body{ 
+	background: url('../../static/assets/images/bg.png') center center / cover no-repeat;
 }
 .reg p {
 	font-weight: 400;
@@ -25,7 +29,6 @@
 
 .top img {
 	height: 360px;
-	mix-blend-mode: luminosity;
 }
 
 .top {

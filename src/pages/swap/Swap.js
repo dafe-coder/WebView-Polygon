@@ -149,7 +149,7 @@ export const Swap = () => {
 				<div className='wallet-bottom'>
 					<Button
 						onClick={onSubmitSwap}
-						type='primary'
+						type='white'
 						style={{ position: 'relative', minHeight: '54px' }}
 						positionSvg='left'
 						className={cn({
