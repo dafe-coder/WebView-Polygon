@@ -7,7 +7,7 @@ const LoaderPrice = (props) => (
 		width={155}
 		height={30}
 		viewBox='0 0 155 30'
-		backgroundColor='#2F4925'
+		backgroundColor='var(--dark-border)'
 		foregroundColor='var(--dark-text)'
 		{...props}
 	>

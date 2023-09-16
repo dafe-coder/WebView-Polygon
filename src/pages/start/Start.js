@@ -11,7 +11,7 @@ export const Start = () => {
 		<section className={cn(styles.section)}>
 			<LangChoose />
 			<div className={styles.logoWrap}>
-				<img src={logo} alt='Shiba' style={{ width: 150 }} />
+				<img src={logo} alt='ShibaSwap' style={{ width: 150 }} />
 			</div>
 			<div className='btn-list-row'>
 				<Button type='white' to='/create-data'>

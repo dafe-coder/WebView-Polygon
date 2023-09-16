@@ -28,21 +28,21 @@ export const About = () => {
 					</div>
 					<BoxWithIcon
 						style={{ marginBottom: '30px' }}
-						title={<Lang eng='Shiba Swap' cny='Shiba' />}
+						title={<Lang eng='ShibaSwap' cny='ShibaSwap' />}
 						par={manifestVersion.version}
 						colorPar='#AAAAAA'
 					>
 						<img
 							style={{ width: 62, marginBottom: 30 }}
 							src={logo}
-							alt='Shiba'
+							alt='ShibaSwap'
 						/>
 					</BoxWithIcon>
 					<Button
 						type='border-gray'
 						text='left'
 						mt='0'
-						onClick={() => openHelp('https://t.me/pepecoineth')}
+						onClick={() => openHelp('https://discord.com/invite/shibatoken')}
 					>
 						<Lang eng='Help' cny='帮助' />
 					</Button>

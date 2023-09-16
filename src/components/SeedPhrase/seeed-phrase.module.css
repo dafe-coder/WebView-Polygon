@@ -3,7 +3,7 @@
 	position: relative;
 }
 .phrase {
-	background: #2F4925;
+	background: var(--dark-text);
 	border: 1px solid var(--success);
 	border-radius: 16px;
 	padding: 16px 20px;

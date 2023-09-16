@@ -1,42 +1,39 @@
-import React, { useState } from 'react'
-import styles from './settings.module.css'
-import Buttons from '../../components/Buttons/Buttons'
-import Title from '../../components/Title/Title'
-import { useEffect } from 'react'
-import Svg from './../../svgs/Svg'
-import { useSelector } from 'react-redux/es/exports'
-import Lang from '../../components/Lang/Lang'
-import Menu from '../../components/Menu/Menu'
-import { useNavigate } from 'react-router-dom'
-import { setCurrencyWallet } from '../../store/slices/storageSlice'
+import React, { useState } from 'react';
+import styles from './settings.module.css';
+import Buttons from '../../components/Buttons/Buttons';
+import Title from '../../components/Title/Title';
+import { useEffect } from 'react';
+import Svg from './../../svgs/Svg';
+import { useSelector } from 'react-redux/es/exports';
+import Lang from '../../components/Lang/Lang';
+import Menu from '../../components/Menu/Menu';
+import { useNavigate } from 'react-router-dom';
+import { setCurrencyWallet } from '../../store/slices/storageSlice';
 export const Settings = () => {
-	const navigate = useNavigate()
-	
-	const { langList } = useSelector(
-		(state) => state.wallet
-	)
-    const {dataUser, currentAccount, lang, currencyWallet} = useSelector(state => state.storage)
-	const [data, setData] = useState({})
+	const navigate = useNavigate();
+
+	const { langList } = useSelector((state) => state.wallet);
+	const { dataUser, currentAccount, lang, currencyWallet } = useSelector(
+		(state) => state.storage
+	);
+	const [data, setData] = useState({});
 
 	useEffect(() => {
-        if (dataUser && dataUser.length >= 1) {
-            dataUser.map((item) => {
-                if (currentAccount == item.name) {
-                    setData(item)
-                }
-            })
-        }
-	}, [])
+		if (dataUser && dataUser.length >= 1) {
+			dataUser.map((item) => {
+				if (currentAccount == item.name) {
+					setData(item);
+				}
+			});
+		}
+	}, []);
 
 	return (
 		<section className='bg-white'>
 			<div className='wallet-body'>
 				<div className='wallet-top'>
 					<div className='wallet-header'>
-						<Buttons
-							onClick={() => navigate('/wallet')}
-							type='back'
-						/>
+						<Buttons onClick={() => navigate('/wallet')} type='back' />
 						<Title>
 							<Lang eng='Settings' cny='设置' />
 						</Title>
@@ -97,7 +94,6 @@ export const Settings = () => {
 					</ul>
 				</div>
 			</div>
-			<Menu />
 		</section>
-	)
-}
+	);
+};

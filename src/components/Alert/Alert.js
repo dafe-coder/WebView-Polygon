@@ -27,7 +27,7 @@ const Alert = ({ children, danger = false, title, icon = false, style }) => {
 					{title}
 				</Title>
 			) : (
-				<Title type='error-sm-alert' mb='0'>
+				<Title color={danger ? 'red' : 'white'} type='error-sm-alert' mb='0'>
 					{title}
 				</Title>
 			)}

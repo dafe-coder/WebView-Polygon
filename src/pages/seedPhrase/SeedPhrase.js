@@ -48,7 +48,7 @@ export const SeedPhrase = () => {
 						/>
 					</Par>
 					<Alert
-						danger
+						danger={true}
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
 						}

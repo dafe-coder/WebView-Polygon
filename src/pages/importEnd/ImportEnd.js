@@ -33,7 +33,7 @@ export const ImportEnd = ({ setUpdateWallet, dataCoins }) => {
 					/>
 				</div>
 				<div className='wallet-body__bottom'>
-					<Button to='/wallet' type='white'>
+					<Button to='/loader' type='white'>
 						<Lang eng='Confirm' cny='确认' />
 					</Button>
 				</div>

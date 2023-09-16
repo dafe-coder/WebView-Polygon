@@ -7,7 +7,7 @@ const LoaderCard = (props) => (
 		width={270}
 		height={90}
 		viewBox='0 0 270 90'
-		backgroundColor='#2F4925'
+		backgroundColor='var(--dark-border)'
 		foregroundColor='var(--dark-text)'
 		{...props}
 	>

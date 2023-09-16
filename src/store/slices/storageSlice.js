@@ -8,7 +8,7 @@ const initialState = {
 	lockWallet: true,
 	currentAccount: '',
 	currentNetwork: 'Ethereum',
-	chooseAssets: ['shiba', 'bnb', 'eth', 'matic'],
+	chooseAssets: ['shib', 'bnb', 'eth', 'matic'],
 	currencyWallet: 'usd',
 	lang: 'eng',
 	timer: null,
@@ -25,10 +25,10 @@ const storageSlice = createSlice({
 			state.isLogin = false;
 			state.autoLock = true;
 			state.currentNetwork = 'Ethereum';
-			state.chooseAssets = ['shiba', 'bnb', 'eth', 'matic'];
+			state.chooseAssets = ['shib', 'bnb', 'eth', 'matic'];
 		},
 		setInitChooseAssets(state) {
-			state.chooseAssets = ['shiba', 'bnb', 'eth', 'matic'];
+			state.chooseAssets = ['shib', 'bnb', 'eth', 'matic'];
 		},
 		setCurrencyWallet(state, action) {
 			state.currencyWallet = action.payload;

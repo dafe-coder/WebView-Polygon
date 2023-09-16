@@ -111,7 +111,7 @@ export const Swap = () => {
 						<Buttons type='back' onClick={() => navigate(-1)} />
 						<Title>
 							<Lang eng='Swap' cny='交换' />{' '}
-							<span style={{ fontWeight: 300 }}>(Shiba)</span>
+							<span style={{ fontWeight: 300 }}>(ShibaSwap)</span>
 						</Title>
 						<Buttons
 							type='cog'
@@ -197,10 +197,16 @@ export const Swap = () => {
 						width='94'
 						height='94'
 						viewBox='0 0 94 94'
-						fill='#4C9540'
+						fill='var(--yellow)'
 						xmlns='http://www.w3.org/2000/svg'
 					>
-						<rect opacity='0.1' width='94' height='94' rx='47' fill='#4C9540' />
+						<rect
+							opacity='0.1'
+							width='94'
+							height='94'
+							rx='47'
+							fill='var(--yellow)'
+						/>
 						<path
 							opacity='0.9'
 							d='M62.0469 36.9531C62.9609 37.7969 62.9609 39.2734 62.0469 40.1172L44.0469 58.1172C43.2031 59.0312 41.7266 59.0312 40.8828 58.1172L31.8828 49.1172C30.9688 48.2734 30.9688 46.7969 31.8828 45.9531C32.7266 45.0391 34.2031 45.0391 35.0469 45.9531L42.4297 53.3359L58.8828 36.9531C59.7266 36.0391 61.2031 36.0391 62.0469 36.9531Z'

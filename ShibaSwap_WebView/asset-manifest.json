@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.71966568.css",
+    "main.js": "/static/js/main.4694f7d6.js",
+    "static/media/FontAwesome6ProThin100.woff": "/static/media/FontAwesome6ProThin100.769ce96cc486c090dcd3.woff",
+    "static/media/FontAwesome6ProSolid900.woff": "/static/media/FontAwesome6ProSolid900.1c07a66e1571b472d7b1.woff",
+    "static/media/FontAwesome6ProThin100.woff2": "/static/media/FontAwesome6ProThin100.1fa426ec87f003c2b62a.woff2",
+    "static/media/FontAwesome6ProSolid900.woff2": "/static/media/FontAwesome6ProSolid900.ea0e7d61e5a512abecdb.woff2",
+    "static/media/bg.png": "/static/media/bg.ca090eaf688bae51730e.png",
+    "static/media/active.png": "/static/media/active.4722866700db823b842a.png",
+    "static/media/logo.png": "/static/media/logo.8a5b933635c3a7b85fb9.png",
+    "static/media/cny.png": "/static/media/cny.b2beaccd8fa2f29bd87f.png",
+    "static/media/jpy.png": "/static/media/jpy.6c3f35e2f0110f762bbf.png",
+    "static/media/RUB.png": "/static/media/RUB.d8a4184603e21aca4d2b.png",
+    "static/media/PLN.png": "/static/media/PLN.ceecb2467e692c2689ca.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.71966568.css",
+    "static/js/main.4694f7d6.js"
+  ]
+}

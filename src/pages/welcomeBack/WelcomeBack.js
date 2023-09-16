@@ -17,6 +17,7 @@ import {
 	setChooseTimeOut,
 	setIsLogin,
 } from '../../store/slices/storageSlice';
+import LangChoose from '../../components/LangChoose/LangChoose';
 
 const WelcomeBack = () => {
 	const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const WelcomeBack = () => {
 		if (password === passwordInit) {
 			logTimer(chooseTimeOut, dispatch);
 			dispatch(setPasswordInit(''));
-			navigate('/wallet');
+			navigate('/loader');
 		} else {
 			dispatch(setPasswordInit(''));
 		}
@@ -82,6 +83,7 @@ const WelcomeBack = () => {
 
 	return (
 		<section className={styles.body}>
+			<LangChoose />
 			<div className='wallet_body'>
 				<div className={styles.top} style={{ flexGrow: 1 }}>
 					<img
@@ -127,7 +129,7 @@ const WelcomeBack = () => {
 				</div>
 			</div>
 			<Modal open={open} white padding='0'>
-				<Title type='error' mb>
+				<Title color='red' type='error' mb>
 					<Lang eng='Risk Alert' cny='风险提示' />
 				</Title>
 				<Par>

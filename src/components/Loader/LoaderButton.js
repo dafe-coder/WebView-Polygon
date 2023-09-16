@@ -7,7 +7,7 @@ const LoaderButton = (props) => (
 		width={322}
 		height={54}
 		viewBox='0 0 322 54'
-		backgroundColor='#2F4925'
+		backgroundColor='var(--dark-border)'
 		foregroundColor='var(--dark-text)'
 		{...props}
 	>

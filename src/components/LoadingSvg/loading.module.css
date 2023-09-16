@@ -1,12 +1,13 @@
 .loading_page {
-	position: fixed;
+	position: absolute;
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
 	display: none;
-	background: linear-gradient(0deg, #4C9540, #4C9540), #1F2226;
+	background: var(--dark-bg) url('../../static/assets/images/bg.png') center center no-repeat;
+	background-size: cover;
 }
 .title {
 	position: absolute;
@@ -33,7 +34,7 @@
 .logoIcon {
 	position: absolute;
 	z-index: 8;
-	top: 140px;
+	top: 170px;
 	left: 50%;
 	transform: translateX(-50%);
 	animation: scaleInAnim 1s linear alternate forwards;

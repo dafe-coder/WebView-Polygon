@@ -13,7 +13,7 @@
 	font-style: normal;
   }
   
-  @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
   /* inter */
   * {
 	  box-sizing: border-box;
@@ -31,7 +31,7 @@
   
   html,
   body {
-	  font-family: 'Comfortaa', cursive;
+	  font-family: 'Inter', cursive;
 	  font-size: 14px;
 	  margin: 0;
 	  min-height: 180px;
@@ -44,6 +44,7 @@
 	  height: 100%;
 	  color: var(--dark);
 	  overflow-y: auto;
+	  position: relative;
   }
   html {
 	  width: 375px;
@@ -147,6 +148,8 @@
   #app {
 	  height: 100%;
 	  width: 100%;
+	  overflow: hidden;
+	  position: relative;
   }
   #coin-logo {
 	  position: absolute;

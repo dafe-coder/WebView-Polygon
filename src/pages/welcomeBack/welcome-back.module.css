@@ -53,5 +53,5 @@
 }
 
 .inputBg {
-	background: #2F4925;
+	background: var(--dark-text);
 }

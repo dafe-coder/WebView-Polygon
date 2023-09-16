@@ -36,9 +36,7 @@
 	line-height: 20px;
 	text-align: center;
 }
-.red {
-	color: var(--error)
-}
+
 .error_sm {
 	color: var(--error);
 	margin: 0 0 10px;
@@ -84,4 +82,7 @@
 
 .white {
 	color: var(--dark)
+}
+.red {
+	color: var(--error)
 }

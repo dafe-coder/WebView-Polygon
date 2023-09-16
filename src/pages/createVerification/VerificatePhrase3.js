@@ -53,7 +53,7 @@ export const VerificatePhrase3 = () => {
 
 	React.useEffect(() => {
 		if (loadingFinished) {
-			navigate('/wallet');
+			navigate('/loader');
 		}
 	}, [loadingFinished]);
 

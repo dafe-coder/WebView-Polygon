@@ -20,7 +20,7 @@
 .select {
 	padding: 16px 20px;
 	background:  var(--dark-text);
-	border: 1px solid var(--white);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	width: 100%;
 	display: flex;
@@ -45,13 +45,14 @@
 	margin: 0;
 	list-style: none;
 	background: var(--dark-text);
-	border: 1px solid var(--white);
+	border: 1px solid var(--dark-border);
 	border-top: 0;
 	border-radius: 0 0 16px 16px;
 	z-index: 2;
 	display: none;
 	max-height: 400px;
-	overflow-y: auto;    overflow-x: hidden;
+	overflow-y: auto;   
+	overflow-x: hidden;
 }
 .item {
 	font-weight: 400;
@@ -74,7 +75,7 @@
 	align-items: center;
 	padding: 15px;
 	background:  var(--dark-text);
-	border: 1px solid var(--white);
+	border: 1px solid var(--dark-border);
 	border-radius: 16px;
 	transition: all ease .2s;
 }
@@ -179,8 +180,8 @@
 }
 
 .input {
-	background: #2F4925;
-    border: 1px solid var(--white);
+	background:	var(--dark-text);
+    border: 1px solid var(--dark-border);
     color: var(--dark);
     border-radius: 16px;
     width: 100%;

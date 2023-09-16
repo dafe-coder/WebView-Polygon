@@ -36,8 +36,8 @@ export const SecurityPrivacy = () => {
 					</Title>
 					<Par>
 						<Lang
-							eng='Set the idle time in minutes before Shiba Wallet is locked.'
-							cny='以分钟为单位设置 Shiba Wallet 锁定前的空闲时间。'
+							eng='Set the idle time in minutes before ShibaSwap Wallet is locked.'
+							cny='以分钟为单位设置 ShibaSwap Wallet 锁定前的空闲时间。'
 						/>
 					</Par>
 					<Dropdown

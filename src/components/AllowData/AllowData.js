@@ -9,8 +9,8 @@ const AllowData = () => {
 			<div className={styles.info}>
 				<h4 className={styles.title}>Allow Data Collection</h4>
 				<p className={styles.par}>
-					Shiba Wallet collects your data to provide you with an improved user
-					experience.
+					ShibaSwap Wallet collects your data to provide you with an improved
+					user experience.
 				</p>
 			</div>
 			<div className={styles.btn}>
