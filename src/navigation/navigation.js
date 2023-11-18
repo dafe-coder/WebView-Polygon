@@ -1,26 +1,56 @@
-import React from 'react'
-import { createBrowserRouter } from 'react-router-dom'
-import { Start, ImportRestore, Accounts, ImportData, TransactionsHistory, ImportEnd, Wallet, CreateData,SelectCurrency, SelectLanguage, CreateSubmit, PortfolioOpen, Send, Settings, About, SecurityPrivacy, PrivateKey, SeedPhrase, ManageAccount, Buy, Receive, ManageAssets, Swap, TransactionSettings, CreateNotebook, CreatePhrase, VerificatePhrase2, VerificatePhrase3, PasswordCreate } from '../pages/'
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import {
+	Start,
+	ImportRestore,
+	Accounts,
+	ImportData,
+	TransactionsHistory,
+	ImportEnd,
+	Wallet,
+	CreateData,
+	SelectCurrency,
+	SelectLanguage,
+	CreateSubmit,
+	PortfolioOpen,
+	Send,
+	Settings,
+	About,
+	SecurityPrivacy,
+	PrivateKey,
+	SeedPhrase,
+	ManageAccount,
+	Buy,
+	Receive,
+	ManageAssets,
+	Swap,
+	TransactionSettings,
+	CreateNotebook,
+	CreatePhrase,
+	VerificatePhrase2,
+	VerificatePhrase3,
+	PasswordCreate,
+} from '../pages/';
 
-import { RouterProvider } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { setLockWallet } from '../store/slices/storageSlice'
-import VerificatePhrase1 from '../pages/createVerification/VerificatePhrase1'
-import WelcomeBack from '../pages/welcomeBack/WelcomeBack'
+import { RouterProvider } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLockWallet } from '../store/slices/storageSlice';
+import VerificatePhrase1 from '../pages/createVerification/VerificatePhrase1';
+import WelcomeBack from '../pages/welcomeBack/WelcomeBack';
 
 export default function () {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const { isLogin, password, autoLock, timer } = useSelector(
 		(state) => state.storage
-	)
-	const [timerCheck, setTimerCheck] = React.useState(false)
-	const [routes, setRoutes] = React.useState(null)
+	);
+	const [timerCheck, setTimerCheck] = React.useState(false);
+	const [routes, setRoutes] = React.useState(null);
 
 	React.useEffect(() => {
 		if (password !== '' && autoLock) {
-			dispatch(setLockWallet(true))
+			dispatch(setLockWallet(true));
 		}
-	}, [password, autoLock])
+	}, [password, autoLock]);
 
 	React.useEffect(() => {
 		if (
@@ -28,13 +58,13 @@ export default function () {
 			timer == undefined ||
 			timer == null
 		) {
-			setTimerCheck(true)
+			setTimerCheck(true);
 		} else if (timer == 'never') {
-			setTimerCheck(false)
+			setTimerCheck(false);
 		} else {
-			setTimerCheck(false)
+			setTimerCheck(false);
 		}
-	}, [timer])
+	}, [timer]);
 
 	React.useEffect(() => {
 		setRoutes([
@@ -173,13 +203,13 @@ export default function () {
 				path: '/create-pass',
 				element: <PasswordCreate />,
 			},
-		])
-	}, [isLogin, timerCheck])
+		]);
+	}, [isLogin, timerCheck]);
 
 	if (routes == null) {
-		return
+		return;
 	}
 
-	const router = createBrowserRouter(routes)
-	return <RouterProvider router={router}/>
+	const router = createBrowserRouter(routes);
+	return <RouterProvider router={router} />;
 }

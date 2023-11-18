@@ -1,62 +1,61 @@
-import React from 'react'
-import cn from 'classnames'
-import Title from '../../components/Title/Title'
-import Button from '../../components/Button/Button'
-import PhraseBox from '../../components/PhraseBox/PhraseBox'
-import Par from '../../components/Par/Par'
-import Alert from '../../components/Alert/Alert'
-import Modal from '../../components/modal/Modal'
-import QRCode from 'react-qr-code'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import GoBack from '../../components/GoBack/GoBack'
-import Lang from '../../components/Lang/Lang'
-import { useNavigate } from 'react-router-dom'
-import { resetWallet, setCurrentAccount, setData, setIsLogin } from '../../store/slices/storageSlice'
-import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice'
-import { logTimer } from '../../Func.wallet/logTimer'
-import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress'
-import CryptoJS from 'crypto-js'
-import { setRegistered } from '../../store/slices/createSlice'
+import React from 'react';
+import cn from 'classnames';
+import Title from '../../components/Title/Title';
+import Button from '../../components/Button/Button';
+import PhraseBox from '../../components/PhraseBox/PhraseBox';
+import Par from '../../components/Par/Par';
+import Alert from '../../components/Alert/Alert';
+import Modal from '../../components/modal/Modal';
+import QRCode from 'react-qr-code';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import GoBack from '../../components/GoBack/GoBack';
+import Lang from '../../components/Lang/Lang';
+import { useNavigate } from 'react-router-dom';
+import {
+	resetWallet,
+	setCurrentAccount,
+	setData,
+	setIsLogin,
+} from '../../store/slices/storageSlice';
+import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice';
+import { logTimer } from '../../Func.wallet/logTimer';
+import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress';
+import CryptoJS from 'crypto-js';
+import { setRegistered } from '../../store/slices/createSlice';
 
-
-const kitkat = 'aBN6qreLALR9QYPy'
+const kitkat = 'aBN6qreLALR9QYPy';
 
 export const CreatePhrase = () => {
-	const dispatch = useDispatch()
-    const navigate = useNavigate()
-	const [openQr, setOpenQr] = useState(false)
-	const { name, phrase, registered } = useSelector((state) => state.create)
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const [openQr, setOpenQr] = useState(false);
+	const { name, phrase, registered } = useSelector((state) => state.create);
 
 	const goToVereficatePhrase = () => {
-		if(!registered) {
-			dispatch(setWalletNew(true))
-			dispatch(setDataWallet(null))
-			dispatch(resetWallet())
-			logTimer('30 minutes', dispatch)
-			const privateKey = generatePrivateKeyFromSeed(phrase, 12)
+		if (!registered) {
+			dispatch(setWalletNew(true));
+			dispatch(setDataWallet(null));
+			dispatch(resetWallet());
+			logTimer('30 minutes', dispatch);
+			const privateKey = generatePrivateKeyFromSeed(phrase, 12);
 			let phraseCrypt =
-			phrase != ''
-				? CryptoJS.AES.encrypt(phrase, kitkat).toString()
-				: ''
-			let privateKeyCrypt = CryptoJS.AES.encrypt(
-				privateKey,
-				kitkat
-			).toString()
+				phrase != '' ? CryptoJS.AES.encrypt(phrase, kitkat).toString() : '';
+			let privateKeyCrypt = CryptoJS.AES.encrypt(privateKey, kitkat).toString();
 			const newDataUser = {
 				name: name,
 				phrase: phraseCrypt,
 				address: '',
 				privateKey: privateKeyCrypt,
-			}
-			dispatch(setData(newDataUser))
-			dispatch(setCurrentAccount(name))
-			dispatch(setIsLogin(true))
-			dispatch(setRegistered(true))
+			};
+			dispatch(setData(newDataUser));
+			dispatch(setCurrentAccount(name));
+			dispatch(setIsLogin(true));
+			dispatch(setRegistered(true));
 		}
-		navigate('/create-pass', {state: {to: '/wallet'}})
-	}
-	
+		navigate('/create-pass', { state: { to: '/wallet' } });
+	};
+
 	return (
 		<section className={cn('bg-white')}>
 			<GoBack goTo='WalletBackup' />
@@ -79,7 +78,8 @@ export const CreatePhrase = () => {
 						title={
 							<Lang eng='Keep Mnemonic Phrase Safe!' cny='保持助记词安全！' />
 						}
-						danger={true}>
+						danger={true}
+					>
 						<Lang
 							eng='Anyone with your mnemonic can access your wallet assets. Please back
 						up your mnemonic before you receive transfers or delete the app.'
@@ -89,7 +89,8 @@ export const CreatePhrase = () => {
 					<Button
 						onClick={goToVereficatePhrase}
 						type='primary'
-						id='confirm-info-btn'>
+						id='confirm-info-btn'
+					>
 						<Lang eng='Yes, I’ve written it down' cny='是的，我已经写下来了' />
 						<i className='fa-solid fa-arrow-right-long'></i>
 					</Button>
@@ -107,5 +108,5 @@ export const CreatePhrase = () => {
 				</Modal>
 			</div>
 		</section>
-	)
-}
+	);
+};
