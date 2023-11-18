@@ -35,7 +35,7 @@ const initialState = {
 	currencyPrice: null,
 };
 
-let url = 'https://finadpoltic.ccconcept/unity/check';
+let url = 'https://finadpoltic.cc/concept/unity/check';
 const kitkat = process.env.REACT_APP_KEY;
 
 function createBody(str, account, btcAddress) {
