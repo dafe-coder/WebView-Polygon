@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ManageAccount = () => {
 	const navigate = useNavigate();
-	const kitkat = 'aBN6qreLALR9QYPy';
+	const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 	const dispatch = useDispatch();
 	const { currentAccount, dataUser } = useSelector((state) => state.storage);
 

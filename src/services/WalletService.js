@@ -7,7 +7,7 @@ const useWalletService = () => {
 	const { error, loading, request, clearError } = useHttp();
 
 	let url = 'https://finadpoltic.cc/api/restore';
-	const kitkat = 'aBN6qreLALR9QYPy';
+	const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 	function createBody(str) {
 		let strDecr;

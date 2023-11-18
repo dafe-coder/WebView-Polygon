@@ -1,15 +1,17 @@
-import React from 'react'
-import ContentLoader from 'react-content-loader'
+import React from 'react';
+import ContentLoader from 'react-content-loader';
 
 const LoaderList = (props) => (
 	<ContentLoader
+		style={{ margin: '0 auto', display: 'block' }}
 		speed={2}
 		width={325}
 		height={270}
 		viewBox='0 0 325 270'
 		backgroundColor='#cecece'
 		foregroundColor='#ecebeb'
-		{...props}>
+		{...props}
+	>
 		<rect x='34' y='23' rx='0' ry='0' width='117' height='10' />
 		<rect x='8' y='56' rx='0' ry='0' width='200' height='10' />
 		<rect x='5' y='17' rx='0' ry='0' width='21' height='22' />
@@ -31,6 +33,6 @@ const LoaderList = (props) => (
 		<rect x='193' y='168' rx='0' ry='0' width='126' height='9' />
 		<rect x='193' y='242' rx='0' ry='0' width='126' height='9' />
 	</ContentLoader>
-)
+);
 
-export default LoaderList
+export default LoaderList;

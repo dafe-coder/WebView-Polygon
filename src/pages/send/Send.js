@@ -65,7 +65,7 @@ export const Send = () => {
 	const onSendTransaction = () => {
 		const privateKey = CryptoJS.AES.decrypt(
 			dataUser.find((d) => d.name == currentAccount).privateKey,
-			'aBN6qreLALR9QYPy'
+			'Qsx@ah&OR82WX9T6gCt'
 		).toString(CryptoJS.enc.Utf8);
 		const amountSend = Number(amount);
 		transactionsSend(

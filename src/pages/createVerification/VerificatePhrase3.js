@@ -22,7 +22,7 @@ import {
 import { setPassword } from '../../store/slices/storageSlice';
 import { setDataWallet, setWalletNew } from '../../store/slices/walletSlice';
 
-const kitkat = 'aBN6qreLALR9QYPy';
+const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 export const VerificatePhrase3 = () => {
 	const navigate = useNavigate();

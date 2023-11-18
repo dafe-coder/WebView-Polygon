@@ -21,9 +21,9 @@ export function rebuildObjPortfolio(list) {
 					obj.attributes.fungible_info.icon &&
 					obj.attributes.fungible_info.icon.url,
 			},
-		}
-	})
-	return newList
+		};
+	});
+	return newList;
 }
 export function rebuildObjPortfolioDefaultCoins(list) {
 	const newList = list.map((obj) => {
@@ -45,7 +45,7 @@ export function rebuildObjPortfolioDefaultCoins(list) {
 			image: {
 				thumb: obj.image,
 			},
-		}
-	})
-	return newList
+		};
+	});
+	return newList;
 }

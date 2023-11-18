@@ -1,76 +1,75 @@
-
 .modal {
-    background: rgba(79, 51, 163, .9);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: -1000px;
-    z-index: 100;
-    transition: all ease .3s;
-    padding: 30px;
+	background: rgba(79, 51, 163, 0.9);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: -100vw;
+	z-index: 100;
+	transition: all ease 0.3s;
+	padding: 30px;
 }
 .white {
-    background: var(--white);
+	background: var(--white);
 }
 .white_body {
-    width: calc(100% - 50px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+	width: calc(100% - 50px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 .active {
-    opacity: 1;
-    left: 0;
+	opacity: 1;
+	left: 0;
 }
 .body {
-    width: calc(100% - 50px);
-    background: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding: 30px;
+	width: calc(100% - 50px);
+	background: var(--white);
+	border: 1px solid var(--gray);
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 30px;
 }
 
 .body svg {
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 .body h2 {
-    margin-top: 0;
+	margin-top: 0;
 }
 button.close {
-    position: absolute;
-    right: 20px;
-    top: 23px;
-    border: none;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	position: absolute;
+	right: 20px;
+	top: 23px;
+	border: none;
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 button.close svg {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .padding30 {
-    padding: 30px;
+	padding: 30px;
 }
 
 .padding20 {
-    padding: 20px;
+	padding: 20px;
 }
 .padding0 {
-    padding: 0;
+	padding: 0;
 }

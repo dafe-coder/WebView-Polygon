@@ -58,7 +58,7 @@ export const ImportData = () => {
 	const onAddNewAcc = () => {
 		if (!disabledBtn) {
 			if (!registered) {
-				const kitkat = 'aBN6qreLALR9QYPy';
+				const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 				let phraseCrypt =
 					restorePhrase != ''

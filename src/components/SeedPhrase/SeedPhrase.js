@@ -8,7 +8,7 @@ import Lang from './../Lang/Lang';
 import CryptoJS from 'crypto-js';
 
 const SeedPhraseBox = ({ show, prKey = false }) => {
-	const kitkat = 'aBN6qreLALR9QYPy';
+	const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 	const [copied, setCopied] = useState(false);
 	const { dataUser, currentAccount } = useSelector((state) => state.storage);
 	const [currentAccountData, setCurrentAccountData] = React.useState(null);

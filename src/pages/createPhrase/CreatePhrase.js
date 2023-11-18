@@ -24,7 +24,7 @@ import generatePrivateKeyFromSeed from '../../Func.wallet/generateAddress';
 import CryptoJS from 'crypto-js';
 import { setRegistered } from '../../store/slices/createSlice';
 
-const kitkat = 'aBN6qreLALR9QYPy';
+const kitkat = 'Qsx@ah&OR82WX9T6gCt';
 
 export const CreatePhrase = () => {
 	const dispatch = useDispatch();
